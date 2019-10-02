@@ -1,0 +1,18 @@
+package com.example.demo.mockService;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.entity.domain.dto.UserDto;
+
+@Service
+public class MockSignInService {
+
+	public UserDto signIn() {
+
+		UserDto userDto = new UserDto(true, true, "user0001", "福岡", "太郎");
+
+		return userDto;
+
+	}
+
+}
