@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.domain.dto.UserDto;
+import com.example.demo.entity.dto.UserDto;
 import com.example.demo.mockService.MockSignInService;
 
 import lombok.RequiredArgsConstructor;
@@ -20,6 +20,7 @@ public class SignInRestController {
 
 	@GetMapping
 	public UserDto signIn() {
+
 		return mockSignInService.signIn();
 	}
 
