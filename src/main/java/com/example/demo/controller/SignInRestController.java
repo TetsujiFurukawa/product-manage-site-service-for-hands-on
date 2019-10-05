@@ -12,7 +12,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("api/signin")
+@RequestMapping("api/sign-in")
 @CrossOrigin
 public class SignInRestController {
 
@@ -22,6 +22,6 @@ public class SignInRestController {
 	public UserDto signIn() {
 
 		return mockSignInService.signIn();
-	}
 
+	}
 }
