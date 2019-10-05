@@ -1,5 +1,5 @@
 -- Project Name : product-manage-db
--- Date/Time    : 2019/10/04 0:11:41
+-- Date/Time    : 2019/10/04 22:17:59
 -- Author       : tetsuji
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -13,7 +13,7 @@
 -- 商品購入テーブル
 --* RestoreFromTempTable
 create table product_purchase_tbl (
-  product_purchase_seq int unsigned auto_increment not null
+  product_purchase_seq int auto_increment not null
   , product_seq int not null unique
   , product_purchase_name varchar(50) not null
   , product_purchase_unit_price decimal(8,0) not null
@@ -30,7 +30,7 @@ create table product_purchase_tbl (
 -- 商品在庫マスタ
 --* RestoreFromTempTable
 create table product_stock_mst (
-  product_stock_seq int unsigned auto_increment not null
+  product_stock_seq int auto_increment not null
   , product_seq int not null unique
   , product_stock_quantity decimal(8,0)
   , deleted boolean default false
@@ -44,7 +44,7 @@ create table product_stock_mst (
 -- 商品マスタ
 --* RestoreFromTempTable
 create table product_mst (
-  product_seq int unsigned auto_increment not null
+  product_seq int auto_increment not null
   , product_code varchar(20) unique
   , product_name varchar(50)
   , product_genre varchar(20)
@@ -64,7 +64,7 @@ create table product_mst (
 -- ユーザマスタ
 --* RestoreFromTempTable
 create table user_mst (
-  user_seq INT unsigned auto_increment not null
+  user_seq int auto_increment not null
   , user_account varchar(20) not null unique
   , user_name varchar(50) not null
   , user_lang varchar(30) not null

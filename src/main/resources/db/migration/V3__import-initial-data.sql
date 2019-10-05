@@ -1,0 +1,2 @@
+INSERT INTO user_mst(user_account, user_name, user_lang, user_timezone, deleted, enter_date, enter_user, update_date, update_user) VALUES('user01', 'テストユーザ０１', 'ja', 'Asia/Tokyo', false, '2020-01-01 00:00:00.000', 'system', '2020-01-01 00:00:00.000', 'system');
+INSERT INTO user_mst(user_account, user_name, user_lang, user_timezone, deleted, enter_date, enter_user, update_date, update_user) VALUES('user02', 'TEST_USER02', 'en', 'America/Los_Angeles', false, '2020-01-01 00:00:00.000', 'system', '2020-01-01 00:00:00.000', 'system');

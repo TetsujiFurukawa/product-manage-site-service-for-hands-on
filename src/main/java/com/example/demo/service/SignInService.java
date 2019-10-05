@@ -1,11 +1,11 @@
-package com.example.demo.mockService;
+package com.example.demo.service;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.dto.UserDto;
 
 @Service
-public class MockSignInService {
+public class SignInService {
 
 	public UserDto signIn() {
 
