@@ -7,14 +7,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class SignInResponceDto {
 
-	private Boolean login;
+	private String userAccount;
 
-	private Boolean adimn;
+	private String userName;
 
-	private String userId;
+	private String userLang;
 
-	private String firstName;
-
-	private String lastName;
+	private String userTimezone;
 
 }

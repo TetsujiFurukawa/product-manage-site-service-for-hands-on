@@ -24,11 +24,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		httpSecurity
 				.httpBasic()
 				.and()
-				.authorizeRequests()
-				.anyRequest().authenticated();
+				.authorizeRequests().anyRequest().authenticated()
+				.and()
+				.csrf().disable();
+
+//TODO csrf for login
+//				.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
 	}
-
 
 	@Bean
 	PasswordEncoder passwordEncoder() {

@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.security;
 
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -26,6 +26,7 @@ public class LoginUserDetailsService implements UserDetailsService {
 		}
 
 		return new LoginUserDetails(userMst);
+
 	}
 
 }

@@ -16,7 +16,7 @@ public class UserMst {
 	@Id
 	@GeneratedValue
 //	@Column(nullable = false)
-	private Integer user_seq;
+	private Integer userSeq;
 
 //	@Column(nullable = false)
 	private String userEncodedPassword;

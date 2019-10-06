@@ -1,12 +1,12 @@
 package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.entity.dto.UserDto;
-import com.example.demo.mockService.MockSignInService;
+import com.example.demo.entity.dto.responce.SignInResponceDto;
+import com.example.demo.service.rest.SignInRestService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -16,12 +16,13 @@ import lombok.RequiredArgsConstructor;
 @CrossOrigin
 public class SignInRestController {
 
-	private final MockSignInService mockSignInService;
 
-	@GetMapping
-	public UserDto signIn() {
+	private final SignInRestService signInRestService;
 
-		return mockSignInService.signIn();
+	@PostMapping
+	public SignInResponceDto signIn() {
+
+		return signInRestService.signIn();
 
 	}
 }

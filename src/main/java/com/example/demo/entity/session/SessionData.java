@@ -12,8 +12,19 @@ import lombok.Data;
 @Component
 @Scope(value="session", proxyMode=ScopedProxyMode.TARGET_CLASS)
 public class SessionData implements Serializable{
-    private static final long serialVersionUID = 1L;
-    String str1;
-    String str2;
-    String str3;
+
+	private static final long serialVersionUID = 1L;
+
+	private Integer userSeq;
+
+	private String userAccount;
+
+	private String userName;
+
+	private String userLang;
+
+	private String userTimezone;
+
+	private String deleted;
+
 }
