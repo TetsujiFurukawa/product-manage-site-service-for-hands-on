@@ -1,11 +1,11 @@
-package com.example.demo.entity.dto.responce;
+package com.example.demo.entity.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class SignInResponceDto {
+public class SignInResponseDto {
 
 	private String userAccount;
 

@@ -3,7 +3,7 @@ package com.example.demo.service.rest;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.domain.UserMst;
-import com.example.demo.entity.dto.responce.SignInResponceDto;
+import com.example.demo.entity.dto.response.SignInResponseDto;
 import com.example.demo.service.security.AuthenticationService;
 import com.example.demo.service.session.SessionService;
 
@@ -16,7 +16,7 @@ public class SignInRestService extends BaseRestService{
 	private final AuthenticationService principalService;
 	private final SessionService sessionService;
 
-	public SignInResponceDto signIn() {
+	public SignInResponseDto signIn() {
 
 		// Gets user mst data.
 		UserMst userMst=principalService.getUserMst();
@@ -25,7 +25,7 @@ public class SignInRestService extends BaseRestService{
 		sessionService.setupSession(userMst);
 
 		// Returns user data.
-		SignInResponceDto signInResponceDto = new SignInResponceDto(userMst.getUserAccount(), userMst.getUserName(),userMst.getUserLang(),userMst.getUserTimezone());
+		SignInResponseDto signInResponceDto = new SignInResponseDto(userMst.getUserAccount(), userMst.getUserName(),userMst.getUserLang(),userMst.getUserTimezone());
 
 		return signInResponceDto;
 
