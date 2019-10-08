@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.Pbkdf2PasswordEncoder;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 
 @Configuration
 @EnableWebSecurity
@@ -21,15 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
+
 		httpSecurity
 				.httpBasic()
 				.and()
 				.authorizeRequests().anyRequest().authenticated()
 				.and()
-				.csrf().disable();
-
-//TODO csrf for login
-//				.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+				.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
 	}
 
