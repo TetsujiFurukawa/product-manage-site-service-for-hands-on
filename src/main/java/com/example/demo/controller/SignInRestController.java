@@ -9,9 +9,9 @@ import com.example.demo.service.rest.SignInRestService;
 
 import lombok.RequiredArgsConstructor;
 
-@RequiredArgsConstructor
 @RestController
 @RequestMapping("api/sign-in")
+@RequiredArgsConstructor
 public class SignInRestController {
 
 
