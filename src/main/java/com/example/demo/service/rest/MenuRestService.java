@@ -18,10 +18,10 @@ public class MenuRestService extends BaseRestService {
 	public List<MenuListResponseDto> getMenu() {
 
 		// Gets user seq.
-		long userSeq = accountService.getUserSeq();
+		String userSubMenuRole = accountService.getUserSubMenuRole();
 
 		// Gets user menu list.
-		return accountService.getMenuList(userSeq);
+		return accountService.getMenuList(userSubMenuRole);
 
 	}
 

@@ -41,6 +41,10 @@ public class SessionService {
 		return sessionData.getUserTimezone();
 	}
 
+	public String getUserSubMenuRole() {
+		return sessionData.getUserSubMenuRole();
+	}
+
 	public void setDeleted(String deleted) {
 		sessionData.setDeleted(deleted);
 	}
@@ -65,6 +69,10 @@ public class SessionService {
 		sessionData.setUserTimezone(userTimezone);
 	}
 
+	public void setUserSubMenuRole(String userSubMenuRole) {
+		sessionData.setUserSubMenuRole(userSubMenuRole);
+	}
+
 
 	public void setupSession(UserMst userMst) {
 
@@ -73,6 +81,7 @@ public class SessionService {
 		setUserName(userMst.getUserName());
 		setUserLang(userMst.getUserLang());
 		setUserTimezone(userMst.getUserTimezone());
+		setUserSubMenuRole(userMst.getUserSubMenuRole());
 
 	}
 

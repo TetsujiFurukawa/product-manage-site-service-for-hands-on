@@ -11,6 +11,6 @@ public class MenuListResponseDto {
 
 	private String menuCode;
 
-	private List<MenuResponseDto> menuResponseDto;
+	private List<String> subMenuCodeList;
 
 }

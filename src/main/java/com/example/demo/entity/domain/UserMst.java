@@ -34,6 +34,9 @@ public class UserMst {
 	private String userTimezone;
 
 //	@Column(nullable = false)
+	private String userSubMenuRole;
+
+//	@Column(nullable = false)
 	private String deleted;
 
 //	@Column(nullable = false)

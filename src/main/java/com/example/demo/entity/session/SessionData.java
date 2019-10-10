@@ -25,6 +25,8 @@ public class SessionData implements Serializable{
 
 	private String userTimezone;
 
+	private String userSubMenuRole;
+
 	private String deleted;
 
 }
