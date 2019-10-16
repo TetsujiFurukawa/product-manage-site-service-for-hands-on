@@ -4,29 +4,30 @@
 <generatorConfiguration>
   <context id="handsOnTables" targetRuntime="MyBatis3">
 
-    <!-- スキーマ情報を取得する DB への接続設定 -->
+    <!-- Connection Settings -->
     <jdbcConnection driverClass="org.h2.Driver"
         connectionURL="jdbc:h2:C:/papa/00.default/12.Benesse/pleiades/workspace/product-manage-site-service-for-hands-on/h2db/sampledb"
         userId="username"
         password="password">
     </jdbcConnection>
 
-    <!-- SELECT 結果等を格納するドメインモデルを生成する設定 -->
+    <!-- Entity Models -->
     <javaModelGenerator targetPackage="com.example.demo.entity.domain" targetProject="product-manage-site-service-for-hands-on/src/main/java">
       <property name="enableSubPackages" value="true" />
       <property name="trimStrings" value="true" />
     </javaModelGenerator>
 
-    <!-- SQL 設定が記述された XML を生成する設定 -->
+    <!-- Sql Xml files -->
     <sqlMapGenerator targetPackage="mybatis" targetProject="product-manage-site-service-for-hands-on/src/main/resources">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
-    <!-- マッパークラスを生成する設定 -->
+
+    <!-- Mappers -->
     <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.mybatis" targetProject="product-manage-site-service-for-hands-on/src/main/java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 
-    <!-- コードを生成するテーブルを指定 -->
+    <!-- Target tables -->
     <table schema="" tableName="USER_MST">
       <property name="mapUnderscoreToCamelCase" value="true" />
     </table>
