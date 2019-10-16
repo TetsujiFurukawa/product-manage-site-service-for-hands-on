@@ -18,7 +18,7 @@ public class ProductRestController {
 	private final ProductRestService productRestService;
 
 	@GetMapping("/product-list")
-	public ProductListResponseDto searchProductList(PagenatorRequestDto pagenatorRequestDto,ProductListRequestDto productListRequestDto) {
+	public ProductListResponseDto searchProductList(ProductListRequestDto productListRequestDto,PagenatorRequestDto pagenatorRequestDto) {
 		return productRestService.getProductList(productListRequestDto,pagenatorRequestDto);
 	}
 
