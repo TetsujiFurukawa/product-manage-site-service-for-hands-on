@@ -33,7 +33,7 @@ public class SessionService {
 		return sessionData.getUserName();
 	}
 
-	public Integer getUserSeq() {
+	public Long getUserSeq() {
 		return sessionData.getUserSeq();
 	}
 
@@ -61,7 +61,7 @@ public class SessionService {
 		sessionData.setUserName(userName);
 	}
 
-	public void setUserSeq(Integer userSeq) {
+	public void setUserSeq(Long userSeq) {
 		sessionData.setUserSeq(userSeq);
 	}
 

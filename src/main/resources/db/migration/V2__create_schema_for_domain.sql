@@ -1,5 +1,5 @@
 -- Project Name : product-manage-db
--- Date/Time    : 2019/10/10 11:57:58
+-- Date/Time    : 2019/10/17 9:54:58
 -- Author       : ts-tetsuji.furukawa
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -13,7 +13,7 @@
 -- ユーザマスタ
 --* RestoreFromTempTable
 create table USER_MST (
-  USER_SEQ int auto_increment not null
+  USER_SEQ bigserial not null
   , USER_ACCOUNT varchar(20) not null unique
   , USER_ENCODED_PASSWORD varchar(128) not null
   , USER_NAME varchar(50) not null
@@ -31,7 +31,7 @@ create table USER_MST (
 -- 商品マスタ
 --* RestoreFromTempTable
 create table PRODUCT_MST (
-  PRODUCT_SEQ int auto_increment not null
+  PRODUCT_SEQ bigserial not null
   , PRODUCT_CODE varchar(20) unique
   , PRODUCT_NAME varchar(50)
   , PRODUCT_GENRE varchar(20)
@@ -51,9 +51,9 @@ create table PRODUCT_MST (
 -- 商品在庫マスタ
 --* RestoreFromTempTable
 create table PRODUCT_STOCK_MST (
-  PRODUCT_STOCK_SEQ int auto_increment not null
-  , PRODUCT_SEQ int not null unique
-  , PRODUCT_STOCK_QUANTITY decimal(8,0)
+  PRODUCT_STOCK_SEQ bigserial not null
+  , PRODUCT_SEQ bigint not null unique
+  , PRODUCT_STOCK_QUANTITY decimal(8,0) not null
   , DELETED boolean default false not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
@@ -65,8 +65,8 @@ create table PRODUCT_STOCK_MST (
 -- 商品購入テーブル
 --* RestoreFromTempTable
 create table PRODUCT_PURCHASE_TBL (
-  PRODUCT_PURCHASE_SEQ int auto_increment not null
-  , PRODUCT_SEQ int not null unique
+  PRODUCT_PURCHASE_SEQ bigserial not null
+  , PRODUCT_SEQ bigint not null unique
   , PRODUCT_PURCHASE_NAME varchar(50) not null
   , PRODUCT_PURCHASE_UNIT_PRICE decimal(8,0) not null
   , PRODUCT_PURCHASE_QUANTITY decimal(8,0) not null
@@ -82,9 +82,9 @@ create table PRODUCT_PURCHASE_TBL (
 -- サブメニューマスタ
 --* RestoreFromTempTable
 create table SUB_MENU_MST (
-  SUB_MENU_SEQ int not null
+  SUB_MENU_SEQ bigserial not null
   , SUB_MENU_CODE varchar(30) not null
-  , MENU_SEQ int not null
+  , MENU_SEQ bigint not null
   , SUB_MENU_ROLL varchar(10)
   , SUB_MENU_ORDER smallint not null
   , DELETED boolean default false not null
@@ -98,7 +98,7 @@ create table SUB_MENU_MST (
 -- メニューマスタ
 --* RestoreFromTempTable
 create table MENU_MST (
-  MENU_SEQ int not null
+  MENU_SEQ bigserial not null
   , MENU_CODE varchar(10) not null
   , MENU_ORDER smallint not null
   , DELETED boolean default false not null

@@ -21,7 +21,9 @@ public class MenuRestService extends BaseRestService {
 		String userSubMenuRole = accountService.getUserSubMenuRole();
 
 		// Gets user menu list.
-		return accountService.getMenuList(userSubMenuRole);
+//		return accountService.getMenuList(userSubMenuRole);
+
+		return null;
 
 	}
 

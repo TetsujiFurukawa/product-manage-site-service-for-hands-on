@@ -16,10 +16,9 @@ public class AuthenticationService {
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		LoginUserDetails test=((LoginUserDetails)principal);
+		LoginUserDetails loginUserDetails = ((LoginUserDetails) principal);
 
-		return test.getUserMst();
-
+		return loginUserDetails.getUserMst();
 
 	}
 

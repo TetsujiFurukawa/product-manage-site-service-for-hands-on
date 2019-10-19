@@ -22,14 +22,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
-
 		httpSecurity
 				.httpBasic()
 				.and()
 				.authorizeRequests().anyRequest().authenticated()
 				.and()
-				.csrf().csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
-
+				.csrf().ignoringAntMatchers("/api/sign-in")
+				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 	}
 
 	@Bean

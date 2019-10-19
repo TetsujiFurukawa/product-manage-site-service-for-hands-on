@@ -15,7 +15,7 @@ public class SessionData implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer userSeq;
+	private Long userSeq;
 
 	private String userAccount;
 

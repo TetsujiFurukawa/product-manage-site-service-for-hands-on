@@ -6,7 +6,7 @@
 
     <!-- Connection Settings -->
     <jdbcConnection driverClass="org.h2.Driver"
-        connectionURL="jdbc:h2:C:/papa/00.default/12.Benesse/pleiades/workspace/product-manage-site-service-for-hands-on/h2db/sampledb"
+        connectionURL="jdbc:h2:../workspace/product-manage-site-service-for-hands-on/h2db/sampledb"
         userId="username"
         password="password">
     </jdbcConnection>
@@ -18,7 +18,7 @@
     </javaModelGenerator>
 
     <!-- Sql Xml files -->
-    <sqlMapGenerator targetPackage="mybatis" targetProject="product-manage-site-service-for-hands-on/src/main/resources">
+    <sqlMapGenerator targetPackage="com.example.demo.mybatis" targetProject="product-manage-site-service-for-hands-on/src/main/resources">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
 
