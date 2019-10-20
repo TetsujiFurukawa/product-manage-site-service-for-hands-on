@@ -10,14 +10,14 @@ import com.example.demo.service.rest.SignInRestService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/sign-in")
+@RequestMapping("api")
 @RequiredArgsConstructor
 public class SignInRestController {
 
 
 	private final SignInRestService signInRestService;
 
-	@PostMapping
+	@PostMapping("/sign-in")
 	public SignInResponseDto signIn() {
 
 		return signInRestService.signIn();

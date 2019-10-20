@@ -11,7 +11,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class SignInRestService extends BaseRestService{
+public class SignInRestService extends BaseRestService {
 
 	private final AuthenticationService principalService;
 	private final SessionService sessionService;
@@ -19,14 +19,22 @@ public class SignInRestService extends BaseRestService{
 	public SignInResponseDto signIn() {
 
 		// Gets user mst data.
-		UserMst userMst=principalService.getUserMst();
+		UserMst userMst = principalService.getUserMst();
 
 		// sets user mst data to session.
 		sessionService.setupSession(userMst);
 
-		// Returns user data.
-		SignInResponseDto signInResponceDto = new SignInResponseDto(userMst.getUserAccount(), userMst.getUserName(),userMst.getUserLang(),userMst.getUserTimezone());
+		SignInResponseDto signInResponseDto = createresponseDto(userMst);
 
+		return signInResponseDto;
+
+	}
+
+	private SignInResponseDto createresponseDto(UserMst userMst) {
+
+		// Returns user data.
+		SignInResponseDto signInResponceDto = new SignInResponseDto(userMst.getUserAccount(), userMst.getUserName(),
+				userMst.getUserLang(), userMst.getUserTimezone());
 		return signInResponceDto;
 
 	}

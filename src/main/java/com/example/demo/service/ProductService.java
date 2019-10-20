@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.domain.ProductMst;
 import com.example.demo.entity.domain.ProductMstStockMst;
+import com.example.demo.mybatis.ProductMstMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -13,14 +14,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductService {
 
-//	private final ProductMstStockMstRepository productMstStockMstRepository;
+	private final ProductMstMapper productMstMapper;
 
-	public List<ProductMstStockMst> getProductList(ProductMst searchProductMst, Integer pageSize, Integer pageIndex) {
+	public List<ProductMstStockMst> selectProductMstStockMst(ProductMst searchProductMst, Integer limit, Long offset) {
 
-//		return productMstStockMstRepository.getProductMstStockMstList(searchProductMst.getProductName(),
-//				searchProductMst.getProductCode(), searchProductMst.getProductGenre(), searchProductMst.getDeleted());
+		return productMstMapper.selectProductMstStockMst(searchProductMst, limit, offset);
 
-		return null;
 	}
 
 }

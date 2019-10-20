@@ -10,6 +10,7 @@ import com.example.demo.entity.dto.request.PagenatorRequestDto;
 import com.example.demo.entity.dto.request.ProductListRequestDto;
 import com.example.demo.entity.dto.response.ProductListResponseDto;
 import com.example.demo.service.ProductService;
+import com.example.demo.utility.PagenatorUtility;
 
 import lombok.RequiredArgsConstructor;
 
@@ -22,33 +23,36 @@ public class ProductRestService extends BaseRestService {
 	public ProductListResponseDto getProductList(
 			ProductListRequestDto productListRequestDto, PagenatorRequestDto pagenatorRequestDto) {
 
-		ProductMst searchEntity = CreateSearchEntity(productListRequestDto);
+		ProductMst searchEntity = CreateRequestEntity(productListRequestDto);
 
+		List<ProductMstStockMst> productMstStockMst = productService.selectProductMstStockMst(searchEntity,
+				pagenatorRequestDto.getPageSize(),
+				PagenatorUtility.calcOffset(pagenatorRequestDto.getPageSize(), pagenatorRequestDto.getPageIndex()));
 
-		List<ProductMstStockMst> productMstStockMst= productService.getProductList(searchEntity, pagenatorRequestDto.getPageSize(),
-				pagenatorRequestDto.getPageIndex());
-
-
-		return null;
+		return createResponseDto(productMstStockMst);
 
 	}
 
-	protected ProductMst CreateSearchEntity(ProductListRequestDto productListRequestDto) {
+	protected ProductMst CreateRequestEntity(ProductListRequestDto productListRequestDto) {
 
 		ProductMst searchProductMst = new ProductMst();
 		searchProductMst.setProductCode(productListRequestDto.getProductCode());
 		searchProductMst.setProductName(productListRequestDto.getProductName());
 		searchProductMst.setProductGenre(productListRequestDto.getProductGenre());
-		//TODO
-		searchProductMst.setDeleted(false);
 
-		//		if(!productListRequestDto.getDeleted()) {
-//			searchProductMst.setDeleted(true);
-//		}else {
-//			searchProductMst.setDeleted(false);
-//		}
+		// Sets to search condition only when deleted equals false.
+		if (!productListRequestDto.getDeleted()) {
+			searchProductMst.setDeleted(productListRequestDto.getDeleted());
+		}
+
 		return searchProductMst;
 
+	}
+
+	protected ProductListResponseDto createResponseDto(List<ProductMstStockMst> productMstStockMst) {
+
+		// TODO 自動生成されたメソッド・スタブ
+		return null;
 	}
 
 }
