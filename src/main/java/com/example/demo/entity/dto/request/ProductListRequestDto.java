@@ -13,6 +13,6 @@ public class ProductListRequestDto {
 
 	private String productGenre;
 
-	private Boolean deleted;
+	private Boolean endOfSale;
 
 }

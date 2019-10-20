@@ -17,10 +17,10 @@ public class ProductMstStockMst {
 
 	private String productColor;
 
-	private String productUnitPrice;
+	private Integer productUnitPrice;
 
-	private String endOfSale;
+	private Boolean endOfSale;
 
-	private String productStockQuantity;
+	private Integer productStockQuantity;
 
 }

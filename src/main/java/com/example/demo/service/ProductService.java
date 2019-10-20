@@ -22,4 +22,10 @@ public class ProductService {
 
 	}
 
+	public Long countProductMstStockMst(ProductMst searchProductMst) {
+
+		return productMstMapper.countProductMstStockMst(searchProductMst);
+
+	}
+
 }

@@ -434,20 +434,7 @@
       PRODUCT_MST PRD
       inner join PRODUCT_STOCK_MST STK
         on STK.PRODUCT_SEQ = PRD.PRODUCT_SEQ
-  <where>
-    <if test ="productMst.productName != null">
-      PRD.PRODUCT_NAME like '${productMst.productName}%'
-    </if>
-    <if test ="productMst.productCode != null">
-      and PRD.PRODUCT_CODE like '${productMst.productCode}%'
-    </if>
-    <if test ="productMst.productGenre != null">
-      and PRD.PRODUCT_GENRE like '${productMst.productGenre}%'
-    </if>
-    <if test ="productMst.deleted != null">
-      and PRD.DELETED = #{productMst.deleted}
-    </if>
-  </where>
+    <include refid="selectProductMstStockMstWhereCondition"/>
   </select>
 
   <select id="selectProductMstStockMst" parameterType="com.example.demo.entity.domain.ProductMst" resultType="com.example.demo.entity.domain.ProductMstStockMst">
@@ -464,21 +451,25 @@
       PRODUCT_MST PRD
       inner join PRODUCT_STOCK_MST STK
         on STK.PRODUCT_SEQ = PRD.PRODUCT_SEQ
-  <where>
-    <if test ="productMst.productName != null">
-      PRD.PRODUCT_NAME like '${productMst.productName}%'
-    </if>
-    <if test ="productMst.productCode != null">
-      and PRD.PRODUCT_CODE like '${productMst.productCode}%'
-    </if>
-    <if test ="productMst.productGenre != null">
-      and PRD.PRODUCT_GENRE like '${productMst.productGenre}%'
-    </if>
-    <if test ="productMst.deleted != null">
-      and PRD.DELETED = #{productMst.deleted}
-    </if>
-  </where>
+    <include refid="selectProductMstStockMstWhereCondition"/>
     limit #{limit}
     offset #{offset}
   </select>
+
+  <sql id="selectProductMstStockMstWhereCondition">
+    <where>
+      <if test ="productMst.productName != null">
+        PRD.PRODUCT_NAME like '${productMst.productName}%'
+      </if>
+      <if test ="productMst.productCode != null">
+        and PRD.PRODUCT_CODE like '${productMst.productCode}%'
+      </if>
+      <if test ="productMst.productGenre != null">
+        and PRD.PRODUCT_GENRE like '${productMst.productGenre}%'
+      </if>
+      <if test ="productMst.endOfSale != null">
+        and PRD.END_OF_SALE = #{productMst.endOfSale}
+      </if>
+    </where>
+  </sql>
 </mapper>
