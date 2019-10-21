@@ -7,9 +7,9 @@ import lombok.Data;
 
 @Data
 @Component
-@ConfigurationProperties(prefix = "file")
+@ConfigurationProperties(prefix = "product.images")
 public class FileProperties {
 
-	private String folder;
+	private String uploadDir;
 
 }

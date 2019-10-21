@@ -13,7 +13,7 @@ public class ProductResponseDto {
 
 	private String productGenre;
 
-	private String productImage;
+	private String productImageUrl;
 
 	private String productSizeStandard;
 

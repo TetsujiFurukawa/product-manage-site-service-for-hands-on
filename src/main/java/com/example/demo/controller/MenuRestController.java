@@ -12,13 +12,13 @@ import com.example.demo.service.rest.MenuRestService;
 import lombok.RequiredArgsConstructor;
 
 @RestController
-@RequestMapping("api/menu")
+@RequestMapping("api")
 @RequiredArgsConstructor
 public class MenuRestController {
 
 	private final MenuRestService menuRestService;
 
-	@GetMapping
+	@GetMapping("/menu")
 	public List<MenuListResponseDto> getMenu() {
 
 		return menuRestService.getMenu();

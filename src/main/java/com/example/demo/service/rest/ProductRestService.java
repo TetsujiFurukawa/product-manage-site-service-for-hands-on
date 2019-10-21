@@ -75,6 +75,8 @@ public class ProductRestService extends BaseRestService {
 					productResponseDto.setProductUnitPrice(p.getProductUnitPrice());
 					productResponseDto.setProductStockQuantity(p.getProductStockQuantity());
 					productResponseDto.setEndOfSale(p.getEndOfSale());
+					// TODO
+					productResponseDto.setProductImageUrl("http://localhost:8080/api/downloadFile/queen.jpg");
 
 					return productResponseDto;
 
