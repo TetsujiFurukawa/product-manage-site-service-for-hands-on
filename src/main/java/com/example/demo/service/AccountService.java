@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.domain.MenuSubMenuMst;
 import com.example.demo.entity.session.SessionData;
-import com.example.demo.mybatis.MenuMstMapper;
+import com.example.demo.repository.MenuMstMapper;
 
 import lombok.RequiredArgsConstructor;
 

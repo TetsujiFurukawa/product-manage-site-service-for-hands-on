@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan(basePackages = "com.example.demo.mybatis")
+@MapperScan(basePackages = "com.example.demo.repository")
 public class ProductManageSiteServiceForHandsOnApplication {
 
 	public static void main(String[] args) {

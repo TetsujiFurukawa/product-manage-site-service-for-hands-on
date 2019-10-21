@@ -18,12 +18,12 @@
     </javaModelGenerator>
 
     <!-- Sql Xml files -->
-    <sqlMapGenerator targetPackage="com.example.demo.mybatis" targetProject="product-manage-site-service-for-hands-on/src/main/resources">
+    <sqlMapGenerator targetPackage="com.example.demo.repository" targetProject="product-manage-site-service-for-hands-on/src/main/resources">
       <property name="enableSubPackages" value="true" />
     </sqlMapGenerator>
 
     <!-- Mappers -->
-    <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.mybatis" targetProject="product-manage-site-service-for-hands-on/src/main/java">
+    <javaClientGenerator type="XMLMAPPER" targetPackage="com.example.demo.repository" targetProject="product-manage-site-service-for-hands-on/src/main/java">
       <property name="enableSubPackages" value="true" />
     </javaClientGenerator>
 

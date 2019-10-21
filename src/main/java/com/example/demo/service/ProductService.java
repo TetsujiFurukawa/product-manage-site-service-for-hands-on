@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.domain.ProductMst;
 import com.example.demo.entity.domain.ProductMstStockMst;
-import com.example.demo.mybatis.ProductMstMapper;
+import com.example.demo.repository.ProductMstMapper;
 
 import lombok.RequiredArgsConstructor;
 

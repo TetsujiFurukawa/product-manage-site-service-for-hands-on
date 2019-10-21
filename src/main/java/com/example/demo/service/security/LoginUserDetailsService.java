@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.entity.domain.UserMst;
 import com.example.demo.entity.domain.UserMstExample;
 import com.example.demo.entity.security.LoginUserDetails;
-import com.example.demo.mybatis.UserMstMapper;
+import com.example.demo.repository.UserMstMapper;
 
 import lombok.RequiredArgsConstructor;
 
