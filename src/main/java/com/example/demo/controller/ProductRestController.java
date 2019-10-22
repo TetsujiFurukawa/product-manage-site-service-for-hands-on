@@ -17,14 +17,14 @@ import lombok.RequiredArgsConstructor;
 public class ProductRestController {
 	private final ProductRestService productRestService;
 
-	@GetMapping("/product-list")
+	@GetMapping("/product-listing")
 	public ProductListResponseDto searchProductList(ProductListRequestDto productListRequestDto,
 			PagenatorRequestDto pagenatorRequestDto) {
 
-		return  productRestService.getProductList(productListRequestDto,
+		return productRestService.getProductList(productListRequestDto,
 				pagenatorRequestDto);
 
-//		return createProductListResponseDto(productMstStockMst);
+		//		return createProductListResponseDto(productMstStockMst);
 
 	}
 
