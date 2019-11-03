@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ProductListResponseDto {
+public class ProductSearchListResponseDto {
 
 	private Integer pageIndex;
 
 	private Long resultsLength;
 
-	private List<ProductResponseDto> productResponseDtos;
+	private List<ProductSearchResponseDto> productResponseDtos;
 
 }

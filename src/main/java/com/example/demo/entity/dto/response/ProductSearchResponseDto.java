@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ProductResponseDto {
+public class ProductSearchResponseDto {
 
 	private String productName;
 

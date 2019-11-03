@@ -1,12 +1,16 @@
 package com.example.demo.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.entity.dto.ProductDto;
 import com.example.demo.entity.dto.request.PagenatorRequestDto;
 import com.example.demo.entity.dto.request.ProductListRequestDto;
-import com.example.demo.entity.dto.response.ProductListResponseDto;
+import com.example.demo.entity.dto.response.ProductSearchListResponseDto;
 import com.example.demo.service.rest.ProductRestService;
 
 import lombok.RequiredArgsConstructor;
@@ -18,29 +22,27 @@ public class ProductRestController {
 	private final ProductRestService productRestService;
 
 	@GetMapping("/product-listing")
-	public ProductListResponseDto searchProductList(ProductListRequestDto productListRequestDto,
+	public ProductSearchListResponseDto searchProductList(ProductListRequestDto productListRequestDto,
 			PagenatorRequestDto pagenatorRequestDto) {
 
 		return productRestService.getProductList(productListRequestDto,
 				pagenatorRequestDto);
 
-		//		return createProductListResponseDto(productMstStockMst);
-
 	}
 
-	//	@GetMapping("/product")
-	//	public CompanyDto getCompany(Long companySeq) {
-	//		return mockCompanyService.getCompany(companySeq);
-	//	}
-	//
-	//	@PostMapping("/product")
-	//	public CompanyDto createCompany(@RequestBody CompanyDto companyDto) {
-	//		return mockCompanyService.createCompany(companyDto);
-	//	}
-	//
-	//	@PutMapping("/product")
-	//	public CompanyDto updateCompany(@RequestBody CompanyDto companyDto) {
-	//		return mockCompanyService.updateCompany(companyDto);
-	//	}
+	@GetMapping("/product")
+	public ProductDto getByCode(String productCode) {
+		return productRestService.getByCode(productCode);
+	}
+
+	@PostMapping("/product")
+	public ProductDto create(@RequestBody ProductDto productDto) {
+		return productRestService.create(productDto);
+	}
+
+	@PutMapping("/product")
+	public ProductDto update(@RequestBody ProductDto productDto) {
+		return productRestService.update(productDto);
+	}
 
 }
