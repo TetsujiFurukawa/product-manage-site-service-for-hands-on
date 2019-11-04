@@ -46,7 +46,7 @@ public class ProductService {
 		setupUpdateInfo(productMst, now);
 
 		productMstMapper.insert(productMst);
-		return productMstMapper.selectByPrimaryKey(productMst.getProductSeq());
+		return getProductListByCode(productMst.getProductCode()).get(0);
 	}
 
 	public ProductMst update(ProductMst productMst) {

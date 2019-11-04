@@ -30,17 +30,17 @@ public class ProductRestController {
 
 	}
 
-	@GetMapping("/product")
+	@GetMapping("/product-registering")
 	public ProductDto getByCode(String productCode) {
 		return productRestService.getByCode(productCode);
 	}
 
-	@PostMapping("/product")
+	@PostMapping("/product-registering")
 	public ProductDto create(@RequestBody ProductDto productDto) {
 		return productRestService.create(productDto);
 	}
 
-	@PutMapping("/product")
+	@PutMapping("/product-registering")
 	public ProductDto update(@RequestBody ProductDto productDto) {
 		return productRestService.update(productDto);
 	}
