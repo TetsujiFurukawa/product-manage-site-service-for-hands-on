@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.io.IOException;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -32,17 +34,23 @@ public class ProductRestController {
 
 	@GetMapping("/product-registering")
 	public ProductDto getByCode(String productCode) {
+
 		return productRestService.getByCode(productCode);
+
 	}
 
 	@PostMapping("/product-registering")
-	public ProductDto create(@RequestBody ProductDto productDto) {
-		return productRestService.create(productDto);
+	public ProductDto create(@RequestBody ProductDto productDto) throws IOException {
+
+		return productRestService.insertProduct(productDto);
+
 	}
 
 	@PutMapping("/product-registering")
-	public ProductDto update(@RequestBody ProductDto productDto) {
-		return productRestService.update(productDto);
+	public ProductDto update(@RequestBody ProductDto productDto) throws IOException {
+
+		return productRestService.updateProduct(productDto);
+
 	}
 
 }

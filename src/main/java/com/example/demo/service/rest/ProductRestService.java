@@ -1,5 +1,6 @@
 package com.example.demo.service.rest;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class ProductRestService extends BaseRestService {
 	public ProductSearchListResponseDto getProductList(
 			ProductListRequestDto productListRequestDto, PagenatorRequestDto pagenatorRequestDto) {
 
-		ProductMst searchEntity = CreateRequestEntity(productListRequestDto);
+		ProductMst searchEntity = createSearchRequestEntity(productListRequestDto);
 
 		Long productMstStockMstCount = productService.countProductMstStockMst(searchEntity);
 
@@ -37,11 +38,62 @@ public class ProductRestService extends BaseRestService {
 				pagenatorRequestDto.getPageSize(),
 				PagenatorUtility.calcOffset(pagenatorRequestDto.getPageSize(), pagenatorRequestDto.getPageIndex()));
 
-		return createResponseDto(productMstStockMst, pagenatorRequestDto, productMstStockMstCount);
+		return createSearchResponseDto(productMstStockMst, pagenatorRequestDto, productMstStockMstCount);
 
 	}
 
-	protected ProductMst CreateRequestEntity(ProductListRequestDto productListRequestDto) {
+	public ProductDto getByCode(String productCode) {
+
+		List<ProductMst> productMstList = productService.getProductListByCode(productCode);
+
+		if (productMstList.size() != 1) {
+			throw new DataNotFoundException("Data not found.");
+		}
+
+		return productMstList.stream().map(p -> {
+
+			ProductDto productDto = new ProductDto();
+			productDto.setProductSeq(p.getProductSeq());
+			productDto.setProductCode(p.getProductCode());
+			productDto.setProductName(p.getProductName());
+			productDto.setProductGenre(p.getProductGenre());
+			productDto.setProductSizeStandard(p.getProductSizeStandard());
+			productDto.setProductColor(p.getProductColor());
+			productDto.setProductUnitPrice(p.getProductUnitPrice());
+			productDto.setEndOfSale(p.getEndOfSale());
+
+			return productDto;
+
+		}).collect(Collectors.toList()).get(0);
+	}
+
+	public ProductDto insertProduct(ProductDto productDto) throws IOException {
+
+		// Writes product image file.
+		productService.writeProductImage(productDto.getProductCode(), productDto.getProductImage());
+
+		// Inserts product master.
+		ProductMst productMst = createEntity(productDto);
+		productMst = productService.insertProduct(productMst);
+
+		return createDto(productMst);
+
+	}
+
+	public ProductDto updateProduct(ProductDto productDto) throws IOException {
+
+		// Writes product image file.
+		productService.writeProductImage(productDto.getProductCode(), productDto.getProductImage());
+
+		// Updates product master.
+		ProductMst productMst = createEntity(productDto);
+		productMst = productService.updateProduct(productMst);
+
+		return createDto(productMst);
+
+	}
+
+	protected ProductMst createSearchRequestEntity(ProductListRequestDto productListRequestDto) {
 
 		ProductMst searchProductMst = new ProductMst();
 		searchProductMst.setProductCode(productListRequestDto.getProductCode());
@@ -57,7 +109,7 @@ public class ProductRestService extends BaseRestService {
 
 	}
 
-	protected ProductSearchListResponseDto createResponseDto(List<ProductMstStockMst> productMstStockMst,
+	protected ProductSearchListResponseDto createSearchResponseDto(List<ProductMstStockMst> productMstStockMst,
 			PagenatorRequestDto pagenatorRequestDto, Long productMstStockMstCount) {
 
 		ProductSearchListResponseDto productListResponseDto = new ProductSearchListResponseDto();
@@ -87,49 +139,6 @@ public class ProductRestService extends BaseRestService {
 		productListResponseDto.setProductResponseDtos(productResponseDtos);
 
 		return productListResponseDto;
-
-	}
-
-	public ProductDto getByCode(String productCode) {
-
-		List<ProductMst> productMstList = productService.getProductListByCode(productCode);
-
-		if (productMstList.size() != 1) {
-			throw new DataNotFoundException("Data not found.");
-		}
-
-		return productMstList.stream().map(p -> {
-
-			ProductDto productDto = new ProductDto();
-			productDto.setProductSeq(p.getProductSeq());
-			productDto.setProductCode(p.getProductCode());
-			productDto.setProductName(p.getProductName());
-			productDto.setProductGenre(p.getProductGenre());
-			productDto.setProductSizeStandard(p.getProductSizeStandard());
-			productDto.setProductColor(p.getProductColor());
-			productDto.setProductUnitPrice(p.getProductUnitPrice());
-			productDto.setEndOfSale(p.getEndOfSale());
-
-			return productDto;
-
-		}).collect(Collectors.toList()).get(0);
-	}
-
-	public ProductDto create(ProductDto productDto) {
-
-		ProductMst productMst = createEntity(productDto);
-		productMst = productService.create(productMst);
-
-		return createDto(productMst);
-
-	}
-
-	public ProductDto update(ProductDto productDto) {
-
-		ProductMst productMst = createEntity(productDto);
-		productMst = productService.update(productMst);
-
-		return createDto(productMst);
 
 	}
 

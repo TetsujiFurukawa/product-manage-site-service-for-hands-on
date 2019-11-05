@@ -13,18 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.example.demo.FileProperties;
 import com.example.demo.exception.FileStorageException;
 import com.example.demo.exception.MyFileNotFoundException;
+import com.example.demo.properties.ProductImageProperties;
 
 @Service
 public class FileStorageService {
 
 	private Path fileStorageLocation;
 
-	public FileStorageService(FileProperties fileProperties) {
+	public FileStorageService(ProductImageProperties fileProperties) {
 
-		this.fileStorageLocation = Paths.get(fileProperties.getUploadDir()).toAbsolutePath().normalize();
+		this.fileStorageLocation = Paths.get(fileProperties.getUploadDirectory()).toAbsolutePath().normalize();
 
 		try {
 

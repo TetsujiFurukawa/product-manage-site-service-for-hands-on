@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.service.file.FileIoService;
+import com.example.demo.service.file.ImageFileService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class FileTestController {
 
-	private final FileIoService fileIoService;
+	private final ImageFileService fileIoService;
 
 	@GetMapping("/file-read")
 	public void fileUpload() throws IOException {
