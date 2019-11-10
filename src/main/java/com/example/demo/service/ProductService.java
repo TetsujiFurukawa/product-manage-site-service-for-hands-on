@@ -76,6 +76,13 @@ public class ProductService {
 		return imageFileService.read(filePath);
 	}
 
+	public void deleteProductImage(String productCode) throws IOException {
+
+		String filePath = getFilePath(productCode);
+
+		imageFileService.delete(filePath);
+	}
+
 	private void setupUpdateInfo(ProductMst productMst, Date now) {
 		productMst.setEnterDate(now);
 		productMst.setUpdateDate(now);

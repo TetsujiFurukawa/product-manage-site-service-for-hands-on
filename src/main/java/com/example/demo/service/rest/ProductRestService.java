@@ -61,6 +61,10 @@ public class ProductRestService extends BaseRestService {
 			productDto.setProductColor(p.getProductColor());
 			productDto.setProductUnitPrice(p.getProductUnitPrice());
 			productDto.setEndOfSale(p.getEndOfSale());
+			productDto.setEnterUser(p.getEnterUser());
+			productDto.setEnterDate(p.getEnterDate());
+			productDto.setUpdateUser(p.getUpdateUser());
+			productDto.setUpdateDate(p.getUpdateDate());
 
 			return productDto;
 
@@ -70,7 +74,11 @@ public class ProductRestService extends BaseRestService {
 	public ProductDto insertProduct(ProductDto productDto) throws IOException {
 
 		// Writes product image file.
-		productService.writeProductImage(productDto.getProductCode(), productDto.getProductImage());
+		if (productDto.getProductImage() == null) {
+			productService.deleteProductImage(productDto.getProductCode());
+		} else {
+			productService.writeProductImage(productDto.getProductCode(), productDto.getProductImage());
+		}
 
 		// Inserts product master.
 		ProductMst productMst = createEntity(productDto);
@@ -83,7 +91,11 @@ public class ProductRestService extends BaseRestService {
 	public ProductDto updateProduct(ProductDto productDto) throws IOException {
 
 		// Writes product image file.
-		productService.writeProductImage(productDto.getProductCode(), productDto.getProductImage());
+		if (productDto.getProductImage() == null) {
+			productService.deleteProductImage(productDto.getProductCode());
+		} else {
+			productService.writeProductImage(productDto.getProductCode(), productDto.getProductImage());
+		}
 
 		// Updates product master.
 		ProductMst productMst = createEntity(productDto);
@@ -145,7 +157,7 @@ public class ProductRestService extends BaseRestService {
 	private ProductMst createEntity(ProductDto productDto) {
 		ProductMst productMst = new ProductMst();
 		productMst.setProductSeq(productDto.getProductSeq());
-		productMst.setProductCode(productDto.getProductColor());
+		productMst.setProductCode(productDto.getProductCode());
 		productMst.setProductName(productDto.getProductName());
 		productMst.setProductGenre(productDto.getProductGenre());
 		productMst.setProductColor(productDto.getProductColor());

@@ -13,31 +13,24 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ImageFileService {
 
-	//	private final ProductImages fileProperties;
-
 	public void write(String targetFileName, String base64string) throws IOException {
-
-		//		Path path = Paths.get("./" + fileProperties.getUploadDirectory() + targetFileName);
 
 		byte[] decodedBytes = Base64.getDecoder().decode(base64string.substring(23));
 		FileUtils.writeByteArrayToFile(new File(targetFileName), decodedBytes);
-
-		//		Path path = Paths.get("./" + fileProperties.getUploadDirectory() + targetFileName);
-		//		Files.write(path, decode);
 
 	}
 
 	public String read(String sourceFileName) throws IOException {
 
-		//		Path path = Paths.get("./" + fileProperties.getUploadDirectory() + sourceFileName);
-
 		byte[] fileContent = FileUtils.readFileToByteArray(new File(sourceFileName));
 		String encodedString = Base64.getEncoder().encodeToString(fileContent);
 
-		//		Path path = Paths.get("./" + fileProperties.getUploadDirectory() + sourceFileName);
-		//		byte[] encode = Base64.getEncoder().encode(Files.readAllBytes(path));
-
 		return new String(encodedString);
+
+	}
+
+	public void delete(String filePath) {
+		FileUtils.deleteQuietly(new File(filePath));
 
 	}
 
