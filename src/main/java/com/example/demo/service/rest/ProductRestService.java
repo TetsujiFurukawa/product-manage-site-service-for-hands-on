@@ -8,13 +8,16 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.domain.ProductMst;
 import com.example.demo.entity.domain.ProductMstStockMst;
+import com.example.demo.entity.domain.ProductStockMst;
 import com.example.demo.entity.dto.ProductDto;
 import com.example.demo.entity.dto.request.PagenatorRequestDto;
 import com.example.demo.entity.dto.request.ProductListRequestDto;
 import com.example.demo.entity.dto.response.ProductSearchListResponseDto;
 import com.example.demo.entity.dto.response.ProductSearchResponseDto;
 import com.example.demo.exception.DataNotFoundException;
+import com.example.demo.properties.ProductImageProperties;
 import com.example.demo.service.ProductService;
+import com.example.demo.service.ProductStockService;
 import com.example.demo.utility.PagenatorUtility;
 
 import lombok.RequiredArgsConstructor;
@@ -24,6 +27,10 @@ import lombok.RequiredArgsConstructor;
 public class ProductRestService extends BaseRestService {
 
 	private final ProductService productService;
+
+	private final ProductStockService productStockService;
+
+	private final ProductImageProperties productImageProperties;
 
 	public ProductSearchListResponseDto getProductList(
 			ProductListRequestDto productListRequestDto, PagenatorRequestDto pagenatorRequestDto) {
@@ -84,8 +91,18 @@ public class ProductRestService extends BaseRestService {
 		ProductMst productMst = createEntity(productDto);
 		productMst = productService.insertProduct(productMst);
 
+		productStockService.insertProductStock(createProductStockMstEntity(productMst));
+
 		return createDto(productMst);
 
+	}
+
+	private ProductStockMst createProductStockMstEntity(ProductMst productMst) {
+		ProductStockMst productStockMst = new ProductStockMst();
+		productStockMst.setProductSeq(productMst.getProductSeq());
+		productStockMst.setProductStockQuantity(0);
+
+		return productStockMst;
 	}
 
 	public ProductDto updateProduct(ProductDto productDto) throws IOException {
@@ -141,8 +158,10 @@ public class ProductRestService extends BaseRestService {
 					productResponseDto.setProductUnitPrice(p.getProductUnitPrice());
 					productResponseDto.setProductStockQuantity(p.getProductStockQuantity());
 					productResponseDto.setEndOfSale(p.getEndOfSale());
-					// TODO
-					productResponseDto.setProductImageUrl("http://localhost:8080/api/downloadFile/queen.jpg");
+					if (productService.productImageExist(p.getProductCode())) {
+						productResponseDto.setProductImageUrl(productImageProperties.getPublicUrl()
+								+ p.getProductCode() + productImageProperties.getDefaultExtension());
+					}
 
 					return productResponseDto;
 

@@ -29,8 +29,17 @@ public class ImageFileService {
 
 	}
 
-	public void delete(String filePath) {
-		FileUtils.deleteQuietly(new File(filePath));
+	public void delete(String targetFileName) {
+
+		FileUtils.deleteQuietly(new File(targetFileName));
+
+	}
+
+	public boolean fileExist(String targetFileName) {
+
+		File file = new File(targetFileName);
+
+		return file.exists();
 
 	}
 

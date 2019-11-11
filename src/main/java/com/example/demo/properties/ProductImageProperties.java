@@ -12,6 +12,8 @@ public class ProductImageProperties {
 
 	private String uploadDirectory;
 
+	private String publicUrl;
+
 	private String defaultExtension;
 
 }

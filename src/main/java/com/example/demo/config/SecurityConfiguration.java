@@ -16,7 +16,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(WebSecurity webSecurity) throws Exception {
 
-		webSecurity.ignoring().antMatchers("/webjars");
+		webSecurity.ignoring().antMatchers("/*", "/product-images/*");
 
 	}
 

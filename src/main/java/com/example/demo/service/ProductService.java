@@ -74,6 +74,7 @@ public class ProductService {
 		String filePath = getFilePath(productCode);
 
 		return imageFileService.read(filePath);
+
 	}
 
 	public void deleteProductImage(String productCode) throws IOException {
@@ -81,7 +82,17 @@ public class ProductService {
 		String filePath = getFilePath(productCode);
 
 		imageFileService.delete(filePath);
+
 	}
+
+	public boolean productImageExist(String productCode) {
+
+		String filePath = getFilePath(productCode);
+
+		return imageFileService.fileExist(filePath);
+
+	}
+
 
 	private void setupUpdateInfo(ProductMst productMst, Date now) {
 		productMst.setEnterDate(now);

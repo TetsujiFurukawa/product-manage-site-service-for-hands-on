@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 import java.io.IOException;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -25,10 +27,9 @@ public class ProductRestController {
 
 	@GetMapping("/product-listing")
 	public ProductSearchListResponseDto searchProductList(ProductListRequestDto productListRequestDto,
-			PagenatorRequestDto pagenatorRequestDto) {
+			PagenatorRequestDto pagenatorRequestDto, HttpServletRequest request) {
 
-		return productRestService.getProductList(productListRequestDto,
-				pagenatorRequestDto);
+		return productRestService.getProductList(productListRequestDto, pagenatorRequestDto);
 
 	}
 
