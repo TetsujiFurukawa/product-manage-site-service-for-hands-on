@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.domain.ProductMst;
@@ -49,7 +50,7 @@ public class ProductRestService extends BaseRestService {
 
 	}
 
-	public ProductDto getByCode(String productCode) {
+	public ProductDto getByCode(String productCode) throws IOException {
 
 		List<ProductMst> productMstList = productService.getProductListByCode(productCode);
 
@@ -57,28 +58,19 @@ public class ProductRestService extends BaseRestService {
 			throw new DataNotFoundException("Data not found.");
 		}
 
-		return productMstList.stream().map(p -> {
+		ProductMst productMst = productMstList.get(0);
 
-			ProductDto productDto = new ProductDto();
-			productDto.setProductSeq(p.getProductSeq());
-			productDto.setProductCode(p.getProductCode());
-			productDto.setProductName(p.getProductName());
-			productDto.setProductGenre(p.getProductGenre());
-			productDto.setProductSizeStandard(p.getProductSizeStandard());
-			productDto.setProductColor(p.getProductColor());
-			productDto.setProductUnitPrice(p.getProductUnitPrice());
-			productDto.setEndOfSale(p.getEndOfSale());
-			productDto.setEnterUser(p.getEnterUser());
-			productDto.setEnterDate(p.getEnterDate());
-			productDto.setUpdateUser(p.getUpdateUser());
-			productDto.setUpdateDate(p.getUpdateDate());
+		return createProductDto(productMst);
 
-			return productDto;
-
-		}).collect(Collectors.toList()).get(0);
 	}
 
 	public ProductDto insertProduct(ProductDto productDto) throws IOException {
+
+		List<ProductMst> productMstList = productService.getProductListByCode(productDto.getProductCode());
+
+		if(productMstList.size()>0) {
+			throw new DuplicateKeyException("Duplicated key.");
+		}
 
 		// Writes product image file.
 		if (productDto.getProductImage() == null) {
@@ -88,12 +80,12 @@ public class ProductRestService extends BaseRestService {
 		}
 
 		// Inserts product master.
-		ProductMst productMst = createEntity(productDto);
+		ProductMst productMst = createProductMstEntity(productDto);
 		productMst = productService.insertProduct(productMst);
 
 		productStockService.insertProductStock(createProductStockMstEntity(productMst));
 
-		return createDto(productMst);
+		return createProductDto(productMst);
 
 	}
 
@@ -115,10 +107,10 @@ public class ProductRestService extends BaseRestService {
 		}
 
 		// Updates product master.
-		ProductMst productMst = createEntity(productDto);
+		ProductMst productMst = createProductMstEntity(productDto);
 		productMst = productService.updateProduct(productMst);
 
-		return createDto(productMst);
+		return createProductDto(productMst);
 
 	}
 
@@ -173,7 +165,7 @@ public class ProductRestService extends BaseRestService {
 
 	}
 
-	private ProductMst createEntity(ProductDto productDto) {
+	private ProductMst createProductMstEntity(ProductDto productDto) {
 		ProductMst productMst = new ProductMst();
 		productMst.setProductSeq(productDto.getProductSeq());
 		productMst.setProductCode(productDto.getProductCode());
@@ -193,12 +185,13 @@ public class ProductRestService extends BaseRestService {
 		return productMst;
 	}
 
-	private ProductDto createDto(ProductMst productMst) {
+	private ProductDto createProductDto(ProductMst productMst) throws IOException {
 		ProductDto productDto = new ProductDto();
 		productDto.setProductSeq(productMst.getProductSeq());
 		productDto.setProductName(productMst.getProductName());
 		productDto.setProductCode(productMst.getProductCode());
 		productDto.setProductGenre(productMst.getProductGenre());
+		productDto.setProductImage(productService.readProductImage(productMst.getProductCode()));
 		productDto.setProductSizeStandard(productMst.getProductSizeStandard());
 		productDto.setProductColor(productMst.getProductColor());
 		productDto.setProductUnitPrice(productMst.getProductUnitPrice());

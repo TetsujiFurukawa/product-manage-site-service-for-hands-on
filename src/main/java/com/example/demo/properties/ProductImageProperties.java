@@ -16,4 +16,6 @@ public class ProductImageProperties {
 
 	private String defaultExtension;
 
+	private String dataType;
+
 }

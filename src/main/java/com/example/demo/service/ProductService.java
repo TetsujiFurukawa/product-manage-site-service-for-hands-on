@@ -49,7 +49,7 @@ public class ProductService {
 	public ProductMst insertProduct(ProductMst productMst) {
 		// TODO I will correct it lator.
 		Date now = new Date();
-		setupEnterInfo(productMst);
+		setupEnterInfo(productMst, now);
 		setupUpdateInfo(productMst, now);
 
 		productMstMapper.insert(productMst);
@@ -58,6 +58,8 @@ public class ProductService {
 
 	public ProductMst updateProduct(ProductMst productMst) {
 		// TODO I will correct it lator.
+		Date now = new Date();
+		setupUpdateInfo(productMst, now);
 		productMstMapper.updateByPrimaryKey(productMst);
 		return productMstMapper.selectByPrimaryKey(productMst.getProductSeq());
 	}
@@ -95,13 +97,13 @@ public class ProductService {
 
 
 	private void setupUpdateInfo(ProductMst productMst, Date now) {
-		productMst.setEnterDate(now);
 		productMst.setUpdateDate(now);
+		productMst.setUpdateUser(accountService.getUserName());
 	}
 
-	private void setupEnterInfo(ProductMst productMst) {
+	private void setupEnterInfo(ProductMst productMst, Date now) {
 		productMst.setEnterUser(accountService.getUserName());
-		productMst.setUpdateUser(accountService.getUserName());
+		productMst.setEnterDate(now);
 	}
 
 	private String getFilePath(String productCode) {

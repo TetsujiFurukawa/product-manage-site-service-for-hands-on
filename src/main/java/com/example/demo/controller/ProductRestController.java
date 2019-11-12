@@ -34,7 +34,7 @@ public class ProductRestController {
 	}
 
 	@GetMapping("/product-registering")
-	public ProductDto getByCode(String productCode) {
+	public ProductDto getByCode(String productCode) throws IOException {
 
 		return productRestService.getByCode(productCode);
 
