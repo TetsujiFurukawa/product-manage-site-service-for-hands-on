@@ -3,7 +3,6 @@ package com.example.demo.service;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -47,19 +46,13 @@ public class ProductService {
 	}
 
 	public ProductMst insertProduct(ProductMst productMst) {
-		// TODO I will correct it lator.
-		Date now = new Date();
-		setupEnterInfo(productMst, now);
-		setupUpdateInfo(productMst, now);
 
 		productMstMapper.insert(productMst);
 		return getProductListByCode(productMst.getProductCode()).get(0);
 	}
 
 	public ProductMst updateProduct(ProductMst productMst) {
-		// TODO I will correct it lator.
-		Date now = new Date();
-		setupUpdateInfo(productMst, now);
+
 		productMstMapper.updateByPrimaryKey(productMst);
 		return productMstMapper.selectByPrimaryKey(productMst.getProductSeq());
 	}
@@ -93,17 +86,6 @@ public class ProductService {
 
 		return imageFileService.fileExist(filePath);
 
-	}
-
-
-	private void setupUpdateInfo(ProductMst productMst, Date now) {
-		productMst.setUpdateDate(now);
-		productMst.setUpdateUser(accountService.getUserName());
-	}
-
-	private void setupEnterInfo(ProductMst productMst, Date now) {
-		productMst.setEnterUser(accountService.getUserName());
-		productMst.setEnterDate(now);
 	}
 
 	private String getFilePath(String productCode) {
