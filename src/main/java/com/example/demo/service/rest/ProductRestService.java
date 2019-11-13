@@ -16,6 +16,7 @@ import com.example.demo.entity.dto.request.ProductListRequestDto;
 import com.example.demo.entity.dto.response.ProductSearchListResponseDto;
 import com.example.demo.entity.dto.response.ProductSearchResponseDto;
 import com.example.demo.exception.DataNotFoundException;
+import com.example.demo.exception.ExclusiveProcessingException;
 import com.example.demo.properties.ProductImageProperties;
 import com.example.demo.service.ProductService;
 import com.example.demo.service.ProductStockService;
@@ -52,13 +53,7 @@ public class ProductRestService extends BaseRestService {
 
 	public ProductDto getByCode(String productCode) throws IOException {
 
-		List<ProductMst> productMstList = productService.getProductListByCode(productCode);
-
-		if (productMstList.size() != 1) {
-			throw new DataNotFoundException("Data not found.");
-		}
-
-		ProductMst productMst = productMstList.get(0);
+		ProductMst productMst = getProductMstByCode(productCode);
 
 		return createProductDto(productMst);
 
@@ -68,7 +63,7 @@ public class ProductRestService extends BaseRestService {
 
 		List<ProductMst> productMstList = productService.getProductListByCode(productDto.getProductCode());
 
-		if(productMstList.size()>0) {
+		if (productMstList.size() > 0) {
 			throw new DuplicateKeyException("Duplicated key.");
 		}
 
@@ -99,6 +94,9 @@ public class ProductRestService extends BaseRestService {
 
 	public ProductDto updateProduct(ProductDto productDto) throws IOException {
 
+		// Checks for updates by other users.
+		validateExclusive(productDto);
+
 		// Writes product image file.
 		if (productDto.getProductImage() == null) {
 			productService.deleteProductImage(productDto.getProductCode());
@@ -114,7 +112,28 @@ public class ProductRestService extends BaseRestService {
 
 	}
 
-	protected ProductMst createSearchRequestEntity(ProductListRequestDto productListRequestDto) {
+	private void validateExclusive(ProductDto productDto) {
+
+		ProductMst productMst = getProductMstByCode(productDto.getProductCode());
+		if(!productDto.getUpdateDate().equals(productMst.getUpdateDate())) {
+			throw new ExclusiveProcessingException("ExclusiveProcessingException");
+		}
+
+	}
+
+	private ProductMst getProductMstByCode(String productCode) {
+		List<ProductMst> productMstList = productService.getProductListByCode(productCode);
+
+		if (productMstList.size() != 1) {
+			throw new DataNotFoundException("Data not found.");
+		}
+
+		ProductMst productMst = productMstList.get(0);
+		return productMst;
+
+	}
+
+	private ProductMst createSearchRequestEntity(ProductListRequestDto productListRequestDto) {
 
 		ProductMst searchProductMst = new ProductMst();
 		searchProductMst.setProductCode(productListRequestDto.getProductCode());
@@ -130,7 +149,7 @@ public class ProductRestService extends BaseRestService {
 
 	}
 
-	protected ProductSearchListResponseDto createSearchResponseDto(List<ProductMstStockMst> productMstStockMst,
+	private ProductSearchListResponseDto createSearchResponseDto(List<ProductMstStockMst> productMstStockMst,
 			PagenatorRequestDto pagenatorRequestDto, Long productMstStockMstCount) {
 
 		ProductSearchListResponseDto productListResponseDto = new ProductSearchListResponseDto();
@@ -183,6 +202,7 @@ public class ProductRestService extends BaseRestService {
 		productMst.setDeleted(false);
 
 		return productMst;
+
 	}
 
 	private ProductDto createProductDto(ProductMst productMst) throws IOException {
@@ -202,9 +222,8 @@ public class ProductRestService extends BaseRestService {
 		productDto.setUpdateDate(productMst.getUpdateDate());
 		productDto.setUpdateUser(productMst.getUpdateUser());
 
-		//		private String productImage;
-
 		return productDto;
+
 	}
 
 }

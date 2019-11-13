@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
@@ -21,7 +22,6 @@ import lombok.RequiredArgsConstructor;
 public class ProductService {
 
 	private final ProductMstMapper productMstMapper;
-	private final AccountService accountService;
 	private final ImageFileService imageFileService;
 	private final ProductImageProperties productImagesProperties;
 
@@ -67,6 +67,11 @@ public class ProductService {
 	public String readProductImage(String productCode) throws IOException {
 
 		String filePath = getFilePath(productCode);
+
+		Path file = Paths.get(filePath);
+		if (!Files.exists(file)) {
+			return null;
+		}
 
 		return imageFileService.read(filePath);
 

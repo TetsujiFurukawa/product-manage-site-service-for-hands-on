@@ -2,6 +2,8 @@ package com.example.demo.entity.dto;
 
 import java.util.Date;
 
+import com.example.demo.validator.SingleByteAlphanumericValidator;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,6 +15,7 @@ public class ProductDto {
 
 	private String productName;
 
+	@SingleByteAlphanumericValidator
 	private String productCode;
 
 	private String productGenre;
