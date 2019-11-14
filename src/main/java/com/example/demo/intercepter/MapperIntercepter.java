@@ -40,16 +40,16 @@ public class MapperIntercepter {
 
 		// create*メソッドは作成者・作成日時・更新者・更新日時をセット
 		if (methodName.startsWith("insert")) {
-			setCreatedProperty(accountService.getUserName(), now, dto);
-			setUpdatedProperty(accountService.getUserName(), now, dto);
+			setEnterInformations(accountService.getUserName(), now, dto);
+			setUpdateInformations(accountService.getUserName(), now, dto);
 			// update*メソッドは更新者・更新日時をセット
 		} else if (methodName.startsWith("update")) {
-			setUpdatedProperty(accountService.getUserName(), now, dto);
+			setUpdateInformations(accountService.getUserName(), now, dto);
 		}
 
 	}
 
-	private void setUpdatedProperty(String userName, Date now, Object dto)
+	private void setEnterInformations(String userName, Date now, Object dto)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		// Mapperの引数にsetCreatedByIdメソッドがある場合、認証情報をセット
@@ -66,7 +66,7 @@ public class MapperIntercepter {
 
 	}
 
-	private void setCreatedProperty(String userName, Date now, Object dto)
+	private void setUpdateInformations(String userName, Date now, Object dto)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		// Mapperの引数にsetCreatedByIdメソッドがある場合、認証情報をセット

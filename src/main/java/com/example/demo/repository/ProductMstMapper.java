@@ -95,4 +95,11 @@ public interface ProductMstMapper {
 	List<ProductMstStockMst> selectProductMstStockMst(@Param("productMst") ProductMst productMst,
 			@Param("limit") Integer limit, @Param("offset") Long offset);
 
+	/**
+	 * Select product master by code with for update option.
+	 * @param productMst search conditions
+	 * @return ProductMst
+	 */
+	ProductMst selectForUpdateProductMstByCode(@Param("productMst") ProductMst productMst);
+
 }

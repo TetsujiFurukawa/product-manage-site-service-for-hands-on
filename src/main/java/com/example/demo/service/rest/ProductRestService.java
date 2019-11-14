@@ -94,8 +94,14 @@ public class ProductRestService extends BaseRestService {
 
 	public ProductDto updateProduct(ProductDto productDto) throws IOException {
 
-		// Checks for updates by other users.
-		validateExclusive(productDto);
+		// Lock target productMst for updates at first.
+		ProductMst productMst = selectForUpdateProductMstByCode(productDto);
+
+		// Checks for updates by others.
+		validateExclusive(productDto, productMst);
+
+		// Re-acquires enterUser,enterDate from the original productMst.
+		setupEnterInformations(productDto, productMst);
 
 		// Writes product image file.
 		if (productDto.getProductImage() == null) {
@@ -105,19 +111,34 @@ public class ProductRestService extends BaseRestService {
 		}
 
 		// Updates product master.
-		ProductMst productMst = createProductMstEntity(productDto);
-		productMst = productService.updateProduct(productMst);
+		ProductMst updateProductMst = createProductMstEntity(productDto);
+		updateProductMst = productService.updateProduct(updateProductMst);
 
-		return createProductDto(productMst);
+		return createProductDto(updateProductMst);
 
 	}
 
-	private void validateExclusive(ProductDto productDto) {
+	private ProductMst selectForUpdateProductMstByCode(ProductDto productDto) {
 
-		ProductMst productMst = getProductMstByCode(productDto.getProductCode());
-		if(!productDto.getUpdateDate().equals(productMst.getUpdateDate())) {
+		ProductMst productMst= new ProductMst();
+		productMst.setProductCode(productDto.getProductCode());
+
+		return  productMst = productService.selectForUpdateProductMstByCode(productMst);
+
+	}
+
+	private void validateExclusive(ProductDto productDto, ProductMst productMst) {
+
+		if (!productDto.getUpdateDate().equals(productMst.getUpdateDate())) {
 			throw new ExclusiveProcessingException("ExclusiveProcessingException");
 		}
+
+	}
+
+	private void setupEnterInformations(ProductDto productDto, ProductMst productMst) {
+
+		productDto.setEnterUser(productMst.getEnterUser());
+		productDto.setEnterDate(productMst.getEnterDate());
 
 	}
 

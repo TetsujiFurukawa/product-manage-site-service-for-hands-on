@@ -51,6 +51,12 @@ public class ProductService {
 		return getProductListByCode(productMst.getProductCode()).get(0);
 	}
 
+	public ProductMst selectForUpdateProductMstByCode(ProductMst productMst) {
+
+		return productMstMapper.selectForUpdateProductMstByCode(productMst);
+
+	}
+
 	public ProductMst updateProduct(ProductMst productMst) {
 
 		productMstMapper.updateByPrimaryKey(productMst);
@@ -100,4 +106,5 @@ public class ProductService {
 
 		return path.toString();
 	}
+
 }

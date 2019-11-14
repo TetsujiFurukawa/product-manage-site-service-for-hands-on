@@ -456,6 +456,14 @@
     offset #{offset}
   </select>
 
+  <select id="selectForUpdateProductMstByCode" parameterType="com.example.demo.entity.domain.ProductMst" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from PRODUCT_MST
+    where PRODUCT_CODE = #{productMst.productCode}
+    for update nowait
+  </select>
+
   <sql id="selectProductMstStockMstWhereCondition">
     <where>
       <if test="productMst.productName != null">
