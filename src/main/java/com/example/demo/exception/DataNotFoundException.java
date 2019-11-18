@@ -6,11 +6,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class DataNotFoundException extends RuntimeException {
 
-	public DataNotFoundException(String message) {
-		super(message);
-	}
+	private static final String MESSAGE = "Data not found.";
 
-	public DataNotFoundException(String message, Throwable cause) {
-		super(message, cause);
+	public DataNotFoundException() {
+		super(MESSAGE);
 	}
 }

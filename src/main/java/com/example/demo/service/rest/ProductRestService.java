@@ -130,7 +130,7 @@ public class ProductRestService extends BaseRestService {
 	private void validateExclusive(ProductDto productDto, ProductMst productMst) {
 
 		if (!productDto.getUpdateDate().equals(productMst.getUpdateDate())) {
-			throw new ExclusiveProcessingException("ExclusiveProcessingException");
+			throw new ExclusiveProcessingException();
 		}
 
 	}
@@ -146,7 +146,7 @@ public class ProductRestService extends BaseRestService {
 		List<ProductMst> productMstList = productService.getProductListByCode(productCode);
 
 		if (productMstList.size() != 1) {
-			throw new DataNotFoundException("Data not found.");
+			throw new DataNotFoundException();
 		}
 
 		ProductMst productMst = productMstList.get(0);

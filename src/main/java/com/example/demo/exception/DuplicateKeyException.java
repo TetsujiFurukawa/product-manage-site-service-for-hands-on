@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class DuplicateKeyException extends RuntimeException {
 
-	public DuplicateKeyException(String message) {
-		super(message);
+	private static final String MESSAGE = "Duplicated key.";
+
+	public DuplicateKeyException() {
+		super(MESSAGE);
 	}
 
-	public DuplicateKeyException(String message, Throwable cause) {
-		super(message, cause);
-	}
 }

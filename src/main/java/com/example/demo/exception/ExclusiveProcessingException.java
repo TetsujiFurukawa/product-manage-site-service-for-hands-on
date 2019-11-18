@@ -6,11 +6,10 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus(HttpStatus.BAD_REQUEST)
 public class ExclusiveProcessingException extends RuntimeException {
 
-	public ExclusiveProcessingException(String message) {
-		super(message);
+	private static final String MESSAGE = "Exclusive error occurred.";
+
+	public ExclusiveProcessingException() {
+		super(MESSAGE);
 	}
 
-	public ExclusiveProcessingException(String message, Throwable cause) {
-		super(message, cause);
-	}
 }

@@ -1,13 +1,13 @@
 -- Project Name : product-manage-db
--- Date/Time    : 2019/10/17 9:54:58
--- Author       : ts-tetsuji.furukawa
+-- Date/Time    : 2019/11/18 20:59:52
+-- Author       : tetsuji
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
 
 /*
- BackupToTempTable, RestoreFromTempTable directive is attached.
- This preserve data after drop table and create table.
- This function temporarily creates temporary table like $$TableName.
+  BackupToTempTable, RestoreFromTempTable疑似命令が付加されています。
+  これにより、drop table, create table 後もデータが残ります。
+  この機能は一時的に $$TableName のような一時テーブルを作成します。
 */
 
 -- ユーザマスタ
@@ -37,7 +37,7 @@ create table PRODUCT_MST (
   , PRODUCT_GENRE varchar(20)
   , PRODUCT_SIZE_STANDARD varchar(50)
   , PRODUCT_COLOR varchar(20)
-  , PRODUCT_UNIT_PRICE decimal(8,0)
+  , PRODUCT_UNIT_PRICE decimal(9,0)
   , END_OF_SALE boolean
   , END_OF_SALE_DATE datetime
   , DELETED boolean default false not null
@@ -53,7 +53,7 @@ create table PRODUCT_MST (
 create table PRODUCT_STOCK_MST (
   PRODUCT_STOCK_SEQ bigserial not null
   , PRODUCT_SEQ bigint not null unique
-  , PRODUCT_STOCK_QUANTITY decimal(8,0) not null
+  , PRODUCT_STOCK_QUANTITY decimal(9,0) not null
   , DELETED boolean default false not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
@@ -68,9 +68,9 @@ create table PRODUCT_PURCHASE_TBL (
   PRODUCT_PURCHASE_SEQ bigserial not null
   , PRODUCT_SEQ bigint not null unique
   , PRODUCT_PURCHASE_NAME varchar(50) not null
-  , PRODUCT_PURCHASE_UNIT_PRICE decimal(8,0) not null
-  , PRODUCT_PURCHASE_QUANTITY decimal(8,0) not null
-  , PRODUCT_PURCHASE_AMOUNT decimal(8,0) not null
+  , PRODUCT_PURCHASE_UNIT_PRICE decimal(9,0) not null
+  , PRODUCT_PURCHASE_QUANTITY decimal(9,0) not null
+  , PRODUCT_PURCHASE_AMOUNT decimal(9,0) not null
   , DELETED boolean default false not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
