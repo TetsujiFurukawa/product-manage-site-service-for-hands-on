@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductMstStockMst {
 
+	private Long rowNo;
+
 	private String productCode;
 
 	private String productName;

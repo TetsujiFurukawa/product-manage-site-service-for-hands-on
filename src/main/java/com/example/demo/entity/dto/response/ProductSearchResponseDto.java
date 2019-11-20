@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductSearchResponseDto {
 
+	private Long no;
+
 	private String productName;
 
 	private String productCode;
