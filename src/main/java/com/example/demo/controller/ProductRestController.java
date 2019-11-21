@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import java.io.IOException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,7 +28,7 @@ public class ProductRestController {
 	private final ProductRestService productRestService;
 
 	@GetMapping("/product-listing")
-	public ProductSearchListResponseDto searchProductList(ProductListRequestDto productListRequestDto,
+	public ProductSearchListResponseDto searchProductList(@Validated ProductListRequestDto productListRequestDto,
 			PagenatorRequestDto pagenatorRequestDto, HttpServletRequest request) {
 
 		return productRestService.getProductList(productListRequestDto, pagenatorRequestDto);
@@ -35,7 +36,7 @@ public class ProductRestController {
 	}
 
 	@GetMapping("/product-registering")
-	public ProductDto getByCode(String productCode) throws IOException {
+	public ProductDto getByCode(@NotNull String productCode) throws IOException {
 
 		return productRestService.getByCode(productCode);
 
@@ -49,7 +50,7 @@ public class ProductRestController {
 	}
 
 	@PutMapping("/product-registering")
-	public ProductDto update(@RequestBody ProductDto productDto) throws IOException {
+	public ProductDto update(@RequestBody @Validated ProductDto productDto) throws IOException {
 
 		return productRestService.updateProduct(productDto);
 
