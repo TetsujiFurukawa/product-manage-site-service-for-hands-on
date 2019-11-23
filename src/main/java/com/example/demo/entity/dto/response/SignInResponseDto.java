@@ -11,8 +11,10 @@ public class SignInResponseDto {
 
 	private String userName;
 
-	private String userLang;
+	private String userLocale;
 
 	private String userTimezone;
+
+	private String userCurrency;
 
 }
