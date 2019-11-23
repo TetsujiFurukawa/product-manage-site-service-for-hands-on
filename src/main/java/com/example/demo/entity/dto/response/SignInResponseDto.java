@@ -13,6 +13,8 @@ public class SignInResponseDto {
 
 	private String userLocale;
 
+	private String userLanguage;
+
 	private String userTimezone;
 
 	private String userCurrency;

@@ -33,6 +33,10 @@ public class SessionService {
 		return sessionData.getUserLocale();
 	}
 
+	public String getUserLangage() {
+		return sessionData.getUserLanguage();
+	}
+
 	public String getUserTimezone() {
 		return sessionData.getUserTimezone();
 	}
@@ -84,5 +88,4 @@ public class SessionService {
 		setUserSubMenuRole(userMst.getUserSubMenuRole());
 
 	}
-
 }

@@ -23,6 +23,8 @@ public class SessionData implements Serializable {
 
 	private String userLocale;
 
+	private String userLanguage;
+
 	private String userTimezone;
 
 	private String userCurrency;

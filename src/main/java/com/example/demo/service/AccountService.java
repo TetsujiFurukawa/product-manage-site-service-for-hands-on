@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.domain.MenuSubMenuMst;
-import com.example.demo.entity.session.SessionData;
 import com.example.demo.repository.MenuMstMapper;
+import com.example.demo.service.session.SessionService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,45 +14,50 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AccountService {
 
-	private final SessionData sessionData;
+	private final SessionService sessionService;
 
 	private final MenuMstMapper menuMstMapper;
 
 	public Long getUserSeq() {
-		return sessionData.getUserSeq();
+		return sessionService.getUserSeq();
 	}
 
 	public String getUserAccount() {
-		return sessionData.getUserAccount();
+		return sessionService.getUserAccount();
 	}
 
 	public String getUserName() {
-		return sessionData.getUserName();
+		return sessionService.getUserName();
 	}
 
 	public String getUserLocale() {
-		return sessionData.getUserLocale();
+		return sessionService.getUserLocale();
+	}
+
+	public String getUserLangage() {
+		return sessionService.getUserLangage();
 	}
 
 	public String getUserTimezone() {
-		return sessionData.getUserTimezone();
+		return sessionService.getUserTimezone();
 	}
 
 	public String getUserCurrency() {
-		return sessionData.getUserCurrency();
+		return sessionService.getUserCurrency();
 	}
 
 	public String getUserSubMenuRole() {
-		return sessionData.getUserSubMenuRole();
+		return sessionService.getUserSubMenuRole();
 	}
 
 	public String toString() {
-		return "UserSeq:" + sessionData.getUserSeq()
-				+ ", UserSeq:" + sessionData.getUserAccount()
-				+ ", UserName:" + sessionData.getUserName()
-				+ ", UserLocale:" + sessionData.getUserLocale()
-				+ ", UserTimezone:" + sessionData.getUserTimezone()
-				+ ", UserCurrency:" + sessionData.getUserCurrency();
+		return "UserSeq:" + sessionService.getUserSeq()
+				+ ", UserSeq:" + sessionService.getUserAccount()
+				+ ", UserName:" + sessionService.getUserName()
+				+ ", UserLocale:" + sessionService.getUserLocale()
+				+ ", UserLanguage:" + sessionService.getUserLangage()
+				+ ", UserTimezone:" + sessionService.getUserTimezone()
+				+ ", UserCurrency:" + sessionService.getUserCurrency();
 	}
 
 	public List<MenuSubMenuMst> getMenuList(String userSubMenuRole) {

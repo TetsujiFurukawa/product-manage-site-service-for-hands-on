@@ -34,7 +34,8 @@ public class SignInRestService extends BaseRestService {
 
 		// Returns user data.
 		SignInResponseDto signInResponceDto = new SignInResponseDto(userMst.getUserAccount(), userMst.getUserName(),
-				userMst.getUserLocale(), userMst.getUserTimezone(), userMst.getUserCurrency());
+				userMst.getUserLocale(), userMst.getUserLanguage(), userMst.getUserTimezone(),
+				userMst.getUserCurrency());
 		return signInResponceDto;
 
 	}
