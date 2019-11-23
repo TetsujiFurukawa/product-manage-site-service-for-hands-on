@@ -120,10 +120,10 @@ public class ProductRestService extends BaseRestService {
 
 	private ProductMst selectForUpdateProductMstByCode(ProductDto productDto) {
 
-		ProductMst productMst= new ProductMst();
+		ProductMst productMst = new ProductMst();
 		productMst.setProductCode(productDto.getProductCode());
 
-		return  productMst = productService.selectForUpdateProductMstByCode(productMst);
+		return productMst = productService.selectForUpdateProductMstByCode(productMst);
 
 	}
 
@@ -178,12 +178,12 @@ public class ProductRestService extends BaseRestService {
 		productListResponseDto.setPageIndex(pagenatorRequestDto.getPageIndex());
 		productListResponseDto.setResultsLength(productMstStockMstCount);
 
-		long no= pagenatorRequestDto.getPageIndex()*  pagenatorRequestDto.getPageSize();
+		long no = pagenatorRequestDto.getPageIndex() * pagenatorRequestDto.getPageSize();
 		List<ProductSearchResponseDto> productResponseDtos = productMstStockMst.stream()
 				.map(p -> {
 
 					ProductSearchResponseDto productResponseDto = new ProductSearchResponseDto();
-					productResponseDto.setNo(p.getRowNo() +  no);
+					productResponseDto.setNo(p.getRowNo() + no);
 					productResponseDto.setProductCode(p.getProductCode());
 					productResponseDto.setProductName(p.getProductName());
 					productResponseDto.setProductGenre(p.getProductGenre());
