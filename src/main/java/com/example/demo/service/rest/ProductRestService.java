@@ -221,9 +221,6 @@ public class ProductRestService extends BaseRestService {
 		productMst.setEnterDate(productDto.getEnterDate());
 		productMst.setEnterUser(productDto.getEnterUser());
 
-		//TODO 削除予定
-		productMst.setDeleted(false);
-
 		return productMst;
 
 	}

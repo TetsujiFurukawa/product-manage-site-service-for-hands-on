@@ -18,18 +18,12 @@ public class ProductStockService {
 	public void insertProductStock(ProductStockMst productStockMst) {
 		Date now = new Date();
 
-		productStockMst.setDeleted(false);
 		productStockMst.setEnterUser("system");
 		productStockMst.setEnterDate(now);
 		productStockMst.setUpdateUser("system");
 		productStockMst.setUpdateDate(now);
 
 		productStockMstMapper.insert(productStockMst);
-
-		//		ProductStockMstExample productStockMstExample = new ProductStockMstExample();
-		//		productStockMstExample.createCriteria().andProductSeqEqualTo(productStockMst.getProductSeq());
-
-		//		return productStockMstMapper.selectByExample(productStockMstExample).get(0);
 
 	}
 

@@ -2,7 +2,6 @@ package com.example.demo.controller;
 
 import java.io.IOException;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.constraints.NotNull;
 
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +28,7 @@ public class ProductRestController {
 
 	@GetMapping("/product-listing")
 	public ProductSearchListResponseDto searchProductList(@Validated ProductListRequestDto productListRequestDto,
-			PagenatorRequestDto pagenatorRequestDto, HttpServletRequest request) {
+			PagenatorRequestDto pagenatorRequestDto) {
 
 		return productRestService.getProductList(productListRequestDto, pagenatorRequestDto);
 
