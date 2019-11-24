@@ -1,5 +1,5 @@
 -- Project Name : product-manage-db
--- Date/Time    : 2019/11/23 17:25:25
+-- Date/Time    : 2019/11/24 16:31:11
 -- Author       : tetsuji
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -21,7 +21,6 @@ create table USER_MST (
   , USER_TIMEZONE varchar(30) not null
   , USER_CURRENCY varchar(3) not null
   , USER_SUB_MENU_ROLE varchar(10) not null
-  , DELETED boolean default false not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
   , UPDATE_DATE datetime not null
@@ -41,7 +40,6 @@ create table PRODUCT_MST (
   , PRODUCT_UNIT_PRICE decimal(9,0)
   , END_OF_SALE boolean
   , END_OF_SALE_DATE datetime
-  , DELETED boolean default false not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
   , UPDATE_DATE datetime not null
@@ -55,7 +53,6 @@ create table PRODUCT_STOCK_MST (
   PRODUCT_STOCK_SEQ bigserial not null
   , PRODUCT_SEQ bigint not null unique
   , PRODUCT_STOCK_QUANTITY decimal(9,0) not null
-  , DELETED boolean default false not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
   , UPDATE_DATE datetime not null
@@ -68,11 +65,11 @@ create table PRODUCT_STOCK_MST (
 create table PRODUCT_PURCHASE_TBL (
   PRODUCT_PURCHASE_SEQ bigserial not null
   , PRODUCT_SEQ bigint not null unique
+  , PRODUCT_PURCHASE_DATE datetime not null
   , PRODUCT_PURCHASE_NAME varchar(50) not null
   , PRODUCT_PURCHASE_UNIT_PRICE decimal(9,0) not null
   , PRODUCT_PURCHASE_QUANTITY decimal(9,0) not null
   , PRODUCT_PURCHASE_AMOUNT decimal(9,0) not null
-  , DELETED boolean default false not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
   , UPDATE_DATE datetime not null
@@ -88,7 +85,6 @@ create table SUB_MENU_MST (
   , MENU_SEQ bigint not null
   , SUB_MENU_ROLL varchar(10)
   , SUB_MENU_ORDER smallint not null
-  , DELETED boolean default false not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
   , UPDATE_DATE datetime not null
@@ -102,7 +98,6 @@ create table MENU_MST (
   MENU_SEQ bigserial not null
   , MENU_CODE varchar(10) not null
   , MENU_ORDER smallint not null
-  , DELETED boolean default false not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
   , UPDATE_DATE datetime not null
@@ -131,7 +126,6 @@ comment on column USER_MST.USER_LOCALE is 'ロケール';
 comment on column USER_MST.USER_TIMEZONE is 'タイムゾーン';
 comment on column USER_MST.USER_CURRENCY is '通貨';
 comment on column USER_MST.USER_SUB_MENU_ROLE is 'サブメニュー権限';
-comment on column USER_MST.DELETED is '削除';
 comment on column USER_MST.ENTER_DATE is '登録日';
 comment on column USER_MST.ENTER_USER is '登録者';
 comment on column USER_MST.UPDATE_DATE is '更新日';
@@ -147,7 +141,6 @@ comment on column PRODUCT_MST.PRODUCT_COLOR is '色';
 comment on column PRODUCT_MST.PRODUCT_UNIT_PRICE is '単価';
 comment on column PRODUCT_MST.END_OF_SALE is '販売終了';
 comment on column PRODUCT_MST.END_OF_SALE_DATE is '販売終了日';
-comment on column PRODUCT_MST.DELETED is '削除';
 comment on column PRODUCT_MST.ENTER_DATE is '登録日';
 comment on column PRODUCT_MST.ENTER_USER is '登録者';
 comment on column PRODUCT_MST.UPDATE_DATE is '更新日';
@@ -157,7 +150,6 @@ comment on table PRODUCT_STOCK_MST is '商品在庫マスタ';
 comment on column PRODUCT_STOCK_MST.PRODUCT_STOCK_SEQ is '商品在庫連番';
 comment on column PRODUCT_STOCK_MST.PRODUCT_SEQ is '商品連番';
 comment on column PRODUCT_STOCK_MST.PRODUCT_STOCK_QUANTITY is '商品在庫数';
-comment on column PRODUCT_STOCK_MST.DELETED is '削除';
 comment on column PRODUCT_STOCK_MST.ENTER_DATE is '登録日';
 comment on column PRODUCT_STOCK_MST.ENTER_USER is '登録者';
 comment on column PRODUCT_STOCK_MST.UPDATE_DATE is '更新日';
@@ -166,11 +158,11 @@ comment on column PRODUCT_STOCK_MST.UPDATE_USER is '更新者';
 comment on table PRODUCT_PURCHASE_TBL is '商品購入テーブル';
 comment on column PRODUCT_PURCHASE_TBL.PRODUCT_PURCHASE_SEQ is '商品購入連番';
 comment on column PRODUCT_PURCHASE_TBL.PRODUCT_SEQ is '商品連番';
+comment on column PRODUCT_PURCHASE_TBL.PRODUCT_PURCHASE_DATE is '商品購入日';
 comment on column PRODUCT_PURCHASE_TBL.PRODUCT_PURCHASE_NAME is '商品購入者';
 comment on column PRODUCT_PURCHASE_TBL.PRODUCT_PURCHASE_UNIT_PRICE is '商品単価';
 comment on column PRODUCT_PURCHASE_TBL.PRODUCT_PURCHASE_QUANTITY is '商品購入数';
 comment on column PRODUCT_PURCHASE_TBL.PRODUCT_PURCHASE_AMOUNT is '商品購入価格';
-comment on column PRODUCT_PURCHASE_TBL.DELETED is '削除';
 comment on column PRODUCT_PURCHASE_TBL.ENTER_DATE is '登録日';
 comment on column PRODUCT_PURCHASE_TBL.ENTER_USER is '登録者';
 comment on column PRODUCT_PURCHASE_TBL.UPDATE_DATE is '更新日';
@@ -182,7 +174,6 @@ comment on column SUB_MENU_MST.SUB_MENU_CODE is 'サブメニューコード';
 comment on column SUB_MENU_MST.MENU_SEQ is 'メニュー連番';
 comment on column SUB_MENU_MST.SUB_MENU_ROLL is 'サブメニュー権限';
 comment on column SUB_MENU_MST.SUB_MENU_ORDER is 'サブメニュー並び順';
-comment on column SUB_MENU_MST.DELETED is '削除';
 comment on column SUB_MENU_MST.ENTER_DATE is '登録日';
 comment on column SUB_MENU_MST.ENTER_USER is '登録者';
 comment on column SUB_MENU_MST.UPDATE_DATE is '更新日';
@@ -192,7 +183,6 @@ comment on table MENU_MST is 'メニューマスタ';
 comment on column MENU_MST.MENU_SEQ is 'メニュー連番';
 comment on column MENU_MST.MENU_CODE is 'メニューコード';
 comment on column MENU_MST.MENU_ORDER is 'メニュー並び順';
-comment on column MENU_MST.DELETED is '削除';
 comment on column MENU_MST.ENTER_DATE is '登録日';
 comment on column MENU_MST.ENTER_USER is '登録者';
 comment on column MENU_MST.UPDATE_DATE is '更新日';
