@@ -19,8 +19,8 @@ public class PurchaseRestController {
 
 	private final PurchaseRestService purchaseRestService;
 
-	@GetMapping("/parchase-history-listing")
-	public PurchaseHistorySearchListResponseDto searchProductList(
+	@GetMapping("/purchase-history-listing")
+	public PurchaseHistorySearchListResponseDto searchPurchaseHistoryList(
 			@Validated PurchaseHistoryRequestDto purchaseHistoryRequestDto, PagenatorRequestDto pagenatorRequestDto) {
 
 		return purchaseRestService.getPurchaseHistoryList(purchaseHistoryRequestDto, pagenatorRequestDto);
