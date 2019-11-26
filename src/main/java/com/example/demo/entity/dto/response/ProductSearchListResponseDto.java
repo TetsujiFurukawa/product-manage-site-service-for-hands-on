@@ -13,6 +13,6 @@ public class ProductSearchListResponseDto {
 
 	private Long resultsLength;
 
-	private List<ProductSearchResponseDto> productResponseDtos;
+	private List<ProductSearchResponseDto> productSearchResponseDtos;
 
 }

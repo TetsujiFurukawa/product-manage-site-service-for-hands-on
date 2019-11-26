@@ -173,37 +173,37 @@ public class ProductRestService extends BaseRestService {
 	private ProductSearchListResponseDto createSearchResponseDto(List<ProductMstStockMst> productMstStockMst,
 			PagenatorRequestDto pagenatorRequestDto, Long productMstStockMstCount) {
 
-		ProductSearchListResponseDto productListResponseDto = new ProductSearchListResponseDto();
+		ProductSearchListResponseDto productSearchListResponseDto = new ProductSearchListResponseDto();
 
-		productListResponseDto.setPageIndex(pagenatorRequestDto.getPageIndex());
-		productListResponseDto.setResultsLength(productMstStockMstCount);
+		productSearchListResponseDto.setPageIndex(pagenatorRequestDto.getPageIndex());
+		productSearchListResponseDto.setResultsLength(productMstStockMstCount);
 
 		long no = pagenatorRequestDto.getPageIndex() * pagenatorRequestDto.getPageSize();
-		List<ProductSearchResponseDto> productResponseDtos = productMstStockMst.stream()
+		List<ProductSearchResponseDto> productSearchResponseDtos = productMstStockMst.stream()
 				.map(p -> {
 
-					ProductSearchResponseDto productResponseDto = new ProductSearchResponseDto();
-					productResponseDto.setNo(p.getRowNo() + no);
-					productResponseDto.setProductCode(p.getProductCode());
-					productResponseDto.setProductName(p.getProductName());
-					productResponseDto.setProductGenre(p.getProductGenre());
-					productResponseDto.setProductSizeStandard(p.getProductSizeStandard());
-					productResponseDto.setProductColor(p.getProductColor());
-					productResponseDto.setProductUnitPrice(p.getProductUnitPrice());
-					productResponseDto.setProductStockQuantity(p.getProductStockQuantity());
-					productResponseDto.setEndOfSale(p.getEndOfSale());
+					ProductSearchResponseDto productSearchResponseDto = new ProductSearchResponseDto();
+					productSearchResponseDto.setNo(p.getRowNo() + no);
+					productSearchResponseDto.setProductCode(p.getProductCode());
+					productSearchResponseDto.setProductName(p.getProductName());
+					productSearchResponseDto.setProductGenre(p.getProductGenre());
+					productSearchResponseDto.setProductSizeStandard(p.getProductSizeStandard());
+					productSearchResponseDto.setProductColor(p.getProductColor());
+					productSearchResponseDto.setProductUnitPrice(p.getProductUnitPrice());
+					productSearchResponseDto.setProductStockQuantity(p.getProductStockQuantity());
+					productSearchResponseDto.setEndOfSale(p.getEndOfSale());
 					if (productService.productImageExist(p.getProductCode())) {
-						productResponseDto.setProductImageUrl(productImageProperties.getPublicUrl()
+						productSearchResponseDto.setProductImageUrl(productImageProperties.getPublicUrl()
 								+ p.getProductCode() + productImageProperties.getDefaultExtension());
 					}
 
-					return productResponseDto;
+					return productSearchResponseDto;
 
 				}).collect(Collectors.toList());
 
-		productListResponseDto.setProductResponseDtos(productResponseDtos);
+		productSearchListResponseDto.setProductSearchResponseDtos(productSearchResponseDtos);
 
-		return productListResponseDto;
+		return productSearchListResponseDto;
 
 	}
 
