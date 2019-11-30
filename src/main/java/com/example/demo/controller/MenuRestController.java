@@ -18,8 +18,8 @@ public class MenuRestController {
 
 	private final MenuRestService menuRestService;
 
-	@GetMapping("/menu")
-	public List<MenuListResponseDto> getMenu() {
+	@GetMapping("/menu/v1")
+	public List<MenuListResponseDto> getMenuV1() {
 
 		return menuRestService.getMenu();
 

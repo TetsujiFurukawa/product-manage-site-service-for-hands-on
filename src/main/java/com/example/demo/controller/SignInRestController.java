@@ -14,11 +14,10 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SignInRestController {
 
-
 	private final SignInRestService signInRestService;
 
-	@PostMapping("/sign-in")
-	public SignInResponseDto signIn() {
+	@PostMapping("/sign-in/v1")
+	public SignInResponseDto signInV1() {
 
 		return signInRestService.signIn();
 
