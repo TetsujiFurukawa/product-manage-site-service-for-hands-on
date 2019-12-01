@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.domain.ProductMstProductPurchaseTbl;
+import com.example.demo.entity.domain.ProductPurchaseTbl;
 import com.example.demo.repository.ProductPurchaseTblMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -25,6 +26,12 @@ public class ProductPurchaseService {
 	public Long countProductMstProductPurchaseTbl(ProductMstProductPurchaseTbl productMstProductPurchaseTbl) {
 
 		return productPurchaseTblMapper.countProductMstProductPurchaseTbl(productMstProductPurchaseTbl);
+
+	}
+
+	public void insertPurchase(ProductPurchaseTbl productPurchaseTbl) {
+
+		productPurchaseTblMapper.insert(productPurchaseTbl);
 
 	}
 

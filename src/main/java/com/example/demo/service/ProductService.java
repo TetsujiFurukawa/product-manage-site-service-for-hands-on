@@ -83,7 +83,7 @@ public class ProductService {
 
 	}
 
-	public void deleteProductImage(String productCode) throws IOException {
+	public void deleteProductImage(String productCode) {
 
 		String filePath = getFilePath(productCode);
 

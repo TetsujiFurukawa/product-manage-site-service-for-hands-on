@@ -4,11 +4,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-public class DataNotFoundException extends RuntimeException {
+public class OutOfStockException extends RuntimeException {
 
-	private static final String MESSAGE = "Data not found.";
+	private static final String MESSAGE = "There is no stock.";
 
-	public DataNotFoundException() {
+	public OutOfStockException() {
 		super(MESSAGE);
 	}
 }

@@ -1,5 +1,5 @@
 -- Project Name : product-manage-db
--- Date/Time    : 2019/11/24 16:31:11
+-- Date/Time    : 2019/12/01 23:42:18
 -- Author       : tetsuji
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -64,7 +64,7 @@ create table PRODUCT_STOCK_MST (
 --* RestoreFromTempTable
 create table PRODUCT_PURCHASE_TBL (
   PRODUCT_PURCHASE_SEQ bigserial not null
-  , PRODUCT_SEQ bigint not null unique
+  , PRODUCT_SEQ bigint not null
   , PRODUCT_PURCHASE_DATE datetime not null
   , PRODUCT_PURCHASE_NAME varchar(50) not null
   , PRODUCT_PURCHASE_UNIT_PRICE decimal(9,0) not null
