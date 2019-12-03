@@ -51,7 +51,7 @@ public class ProductRestService extends BaseRestService {
 
 	}
 
-	public ProductDto getByCode(String productCode) throws IOException {
+	public ProductDto getProductByCode(String productCode) throws IOException {
 
 		ProductMst productMst = getProductMstByCode(productCode);
 

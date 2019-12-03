@@ -35,21 +35,21 @@ public class ProductRestController {
 	}
 
 	@GetMapping("/product/v1")
-	public ProductDto getByCodeV1(@NotNull String productCode) throws IOException {
+	public ProductDto getProductByCodeV1(@NotNull String productCode) throws IOException {
 
-		return productRestService.getByCode(productCode);
+		return productRestService.getProductByCode(productCode);
 
 	}
 
 	@PostMapping("/product/v1")
-	public ProductDto createV1(@RequestBody @Validated ProductDto productDto) throws IOException {
+	public ProductDto createProductV1(@RequestBody @Validated ProductDto productDto) throws IOException {
 
 		return productRestService.insertProduct(productDto);
 
 	}
 
 	@PutMapping("/product/v1")
-	public ProductDto updateV1(@RequestBody @Validated ProductDto productDto) throws IOException {
+	public ProductDto updateProductV1(@RequestBody @Validated ProductDto productDto) throws IOException {
 
 		return productRestService.updateProduct(productDto);
 
