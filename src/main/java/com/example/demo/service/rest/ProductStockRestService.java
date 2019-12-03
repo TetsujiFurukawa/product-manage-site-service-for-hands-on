@@ -108,7 +108,7 @@ public class ProductStockRestService extends BaseRestService {
 		ProductStockMst updProductStockMst = new ProductStockMst();
 		updProductStockMst.setProductStockSeq(productStockMst.getProductStockSeq());
 		updProductStockMst.setProductStockQuantity(
-				productStockMst.getProductStockQuantity() + productStockRequestDto.getUpdateProductStockQuantity());
+				productStockMst.getProductStockQuantity() + productStockRequestDto.getAddProductStockQuantity());
 
 		return updProductStockMst;
 	}

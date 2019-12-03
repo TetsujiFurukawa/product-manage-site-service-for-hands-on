@@ -13,6 +13,6 @@ public class ProductPurchaseHistorySearchListResponseDto {
 
 	private Long resultsLength;
 
-	private List<ProductPurchaseHistorySearchResponseDto> purchaseHistorySearchResponseDtos;
+	private List<ProductPurchaseHistorySearchResponseDto> productPurchaseHistorySearchResponseDtos;
 
 }

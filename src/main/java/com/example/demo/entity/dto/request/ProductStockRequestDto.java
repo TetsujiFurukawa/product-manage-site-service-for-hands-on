@@ -29,6 +29,6 @@ public class ProductStockRequestDto {
 	@NotNull
 	@Min(1)
 	@Max(999999999)
-	private Integer updateProductStockQuantity;
+	private Integer addProductStockQuantity;
 
 }
