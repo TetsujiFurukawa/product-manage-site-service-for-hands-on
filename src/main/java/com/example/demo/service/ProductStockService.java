@@ -1,6 +1,5 @@
 package com.example.demo.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -18,12 +17,6 @@ public class ProductStockService {
 	private final ProductStockMstMapper productStockMstMapper;
 
 	public void insertProductStock(ProductStockMst productStockMst) {
-		Date now = new Date();
-
-		productStockMst.setEnterUser("system");
-		productStockMst.setEnterDate(now);
-		productStockMst.setUpdateUser("system");
-		productStockMst.setUpdateDate(now);
 
 		productStockMstMapper.insert(productStockMst);
 
