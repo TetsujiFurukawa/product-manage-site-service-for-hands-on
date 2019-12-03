@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class PurchaseHistorySearchResponseDto {
+public class ProductPurchaseHistorySearchResponseDto {
 
 	private Long no;
 

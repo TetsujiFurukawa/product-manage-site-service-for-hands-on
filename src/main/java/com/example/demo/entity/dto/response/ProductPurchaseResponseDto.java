@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class PurchaseResponseDto {
+public class ProductPurchaseResponseDto {
 
 	private String productCode;
 

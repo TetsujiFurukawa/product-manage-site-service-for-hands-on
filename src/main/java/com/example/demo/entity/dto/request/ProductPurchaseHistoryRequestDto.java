@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 @AllArgsConstructor
-public class PurchaseHistoryRequestDto {
+public class ProductPurchaseHistoryRequestDto {
 
 	@Size(max = 50)
 	private String productPurchaseName;

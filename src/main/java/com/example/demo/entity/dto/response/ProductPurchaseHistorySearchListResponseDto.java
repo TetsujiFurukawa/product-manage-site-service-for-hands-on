@@ -7,12 +7,12 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class PurchaseHistorySearchListResponseDto {
+public class ProductPurchaseHistorySearchListResponseDto {
 
 	private Integer pageIndex;
 
 	private Long resultsLength;
 
-	private List<PurchaseHistorySearchResponseDto> purchaseHistorySearchResponseDtos;
+	private List<ProductPurchaseHistorySearchResponseDto> purchaseHistorySearchResponseDtos;
 
 }

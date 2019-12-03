@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class PurchaseRequestDto {
+public class ProductPurchaseRequestDto {
 
 	@NotNull
 	@NotBlank
