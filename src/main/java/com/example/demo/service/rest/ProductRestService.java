@@ -1,12 +1,14 @@
 package com.example.demo.service.rest;
 
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
+import com.example.demo.constant.ProductGenre;
 import com.example.demo.entity.domain.ProductMst;
 import com.example.demo.entity.domain.ProductMstStockMst;
 import com.example.demo.entity.domain.ProductStockMst;
@@ -115,6 +117,13 @@ public class ProductRestService extends BaseRestService {
 		updateProductMst = productService.updateProduct(updateProductMst);
 
 		return createProductDto(updateProductMst);
+
+	}
+
+	public List<String> getProductGenre() {
+
+		return Arrays.stream(ProductGenre.values())
+				.map(data -> data.getCode()).collect(Collectors.toList());
 
 	}
 

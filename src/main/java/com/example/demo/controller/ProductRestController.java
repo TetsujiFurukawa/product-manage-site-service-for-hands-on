@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
@@ -52,6 +53,13 @@ public class ProductRestController {
 	public ProductDto updateProductV1(@RequestBody @Validated ProductDto productDto) throws IOException {
 
 		return productRestService.updateProduct(productDto);
+
+	}
+
+	@GetMapping("/product-genre/v1")
+	public List<String> getProductGenreV1() {
+
+		return productRestService.getProductGenre();
 
 	}
 

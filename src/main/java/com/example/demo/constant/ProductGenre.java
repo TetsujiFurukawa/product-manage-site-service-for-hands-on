@@ -7,9 +7,9 @@ import lombok.Getter;
 @Getter
 public enum ProductGenre {
 
-	SHOES(1, "productGenre.shoes"), TOPS(2, "productGenre.tops"), BAGS(3, "productGenre.bags");
+	SHOES("1", "shoes"), TOPS("2", "tops"), BAGS("3", "bags");
 
-	private final int code;
+	private final String code;
 	private final String property;
 
 }
