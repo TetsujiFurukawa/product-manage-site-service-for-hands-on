@@ -22,7 +22,7 @@ public class ProductStockRequestDto {
 	private String productCode;
 
 	@NotNull
-	@Min(1)
+	@Min(0)
 	@Max(999999999)
 	private Integer productStockQuantity;
 
