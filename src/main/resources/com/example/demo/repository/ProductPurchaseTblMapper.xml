@@ -418,7 +418,7 @@
         and PUR.PRODUCT_PURCHASE_DATE &gt;= #{productMstProductPurchaseTbl.productPurchaseDateFrom}
       </if>
       <if test="productMstProductPurchaseTbl.productPurchaseDateTo != null">
-        and PUR.PRODUCT_PURCHASE_DATE &lt;= #{productMstProductPurchaseTbl.productPurchaseDateTo}
+        and PUR.PRODUCT_PURCHASE_DATE &lt; #{productMstProductPurchaseTbl.productPurchaseDateTo}
       </if>
       <if test="productMstProductPurchaseTbl.productName != null">
         and PRD.PRODUCT_NAME like '${productMstProductPurchaseTbl.productName}%'
