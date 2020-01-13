@@ -120,13 +120,12 @@ public class ProductPurchaseRestService extends BaseRestService {
 		productPurchaseHistorySearchListResponseDto.setPageIndex(pagenatorRequestDto.getPageIndex());
 		productPurchaseHistorySearchListResponseDto.setResultsLength(productMstStockMstCount);
 
-		long no = pagenatorRequestDto.getPageIndex() * pagenatorRequestDto.getPageSize();
 		List<ProductPurchaseHistorySearchResponseDto> productPurchaseHistorySearchResponseDtos = productMstProductPurchaseTbls
 				.stream()
 				.map(p -> {
 
 					ProductPurchaseHistorySearchResponseDto productPurchaseHistorySearchResponseDto = new ProductPurchaseHistorySearchResponseDto();
-					productPurchaseHistorySearchResponseDto.setNo(p.getRowNo() + no);
+					productPurchaseHistorySearchResponseDto.setNo(p.getRowNo());
 					productPurchaseHistorySearchResponseDto.setProductName(p.getProductName());
 					productPurchaseHistorySearchResponseDto.setProductCode(p.getProductCode());
 					productPurchaseHistorySearchResponseDto.setProductPurchaseName(p.getProductPurchaseName());

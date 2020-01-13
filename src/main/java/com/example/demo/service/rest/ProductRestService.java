@@ -187,12 +187,11 @@ public class ProductRestService extends BaseRestService {
 		productSearchListResponseDto.setPageIndex(pagenatorRequestDto.getPageIndex());
 		productSearchListResponseDto.setResultsLength(productMstStockMstCount);
 
-		long no = pagenatorRequestDto.getPageIndex() * pagenatorRequestDto.getPageSize();
 		List<ProductSearchResponseDto> productSearchResponseDtos = productMstStockMst.stream()
 				.map(p -> {
 
 					ProductSearchResponseDto productSearchResponseDto = new ProductSearchResponseDto();
-					productSearchResponseDto.setNo(p.getRowNo() + no);
+					productSearchResponseDto.setNo(p.getRowNo());
 					productSearchResponseDto.setProductCode(p.getProductCode());
 					productSearchResponseDto.setProductName(p.getProductName());
 					productSearchResponseDto.setProductGenre(p.getProductGenre());
