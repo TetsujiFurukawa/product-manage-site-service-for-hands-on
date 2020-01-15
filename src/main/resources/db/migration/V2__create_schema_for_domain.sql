@@ -1,5 +1,5 @@
 -- Project Name : product-manage-db
--- Date/Time    : 2019/12/01 23:42:18
+-- Date/Time    : 2020/01/16 1:38:20
 -- Author       : tetsuji
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -19,6 +19,7 @@ create table USER_MST (
   , USER_NAME varchar(50) not null
   , USER_LOCALE varchar(30) not null
   , USER_TIMEZONE varchar(30) not null
+  , USER_TIMEZONE_OFFSET varchar(5) not null
   , USER_CURRENCY varchar(3) not null
   , USER_SUB_MENU_ROLE varchar(10) not null
   , ENTER_DATE datetime not null
@@ -124,6 +125,7 @@ comment on column USER_MST.USER_ENCODED_PASSWORD is 'ユーザパスワード';
 comment on column USER_MST.USER_NAME is 'ユーザ名';
 comment on column USER_MST.USER_LOCALE is 'ロケール';
 comment on column USER_MST.USER_TIMEZONE is 'タイムゾーン';
+comment on column USER_MST.USER_TIMEZONE_OFFSET is 'タイムゾーンオフセット';
 comment on column USER_MST.USER_CURRENCY is '通貨';
 comment on column USER_MST.USER_SUB_MENU_ROLE is 'サブメニュー権限';
 comment on column USER_MST.ENTER_DATE is '登録日';

@@ -17,6 +17,8 @@ public class SignInResponseDto {
 
 	private String userTimezone;
 
+	private String userTimezoneOffset;
+
 	private String userCurrency;
 
 }
