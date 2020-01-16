@@ -2,7 +2,8 @@ package com.example.demo.service.rest;
 
 import java.io.IOException;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -129,7 +130,8 @@ public class ProductPurchaseRestService extends BaseRestService {
 					productPurchaseHistorySearchResponseDto.setProductName(p.getProductName());
 					productPurchaseHistorySearchResponseDto.setProductCode(p.getProductCode());
 					productPurchaseHistorySearchResponseDto.setProductPurchaseName(p.getProductPurchaseName());
-					productPurchaseHistorySearchResponseDto.setProductPurchaseDate(p.getProductPurchaseDate());
+					productPurchaseHistorySearchResponseDto
+							.setProductPurchaseDate(p.getProductPurchaseDate().atZone(ZoneOffset.UTC));
 					productPurchaseHistorySearchResponseDto
 							.setProductPurchaseUnitPrice(p.getProductPurchaseUnitPrice());
 					productPurchaseHistorySearchResponseDto.setProductPurchaseQuantity(p.getProductPurchaseQuantity());
@@ -212,7 +214,7 @@ public class ProductPurchaseRestService extends BaseRestService {
 		ProductPurchaseTbl productPurchaseTbl = new ProductPurchaseTbl();
 
 		productPurchaseTbl.setProductSeq(productMst.getProductSeq());
-		productPurchaseTbl.setProductPurchaseDate(new Date());
+		productPurchaseTbl.setProductPurchaseDate(LocalDateTime.now(ZoneOffset.UTC));
 		productPurchaseTbl.setProductPurchaseName(purchaseRequestDto.getProductPurchaseName());
 		productPurchaseTbl.setProductPurchaseUnitPrice(productMst.getProductUnitPrice());
 		productPurchaseTbl.setProductPurchaseQuantity(purchaseRequestDto.getProductPurchaseQuantity());

@@ -1,6 +1,6 @@
 package com.example.demo.entity.domain;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,11 +17,11 @@ public class ProductMstProductPurchaseTbl {
 
 	private String productPurchaseName;
 
-	private Date productPurchaseDateFrom;
+	private LocalDateTime productPurchaseDateFrom;
 
-	private Date productPurchaseDateTo;
+	private LocalDateTime productPurchaseDateTo;
 
-	private Date productPurchaseDate;
+	private LocalDateTime productPurchaseDate;
 
 	private Integer productPurchaseUnitPrice;
 

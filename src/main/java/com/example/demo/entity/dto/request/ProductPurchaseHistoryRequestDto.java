@@ -1,6 +1,6 @@
 package com.example.demo.entity.dto.request;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 import javax.validation.constraints.Size;
 
@@ -14,9 +14,9 @@ public class ProductPurchaseHistoryRequestDto {
 	@Size(max = 50)
 	private String productPurchaseName;
 
-	private Date productPurchaseDateFrom;
+	private LocalDateTime productPurchaseDateFrom;
 
-	private Date productPurchaseDateTo;
+	private LocalDateTime productPurchaseDateTo;
 
 	@Size(max = 50)
 	private String productName;

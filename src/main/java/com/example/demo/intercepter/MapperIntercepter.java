@@ -2,7 +2,8 @@ package com.example.demo.intercepter;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
@@ -32,7 +33,7 @@ public class MapperIntercepter {
 		String methodName = method.getName();
 
 		// 現在日時の取得
-		Date now = new Date();
+		LocalDateTime localDateTimeNowUtc = LocalDateTime.now(ZoneOffset.UTC);
 
 		// Mapperの第一引数（モデルオブジェクト）を取得
 		Object[] args = jp.getArgs();
@@ -40,16 +41,16 @@ public class MapperIntercepter {
 
 		// create*メソッドは作成者・作成日時・更新者・更新日時をセット
 		if (methodName.startsWith("insert")) {
-			setEnterInformations(accountService.getUserName(), now, dto);
-			setUpdateInformations(accountService.getUserName(), now, dto);
+			setEnterInformations(accountService.getUserName(), localDateTimeNowUtc, dto);
+			setUpdateInformations(accountService.getUserName(), localDateTimeNowUtc, dto);
 			// update*メソッドは更新者・更新日時をセット
 		} else if (methodName.startsWith("update")) {
-			setUpdateInformations(accountService.getUserName(), now, dto);
+			setUpdateInformations(accountService.getUserName(), localDateTimeNowUtc, dto);
 		}
 
 	}
 
-	private void setEnterInformations(String userName, Date now, Object dto)
+	private void setEnterInformations(String userName, LocalDateTime utcLocalDateTimeNow, Object dto)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		// Mapperの引数にsetCreatedByIdメソッドがある場合、認証情報をセット
@@ -59,14 +60,14 @@ public class MapperIntercepter {
 		}
 
 		// Mapperの引数にsetCreatedTimestampメソッドがある場合、現在日時をセット
-		Method setEnterDate = ReflectionUtils.findMethod(dto.getClass(), "setEnterDate", Date.class);
+		Method setEnterDate = ReflectionUtils.findMethod(dto.getClass(), "setEnterDate", LocalDateTime.class);
 		if (setEnterDate != null) {
-			setEnterDate.invoke(dto, now);
+			setEnterDate.invoke(dto, utcLocalDateTimeNow);
 		}
 
 	}
 
-	private void setUpdateInformations(String userName, Date now, Object dto)
+	private void setUpdateInformations(String userName, LocalDateTime utcLocalDateTimeNow, Object dto)
 			throws IllegalAccessException, IllegalArgumentException, InvocationTargetException {
 
 		// Mapperの引数にsetCreatedByIdメソッドがある場合、認証情報をセット
@@ -76,9 +77,9 @@ public class MapperIntercepter {
 		}
 
 		// Mapperの引数にsetCreatedTimestampメソッドがある場合、現在日時をセット
-		Method setUpdateDate = ReflectionUtils.findMethod(dto.getClass(), "setUpdateDate", Date.class);
+		Method setUpdateDate = ReflectionUtils.findMethod(dto.getClass(), "setUpdateDate", LocalDateTime.class);
 		if (setUpdateDate != null) {
-			setUpdateDate.invoke(dto, now);
+			setUpdateDate.invoke(dto, utcLocalDateTimeNow);
 		}
 
 	}

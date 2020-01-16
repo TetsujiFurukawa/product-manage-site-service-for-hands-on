@@ -1,6 +1,6 @@
 package com.example.demo.entity.dto.response;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ public class ProductPurchaseHistorySearchResponseDto {
 
 	private String productImageUrl;
 
-	private Date productPurchaseDate;
+	private ZonedDateTime productPurchaseDate;
 
 	private Integer productPurchaseUnitPrice;
 
