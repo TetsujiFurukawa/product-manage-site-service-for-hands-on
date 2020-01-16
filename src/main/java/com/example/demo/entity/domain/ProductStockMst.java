@@ -1,6 +1,5 @@
 package com.example.demo.entity.domain;
 
-import java.util.Date;
 import java.time.LocalDateTime;
 
 public class ProductStockMst {
