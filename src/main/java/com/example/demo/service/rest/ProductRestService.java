@@ -1,8 +1,11 @@
 package com.example.demo.service.rest;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.dao.DuplicateKeyException;
@@ -138,7 +141,7 @@ public class ProductRestService extends BaseRestService {
 
 	private void validateExclusive(ProductDto productDto, ProductMst productMst) {
 
-		if (!productDto.getUpdateDate().equals(productMst.getUpdateDate())) {
+		if (!productDto.getUpdateDate().equals(productMst.getUpdateDate().atZone(ZoneOffset.UTC))) {
 			throw new ExclusiveProcessingException();
 		}
 
@@ -147,7 +150,7 @@ public class ProductRestService extends BaseRestService {
 	private void setupEnterInformations(ProductDto productDto, ProductMst productMst) {
 
 		productDto.setEnterUser(productMst.getEnterUser());
-		productDto.setEnterDate(productMst.getEnterDate());
+		productDto.setEnterDate(productMst.getEnterDate().atZone(ZoneOffset.UTC));
 
 	}
 
@@ -225,8 +228,13 @@ public class ProductRestService extends BaseRestService {
 		productMst.setProductSizeStandard(productDto.getProductSizeStandard());
 		productMst.setProductUnitPrice(productDto.getProductUnitPrice());
 		productMst.setEndOfSale(productDto.getEndOfSale());
-		productMst.setEndOfSaleDate(productDto.getEndOfSaleDate());
-		productMst.setEnterDate(productDto.getEnterDate());
+		if (Objects.nonNull(productDto.getEndOfSaleDate())) {
+			productMst.setEndOfSaleDate(
+					LocalDateTime.ofInstant(productDto.getEndOfSaleDate().toInstant(), ZoneOffset.UTC));
+		}
+		if (Objects.nonNull(productDto.getEnterDate())) {
+			productMst.setEnterDate(LocalDateTime.ofInstant(productDto.getEnterDate().toInstant(), ZoneOffset.UTC));
+		}
 		productMst.setEnterUser(productDto.getEnterUser());
 
 		return productMst;
@@ -244,10 +252,12 @@ public class ProductRestService extends BaseRestService {
 		productDto.setProductColor(productMst.getProductColor());
 		productDto.setProductUnitPrice(productMst.getProductUnitPrice());
 		productDto.setEndOfSale(productMst.getEndOfSale());
-		productDto.setEndOfSaleDate(productMst.getEndOfSaleDate());
-		productDto.setEnterDate(productMst.getEnterDate());
+		if (Objects.nonNull(productMst.getEndOfSaleDate())) {
+			productDto.setEndOfSaleDate(productMst.getEndOfSaleDate().atZone(ZoneOffset.UTC));
+		}
+		productDto.setEnterDate(productMst.getEnterDate().atZone(ZoneOffset.UTC));
 		productDto.setEnterUser(productMst.getEnterUser());
-		productDto.setUpdateDate(productMst.getUpdateDate());
+		productDto.setUpdateDate(productMst.getUpdateDate().atZone(ZoneOffset.UTC));
 		productDto.setUpdateUser(productMst.getUpdateUser());
 
 		return productDto;

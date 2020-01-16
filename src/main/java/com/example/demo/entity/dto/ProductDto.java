@@ -1,6 +1,6 @@
 package com.example.demo.entity.dto;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -53,13 +53,13 @@ public class ProductDto {
 	@NotNull
 	private Boolean endOfSale;
 
-	private LocalDateTime endOfSaleDate;
+	private ZonedDateTime endOfSaleDate;
 
-	private LocalDateTime enterDate;
+	private ZonedDateTime enterDate;
 
 	private String enterUser;
 
-	private LocalDateTime updateDate;
+	private ZonedDateTime updateDate;
 
 	private String updateUser;
 

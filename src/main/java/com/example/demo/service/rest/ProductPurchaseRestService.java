@@ -5,6 +5,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.ZoneOffset;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -101,10 +102,16 @@ public class ProductPurchaseRestService extends BaseRestService {
 		ProductMstProductPurchaseTbl searchProductMstProductPurchaseTbl = new ProductMstProductPurchaseTbl();
 		searchProductMstProductPurchaseTbl
 				.setProductPurchaseName(productPurchaseHistoryRequestDto.getProductPurchaseName());
-		searchProductMstProductPurchaseTbl
-				.setProductPurchaseDateFrom(productPurchaseHistoryRequestDto.getProductPurchaseDateFrom());
-		searchProductMstProductPurchaseTbl
-				.setProductPurchaseDateTo(productPurchaseHistoryRequestDto.getProductPurchaseDateTo());
+		if (Objects.nonNull(productPurchaseHistoryRequestDto.getProductPurchaseDateFrom())) {
+			searchProductMstProductPurchaseTbl
+					.setProductPurchaseDateFrom(LocalDateTime.ofInstant(
+							productPurchaseHistoryRequestDto.getProductPurchaseDateFrom().toInstant(), ZoneOffset.UTC));
+		}
+		if (Objects.nonNull(productPurchaseHistoryRequestDto.getProductPurchaseDateTo())) {
+			searchProductMstProductPurchaseTbl
+					.setProductPurchaseDateTo(LocalDateTime.ofInstant(
+							productPurchaseHistoryRequestDto.getProductPurchaseDateTo().toInstant(), ZoneOffset.UTC));
+		}
 		searchProductMstProductPurchaseTbl.setProductCode(productPurchaseHistoryRequestDto.getProductCode());
 		searchProductMstProductPurchaseTbl.setProductName(productPurchaseHistoryRequestDto.getProductName());
 
