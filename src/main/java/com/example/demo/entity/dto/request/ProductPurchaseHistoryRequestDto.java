@@ -1,8 +1,10 @@
 package com.example.demo.entity.dto.request;
 
-import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import javax.validation.constraints.Size;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,9 +16,11 @@ public class ProductPurchaseHistoryRequestDto {
 	@Size(max = 50)
 	private String productPurchaseName;
 
-	private LocalDateTime productPurchaseDateFrom;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private ZonedDateTime productPurchaseDateFrom;
 
-	private LocalDateTime productPurchaseDateTo;
+	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+	private ZonedDateTime productPurchaseDateTo;
 
 	@Size(max = 50)
 	private String productName;

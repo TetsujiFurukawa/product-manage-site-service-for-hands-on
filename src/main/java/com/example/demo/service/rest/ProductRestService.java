@@ -90,11 +90,13 @@ public class ProductRestService extends BaseRestService {
 	}
 
 	private ProductStockMst createProductStockMstEntity(ProductMst productMst) {
+
 		ProductStockMst productStockMst = new ProductStockMst();
 		productStockMst.setProductSeq(productMst.getProductSeq());
 		productStockMst.setProductStockQuantity(0);
 
 		return productStockMst;
+
 	}
 
 	public ProductDto updateProduct(ProductDto productDto) throws IOException {
@@ -141,7 +143,8 @@ public class ProductRestService extends BaseRestService {
 
 	private void validateExclusive(ProductDto productDto, ProductMst productMst) {
 
-		if (!productDto.getUpdateDate().equals(productMst.getUpdateDate().atZone(ZoneOffset.UTC))) {
+		if (!productMst.getUpdateDate().equals(LocalDateTime.ofInstant(productDto.getUpdateDate().toInstant(),
+				ZoneOffset.UTC))) {
 			throw new ExclusiveProcessingException();
 		}
 

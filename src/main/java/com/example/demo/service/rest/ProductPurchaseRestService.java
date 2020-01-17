@@ -102,16 +102,21 @@ public class ProductPurchaseRestService extends BaseRestService {
 		ProductMstProductPurchaseTbl searchProductMstProductPurchaseTbl = new ProductMstProductPurchaseTbl();
 		searchProductMstProductPurchaseTbl
 				.setProductPurchaseName(productPurchaseHistoryRequestDto.getProductPurchaseName());
+
 		if (Objects.nonNull(productPurchaseHistoryRequestDto.getProductPurchaseDateFrom())) {
 			searchProductMstProductPurchaseTbl
 					.setProductPurchaseDateFrom(LocalDateTime.ofInstant(
-							productPurchaseHistoryRequestDto.getProductPurchaseDateFrom().toInstant(), ZoneOffset.UTC));
+							productPurchaseHistoryRequestDto.getProductPurchaseDateFrom().toInstant(),
+							ZoneOffset.UTC));
 		}
+
 		if (Objects.nonNull(productPurchaseHistoryRequestDto.getProductPurchaseDateTo())) {
 			searchProductMstProductPurchaseTbl
 					.setProductPurchaseDateTo(LocalDateTime.ofInstant(
-							productPurchaseHistoryRequestDto.getProductPurchaseDateTo().toInstant(), ZoneOffset.UTC));
+							productPurchaseHistoryRequestDto.getProductPurchaseDateTo().toInstant(),
+							ZoneOffset.UTC));
 		}
+
 		searchProductMstProductPurchaseTbl.setProductCode(productPurchaseHistoryRequestDto.getProductCode());
 		searchProductMstProductPurchaseTbl.setProductName(productPurchaseHistoryRequestDto.getProductName());
 
