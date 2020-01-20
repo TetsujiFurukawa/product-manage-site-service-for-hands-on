@@ -1,1 +1,2 @@
 rootProject.name = 'product-manage-site-service-for-hands-on'
+include "biz", "product-manage"
