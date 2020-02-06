@@ -2,7 +2,6 @@ plugins {
 	id 'org.springframework.boot' version '2.2.3.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 	id 'java'
-    id 'org.flywaydb.flyway'
 }
 
 group = 'com.example'
@@ -26,10 +25,12 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.0'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
-	compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.10.1'
+	implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: '2.10.1'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1'
+	implementation project(':biz')
+
 }
