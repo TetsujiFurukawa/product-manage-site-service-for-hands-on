@@ -1,3 +1,20 @@
+buildscript {
+    ext {
+        lombokVersion = '1.18.10'
+        springbootVersion = '2.2.4.RELEASE'
+        springSessionCoreVersion = '2.2.1.RELEASE'
+        springDependencyManagementVersion = '1.0.9.RELEASE'
+        flywayVersion = '6.2.1'
+        h2Version = '1.4.200'
+        junitVersion = '5.6.0'
+        mockitoVersion = '3.2.4'
+        myBatisSpringBootStarter = '2.1.1'
+        jsr310Version = '2.10.2'
+        commonsIoVersion = '2.6'
+        commonsLang3Version = '3.9'
+    }
+}
+
 subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
@@ -7,7 +24,7 @@ subprojects {
         options.encoding = defaultEncoding
     }
 
-    version = '1.0'
+    version = '1.0.0'
     repositories {
         mavenCentral()
     }
