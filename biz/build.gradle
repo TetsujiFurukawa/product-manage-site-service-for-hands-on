@@ -32,13 +32,9 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 	implementation "org.springframework.session:spring-session-core:${springSessionCoreVersion}"
-	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
-	compileOnly "org.projectlombok:lombok:${lombokVersion}"
 	runtimeOnly "com.h2database:h2:${h2Version}"
 	implementation "org.flywaydb:flyway-core:${flywayVersion}"
 	implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:${myBatisSpringBootStarter}"
-	implementation group: "commons-io", name: "commons-io", version: "${commonsIoVersion}"
-	implementation group: "org.apache.commons", name: "commons-lang3", version: "${commonsLang3Version}"
 }
 
 test {

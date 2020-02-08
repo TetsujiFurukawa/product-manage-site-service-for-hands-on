@@ -8,6 +8,7 @@ buildscript {
         h2Version = '1.4.200'
         junitVersion = '5.6.0'
         mockitoVersion = '3.2.4'
+        assertJVersion = '3.14.0'
         myBatisSpringBootStarter = '2.1.1'
         jsr310Version = '2.10.2'
         commonsIoVersion = '2.6'
@@ -29,8 +30,20 @@ subprojects {
         mavenCentral()
     }
     dependencies {
-        testImplementation "junit:junit:4.12"
+        annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        compileOnly "org.projectlombok:lombok:${lombokVersion}"
+        testAnnotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+        testCompileOnly "org.projectlombok:lombok:${lombokVersion}"
+        implementation "org.apache.commons:commons-lang3:${commonsLang3Version}"
+		implementation group: "commons-io", name: "commons-io", version: "${commonsIoVersion}"
+
+        testImplementation "org.junit.jupiter:junit-jupiter-api:${junitVersion}"
+        testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
+        testImplementation "org.mockito:mockito-core:${mockitoVersion}"
+        testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
+        testImplementation "org.assertj:assertj-core:${assertJVersion}"
     }
+
 
    sourceCompatibility = 1.8
    targetCompatibility = 1.8
