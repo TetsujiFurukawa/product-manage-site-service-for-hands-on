@@ -4,8 +4,6 @@ plugins {
 	id 'war'
 }
 
-//sourceCompatibility = '1.8'
-
 configurations {
 	developmentOnly
 	runtimeClasspath {
@@ -35,13 +33,9 @@ dependencies {
 	implementation "org.springframework.boot:spring-boot-starter-web:${springbootVersion}"
 	developmentOnly "org.springframework.boot:spring-boot-devtools:${springbootVersion}"
 	testImplementation "org.springframework.boot:spring-boot-starter-test:${springbootVersion}"
-
 	implementation "org.mybatis.spring.boot:mybatis-spring-boot-starter:2.1.1"
-
 	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
 	compileOnly "org.projectlombok:lombok:${lombokVersion}"
-
 	implementation group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-jsr310", version: "${jsr310Version}"
 	implementation project(':biz')
-
 }

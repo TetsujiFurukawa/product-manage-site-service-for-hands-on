@@ -36,9 +36,7 @@ subprojects {
    targetCompatibility = 1.8
 
 }
-project(':biz') {
-//	apply plugin: "org.flywaydb.flyway"
-}
+project(':biz') {}
 
 project(':product-manage') {
     dependencies {
