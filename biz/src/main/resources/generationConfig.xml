@@ -6,7 +6,7 @@
 
     <!-- Connection Settings -->
     <jdbcConnection driverClass="org.h2.Driver"
-        connectionURL="jdbc:h2:../workspace/product-manage-site-service-for-hands-on/biz/h2db/sampledb"
+        connectionURL="jdbc:h2:../workspace/product-manage-site-service-for-hands-on/product-manage/h2db/sampledb"
         userId="username"
         password="password">
     </jdbcConnection>

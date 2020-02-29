@@ -231,10 +231,8 @@ public class ProductPurchaseRestService extends BaseRestService {
 		productPurchaseTbl.setProductPurchaseUnitPrice(productMst.getProductUnitPrice());
 		productPurchaseTbl.setProductPurchaseQuantity(purchaseRequestDto.getProductPurchaseQuantity());
 
-		BigDecimal productPurchaseAmount = BigDecimal
-				.valueOf(productMst.getProductUnitPrice() * purchaseRequestDto.getProductPurchaseQuantity());
-
-		productPurchaseTbl.setProductPurchaseAmount(productPurchaseAmount.intValue());
+		productPurchaseTbl.setProductPurchaseAmount(productMst.getProductUnitPrice().multiply(BigDecimal
+						.valueOf(purchaseRequestDto.getProductPurchaseQuantity()))) ;
 
 		return productPurchaseTbl;
 

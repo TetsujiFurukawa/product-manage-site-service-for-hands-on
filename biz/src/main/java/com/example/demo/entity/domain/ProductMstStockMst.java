@@ -1,5 +1,7 @@
 package com.example.demo.entity.domain;
 
+import java.math.BigDecimal;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -19,7 +21,7 @@ public class ProductMstStockMst {
 
 	private String productColor;
 
-	private Integer productUnitPrice;
+	private BigDecimal productUnitPrice;
 
 	private Boolean endOfSale;
 

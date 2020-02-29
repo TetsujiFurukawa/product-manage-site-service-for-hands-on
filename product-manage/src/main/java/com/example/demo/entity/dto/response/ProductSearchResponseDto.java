@@ -1,5 +1,7 @@
 package com.example.demo.entity.dto.response;
 
+import java.math.BigDecimal;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -21,7 +23,7 @@ public class ProductSearchResponseDto {
 
 	private String productColor;
 
-	private Integer productUnitPrice;
+	private BigDecimal productUnitPrice;
 
 	private Integer productStockQuantity;
 

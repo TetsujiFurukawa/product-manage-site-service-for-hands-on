@@ -1,5 +1,5 @@
 -- Project Name : product-manage-db
--- Date/Time    : 2020/01/16 1:38:20
+-- Date/Time    : 2020/02/29 16:42:13
 -- Author       : tetsuji
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -38,7 +38,7 @@ create table PRODUCT_MST (
   , PRODUCT_GENRE varchar(20)
   , PRODUCT_SIZE_STANDARD varchar(50)
   , PRODUCT_COLOR varchar(20)
-  , PRODUCT_UNIT_PRICE decimal(9,0)
+  , PRODUCT_UNIT_PRICE decimal(11,3)
   , END_OF_SALE boolean
   , END_OF_SALE_DATE datetime
   , ENTER_DATE datetime not null
@@ -68,9 +68,9 @@ create table PRODUCT_PURCHASE_TBL (
   , PRODUCT_SEQ bigint not null
   , PRODUCT_PURCHASE_DATE datetime not null
   , PRODUCT_PURCHASE_NAME varchar(50) not null
-  , PRODUCT_PURCHASE_UNIT_PRICE decimal(9,0) not null
+  , PRODUCT_PURCHASE_UNIT_PRICE decimal(11,3) not null
   , PRODUCT_PURCHASE_QUANTITY decimal(9,0) not null
-  , PRODUCT_PURCHASE_AMOUNT decimal(9,0) not null
+  , PRODUCT_PURCHASE_AMOUNT decimal(11,3) not null
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
   , UPDATE_DATE datetime not null

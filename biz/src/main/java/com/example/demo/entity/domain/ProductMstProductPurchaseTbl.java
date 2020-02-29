@@ -1,5 +1,6 @@
 package com.example.demo.entity.domain;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import lombok.Data;
@@ -23,7 +24,7 @@ public class ProductMstProductPurchaseTbl {
 
 	private LocalDateTime productPurchaseDate;
 
-	private Integer productPurchaseUnitPrice;
+	private BigDecimal productPurchaseUnitPrice;
 
 	private Integer productPurchaseQuantity;
 

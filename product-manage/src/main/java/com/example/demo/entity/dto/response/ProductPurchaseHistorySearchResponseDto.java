@@ -1,5 +1,6 @@
 package com.example.demo.entity.dto.response;
 
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 import lombok.Data;
@@ -21,7 +22,7 @@ public class ProductPurchaseHistorySearchResponseDto {
 
 	private ZonedDateTime productPurchaseDate;
 
-	private Integer productPurchaseUnitPrice;
+	private BigDecimal productPurchaseUnitPrice;
 
 	private Integer productPurchaseQuantity;
 

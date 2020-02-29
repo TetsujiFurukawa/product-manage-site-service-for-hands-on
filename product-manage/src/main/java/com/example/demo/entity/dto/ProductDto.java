@@ -1,5 +1,6 @@
 package com.example.demo.entity.dto;
 
+import java.math.BigDecimal;
 import java.time.ZonedDateTime;
 
 import javax.validation.constraints.Max;
@@ -48,7 +49,7 @@ public class ProductDto {
 	@NotNull
 	@Min(1)
 	@Max(999999999)
-	private Integer productUnitPrice;
+	private BigDecimal productUnitPrice;
 
 	@NotNull
 	private Boolean endOfSale;
