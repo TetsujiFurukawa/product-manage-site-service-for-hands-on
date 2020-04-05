@@ -50,4 +50,17 @@ public class MenuRestService extends BaseRestService {
 
 	}
 
+	public List<String> getAvailablePages() {
+
+		// Gets user role.
+		String userSubMenuRole = accountService.getUserSubMenuRole();
+
+		// Gets available pages
+		List<String> availablePages = accountService.getAvailablePages(userSubMenuRole).stream().map(pageRoleMst -> pageRoleMst.getPageCode())
+				.collect(Collectors.toList());
+
+		return availablePages;
+
+	}
+
 }

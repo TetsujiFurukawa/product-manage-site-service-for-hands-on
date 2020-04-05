@@ -44,7 +44,7 @@
     <table schema="" tableName="PRODUCT_PURCHASE_TBL">
       <property name="mapUnderscoreToCamelCase" value="true" />
     </table>
-    <table schema="" tableName="SUB_MENU_MST">
+    <table schema="" tableName="PAGE_ROLE_MST">
       <property name="mapUnderscoreToCamelCase" value="true" />
     </table>
     <table schema="" tableName="MENU_MST">

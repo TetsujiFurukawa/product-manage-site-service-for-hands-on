@@ -5,7 +5,10 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.domain.MenuSubMenuMst;
+import com.example.demo.entity.domain.PageRoleMst;
+import com.example.demo.entity.domain.PageRoleMstExample;
 import com.example.demo.repository.MenuMstMapper;
+import com.example.demo.repository.PageRoleMstMapper;
 import com.example.demo.service.session.SessionService;
 
 import lombok.RequiredArgsConstructor;
@@ -17,6 +20,8 @@ public class AccountService {
 	private final SessionService sessionService;
 
 	private final MenuMstMapper menuMstMapper;
+
+	private final PageRoleMstMapper pageRoleMstMapper;
 
 	public Long getUserSeq() {
 		return sessionService.getUserSeq();
@@ -63,6 +68,15 @@ public class AccountService {
 	public List<MenuSubMenuMst> getMenuList(String userSubMenuRole) {
 
 		return menuMstMapper.getMenuList(userSubMenuRole);
+
+	}
+
+	public List<PageRoleMst> getAvailablePages(String userSubMenuRole) {
+
+		PageRoleMstExample pageRoleMstExample = new PageRoleMstExample();
+		pageRoleMstExample.createCriteria().andPageRollEqualTo(userSubMenuRole);
+
+		return pageRoleMstMapper.selectByExample(pageRoleMstExample);
 
 	}
 

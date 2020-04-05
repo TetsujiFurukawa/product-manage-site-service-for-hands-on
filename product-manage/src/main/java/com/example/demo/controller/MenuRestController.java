@@ -24,4 +24,12 @@ public class MenuRestController {
 		return menuRestService.getMenu();
 
 	}
+
+	@GetMapping("/availablePages/v1")
+	public List<String> availablePagesV1() {
+
+		return menuRestService.getAvailablePages();
+
+	}
+
 }
