@@ -1,5 +1,5 @@
 -- Project Name : product-manage-db
--- Date/Time    : 2020/02/29 16:42:13
+-- Date/Time    : 2020/04/05 13:53:44
 -- Author       : tetsuji
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
@@ -78,19 +78,20 @@ create table PRODUCT_PURCHASE_TBL (
   , constraint PRODUCT_PURCHASE_TBL_PKC primary key (PRODUCT_PURCHASE_SEQ)
 ) ;
 
--- サブメニューマスタ
+-- ページ権限マスタ
 --* RestoreFromTempTable
-create table SUB_MENU_MST (
-  SUB_MENU_SEQ bigserial not null
-  , SUB_MENU_CODE varchar(30) not null
-  , MENU_SEQ bigint not null
-  , SUB_MENU_ROLL varchar(10)
-  , SUB_MENU_ORDER smallint not null
+create table PAGE_ROLE_MST (
+  PAGE_ROLL_SEQ bigserial not null
+  , PAGE_CODE varchar(30) not null
+  , PAGE_ROLL varchar(10) not null
+  , MENU_DISPLAY boolean not null
+  , MENU_SEQ bigint
+  , MENU_ORDER smallint
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
   , UPDATE_DATE datetime not null
   , UPDATE_USER varchar(50) not null
-  , constraint SUB_MENU_MST_PKC primary key (SUB_MENU_SEQ)
+  , constraint PAGE_ROLE_MST_PKC primary key (PAGE_ROLL_SEQ)
 ) ;
 
 -- メニューマスタ
@@ -114,8 +115,8 @@ alter table PRODUCT_STOCK_MST
   add constraint PRODUCT_STOCK_MST_FK1 foreign key (product_seq) references PRODUCT_MST(product_seq)
   on delete cascade;
 
-alter table SUB_MENU_MST
-  add constraint SUB_MENU_MST_FK1 foreign key (MENU_SEQ) references MENU_MST(MENU_SEQ)
+alter table PAGE_ROLE_MST
+  add constraint PAGE_ROLE_MST_FK1 foreign key (MENU_SEQ) references MENU_MST(MENU_SEQ)
   on delete cascade;
 
 comment on table USER_MST is 'ユーザマスタ';
@@ -170,16 +171,17 @@ comment on column PRODUCT_PURCHASE_TBL.ENTER_USER is '登録者';
 comment on column PRODUCT_PURCHASE_TBL.UPDATE_DATE is '更新日';
 comment on column PRODUCT_PURCHASE_TBL.UPDATE_USER is '更新者';
 
-comment on table SUB_MENU_MST is 'サブメニューマスタ';
-comment on column SUB_MENU_MST.SUB_MENU_SEQ is 'サブメニュー連番';
-comment on column SUB_MENU_MST.SUB_MENU_CODE is 'サブメニューコード';
-comment on column SUB_MENU_MST.MENU_SEQ is 'メニュー連番';
-comment on column SUB_MENU_MST.SUB_MENU_ROLL is 'サブメニュー権限';
-comment on column SUB_MENU_MST.SUB_MENU_ORDER is 'サブメニュー並び順';
-comment on column SUB_MENU_MST.ENTER_DATE is '登録日';
-comment on column SUB_MENU_MST.ENTER_USER is '登録者';
-comment on column SUB_MENU_MST.UPDATE_DATE is '更新日';
-comment on column SUB_MENU_MST.UPDATE_USER is '更新者';
+comment on table PAGE_ROLE_MST is 'ページ権限マスタ';
+comment on column PAGE_ROLE_MST.PAGE_ROLL_SEQ is 'ページ権限連番';
+comment on column PAGE_ROLE_MST.PAGE_CODE is 'ページコード';
+comment on column PAGE_ROLE_MST.PAGE_ROLL is 'ページ権限';
+comment on column PAGE_ROLE_MST.MENU_DISPLAY is 'メニュー表示';
+comment on column PAGE_ROLE_MST.MENU_SEQ is 'メニュー連番';
+comment on column PAGE_ROLE_MST.MENU_ORDER is 'メニュー並び順';
+comment on column PAGE_ROLE_MST.ENTER_DATE is '登録日';
+comment on column PAGE_ROLE_MST.ENTER_USER is '登録者';
+comment on column PAGE_ROLE_MST.UPDATE_DATE is '更新日';
+comment on column PAGE_ROLE_MST.UPDATE_USER is '更新者';
 
 comment on table MENU_MST is 'メニューマスタ';
 comment on column MENU_MST.MENU_SEQ is 'メニュー連番';
