@@ -25,7 +25,7 @@ public class MenuRestController {
 
 	}
 
-	@GetMapping("/availablePages/v1")
+	@GetMapping("/available-pages/v1")
 	public List<String> availablePagesV1() {
 
 		return menuRestService.getAvailablePages();

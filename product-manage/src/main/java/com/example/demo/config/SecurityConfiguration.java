@@ -20,15 +20,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	private static final String PRODUCT_IMAGES = "/product-images/*";
 
+
 	@Override
 	public void configure(WebSecurity webSecurity) throws Exception {
 
-		webSecurity.ignoring().antMatchers("/*", PRODUCT_IMAGES);
+		webSecurity.ignoring().antMatchers("/*", PRODUCT_IMAGES)
+		.and().ignoring().antMatchers("/*","/swagger-ui.html");
+
 
 	}
 
 	@Override
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
+//		httpSecurity.authorizeRequests().antMatchers("/").permitAll();
 		httpSecurity
 				.httpBasic()
 				.and()
