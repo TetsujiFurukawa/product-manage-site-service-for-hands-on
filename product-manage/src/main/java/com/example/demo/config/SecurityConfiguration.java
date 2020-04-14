@@ -20,13 +20,22 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	private static final String PRODUCT_IMAGES = "/product-images/*";
 
+	private static final String[] AUTH_WHITELIST = {
+			// Swagger ui
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**"
+    };
 
 	@Override
 	public void configure(WebSecurity webSecurity) throws Exception {
 
-		webSecurity.ignoring().antMatchers("/*", PRODUCT_IMAGES)
-		.and().ignoring().antMatchers("/*","/swagger-ui.html");
-
+		webSecurity
+		.ignoring().antMatchers("/*", PRODUCT_IMAGES);
 
 	}
 
@@ -34,15 +43,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity httpSecurity) throws Exception {
 //		httpSecurity.authorizeRequests().antMatchers("/").permitAll();
 		httpSecurity
-				.httpBasic()
-				.and()
-				.authorizeRequests().anyRequest().authenticated()
-				.and()
-				.csrf().ignoringAntMatchers(API_SIGN_IN, API_SIGN_OUT)
-				.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
+			.httpBasic()
+			.and()
+			.authorizeRequests()
+			.antMatchers(AUTH_WHITELIST).permitAll()
+			.anyRequest().authenticated()
+			.and()
+			.csrf().ignoringAntMatchers(API_SIGN_IN, API_SIGN_OUT)
+			.csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse());
 
 		httpSecurity.logout()
-				.logoutRequestMatcher(new AntPathRequestMatcher(API_SIGN_OUT));
+			.logoutRequestMatcher(new AntPathRequestMatcher(API_SIGN_OUT));
 	}
 
 	@Bean
