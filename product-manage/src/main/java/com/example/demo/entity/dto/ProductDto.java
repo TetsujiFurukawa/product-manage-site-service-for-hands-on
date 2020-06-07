@@ -48,7 +48,7 @@ public class ProductDto {
 
 	@NotNull
 	@Min(1)
-	@Max(999999999)
+	@Max(99999999)
 	private BigDecimal productUnitPrice;
 
 	@NotNull
