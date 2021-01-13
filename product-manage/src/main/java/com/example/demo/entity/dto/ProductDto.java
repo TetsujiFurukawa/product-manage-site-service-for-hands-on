@@ -9,6 +9,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.example.demo.validator.SingleByteAlphaUpperValidator;
 import com.example.demo.validator.SingleByteAlphanumericValidator;
 
 import lombok.Data;
@@ -45,6 +46,12 @@ public class ProductDto {
 
 	@Size(max = 20)
 	private String productColor;
+
+	@Size(min = 3)
+	@Size(max = 3)
+	@NotNull
+	@SingleByteAlphaUpperValidator
+	private String productCurrency;
 
 	@NotNull
 	@Min(1)

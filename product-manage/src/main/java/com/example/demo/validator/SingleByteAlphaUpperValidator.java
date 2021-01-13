@@ -15,8 +15,8 @@ import javax.validation.constraints.Pattern;
 @Target({ METHOD, FIELD, ANNOTATION_TYPE, CONSTRUCTOR, PARAMETER, TYPE_USE })
 @Retention(RUNTIME)
 @Constraint(validatedBy = {})
-@Pattern(regexp = "^[0-9a-zA-Z]+$")
-public @interface SingleByteAlphanumericValidator {
+@Pattern(regexp = "^[A-Z]+$")
+public @interface SingleByteAlphaUpperValidator {
 
 	/**
 	 * message

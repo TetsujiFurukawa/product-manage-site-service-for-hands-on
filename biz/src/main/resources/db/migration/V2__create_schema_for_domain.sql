@@ -1,6 +1,6 @@
 -- Project Name : product-manage-db
--- Date/Time    : 2020/04/05 13:53:44
--- Author       : tetsuji
+-- Date/Time    : 2021/01/10 21:47:21
+-- Author       : tetsu
 -- RDBMS Type   : PostgreSQL
 -- Application  : A5:SQL Mk-2
 
@@ -9,6 +9,18 @@
   これにより、drop table, create table 後もデータが残ります。
   この機能は一時的に $$TableName のような一時テーブルを作成します。
 */
+
+-- 通貨マスタ
+--* RestoreFromTempTable
+create table CURRENCY_MST (
+  CURRENCY_SEQ bigserial not null
+  , CURRENCY varchar(3) not null
+  , ENTER_DATE datetime not null
+  , ENTER_USER varchar(50) not null
+  , UPDATE_DATE datetime not null
+  , UPDATE_USER varchar(50) not null
+  , constraint CURRENCY_MST_PKC primary key (CURRENCY_SEQ)
+) ;
 
 -- ユーザマスタ
 --* RestoreFromTempTable
@@ -33,13 +45,14 @@ create table USER_MST (
 --* RestoreFromTempTable
 create table PRODUCT_MST (
   PRODUCT_SEQ bigserial not null
-  , PRODUCT_CODE varchar(20) unique
-  , PRODUCT_NAME varchar(50)
-  , PRODUCT_GENRE varchar(20)
-  , PRODUCT_SIZE_STANDARD varchar(50)
+  , PRODUCT_CODE varchar(20) not null unique
+  , PRODUCT_NAME varchar(50) not null
+  , PRODUCT_GENRE varchar(20) not null
+  , PRODUCT_SIZE_STANDARD varchar(50) not null
   , PRODUCT_COLOR varchar(20)
-  , PRODUCT_UNIT_PRICE decimal(11,3)
-  , END_OF_SALE boolean
+  , PRODUCT_CURRENCY varchar(3) not null
+  , PRODUCT_UNIT_PRICE decimal(11,3) not null
+  , END_OF_SALE boolean not null
   , END_OF_SALE_DATE datetime
   , ENTER_DATE datetime not null
   , ENTER_USER varchar(50) not null
@@ -107,17 +120,13 @@ create table MENU_MST (
   , constraint MENU_MST_PKC primary key (MENU_SEQ)
 ) ;
 
-alter table PRODUCT_PURCHASE_TBL
-  add constraint PRODUCT_PURCHASE_TBL_FK1 foreign key (product_seq) references PRODUCT_MST(product_seq)
-  on delete cascade;
-
-alter table PRODUCT_STOCK_MST
-  add constraint PRODUCT_STOCK_MST_FK1 foreign key (product_seq) references PRODUCT_MST(product_seq)
-  on delete cascade;
-
-alter table PAGE_ROLE_MST
-  add constraint PAGE_ROLE_MST_FK1 foreign key (MENU_SEQ) references MENU_MST(MENU_SEQ)
-  on delete cascade;
+comment on table CURRENCY_MST is '通貨マスタ';
+comment on column CURRENCY_MST.CURRENCY_SEQ is '通貨連番';
+comment on column CURRENCY_MST.CURRENCY is '通貨';
+comment on column CURRENCY_MST.ENTER_DATE is '登録日';
+comment on column CURRENCY_MST.ENTER_USER is '登録者';
+comment on column CURRENCY_MST.UPDATE_DATE is '更新日';
+comment on column CURRENCY_MST.UPDATE_USER is '更新者';
 
 comment on table USER_MST is 'ユーザマスタ';
 comment on column USER_MST.USER_SEQ is 'ユーザ連番';
@@ -141,6 +150,7 @@ comment on column PRODUCT_MST.PRODUCT_NAME is '商品名';
 comment on column PRODUCT_MST.PRODUCT_GENRE is 'ジャンル';
 comment on column PRODUCT_MST.PRODUCT_SIZE_STANDARD is 'サイズ・規格';
 comment on column PRODUCT_MST.PRODUCT_COLOR is '色';
+comment on column PRODUCT_MST.PRODUCT_CURRENCY is '通貨';
 comment on column PRODUCT_MST.PRODUCT_UNIT_PRICE is '単価';
 comment on column PRODUCT_MST.END_OF_SALE is '販売終了';
 comment on column PRODUCT_MST.END_OF_SALE_DATE is '販売終了日';

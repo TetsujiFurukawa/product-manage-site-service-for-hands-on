@@ -63,4 +63,10 @@ public class ProductRestController {
 
 	}
 
+	@GetMapping("/product-currency/v1")
+	public List<String> getProductCurrencyV1() {
+
+		return productRestService.getCurrency();
+
+	}
 }

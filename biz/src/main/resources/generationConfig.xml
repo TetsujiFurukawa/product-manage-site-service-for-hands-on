@@ -50,6 +50,9 @@
     <table schema="" tableName="MENU_MST">
       <property name="mapUnderscoreToCamelCase" value="true" />
     </table>
+    <table schema="" tableName="CURRENCY_MST">
+      <property name="mapUnderscoreToCamelCase" value="true" />
+    </table>
 
   </context>
 </generatorConfiguration>

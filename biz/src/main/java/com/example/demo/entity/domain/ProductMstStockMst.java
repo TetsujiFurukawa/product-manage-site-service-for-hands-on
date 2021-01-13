@@ -21,6 +21,8 @@ public class ProductMstStockMst {
 
 	private String productColor;
 
+	private String productCurrency;
+
 	private BigDecimal productUnitPrice;
 
 	private Boolean endOfSale;
