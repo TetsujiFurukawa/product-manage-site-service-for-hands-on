@@ -7,9 +7,7 @@ import java.time.ZoneOffset;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
-
 import com.example.demo.entity.domain.ProductMst;
 import com.example.demo.entity.domain.ProductMstProductPurchaseTbl;
 import com.example.demo.entity.domain.ProductPurchaseTbl;
@@ -28,7 +26,6 @@ import com.example.demo.service.ProductPurchaseService;
 import com.example.demo.service.ProductService;
 import com.example.demo.service.ProductStockService;
 import com.example.demo.utility.PagenatorUtility;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -46,27 +43,26 @@ public class ProductPurchaseRestService extends BaseRestService {
   /**
    * Gets the product purchase history list.
    *
-   * @param productPurchaseHistoryRequestDto the product purchase history request
-   *                                         dto
-   * @param pagenatorRequestDto              the pagenator request dto
+   * @param productPurchaseHistoryRequestDto the product purchase history request dto
+   * @param pagenatorRequestDto the pagenator request dto
    * @return the product purchase history list
    */
   public ProductPurchaseHistorySearchListResponseDto getProductPurchaseHistoryList(
       ProductPurchaseHistoryRequestDto productPurchaseHistoryRequestDto,
       PagenatorRequestDto pagenatorRequestDto) {
 
-    ProductMstProductPurchaseTbl searchEntity = createSearchRequestEntity(
-        productPurchaseHistoryRequestDto);
+    ProductMstProductPurchaseTbl searchEntity =
+        createSearchRequestEntity(productPurchaseHistoryRequestDto);
 
-    Long productMstProductPurchaseTblCount = productPurchaseService
-        .countProductMstProductPurchaseTbl(searchEntity);
+    Long productMstProductPurchaseTblCount =
+        productPurchaseService.countProductMstProductPurchaseTbl(searchEntity);
 
     PagenatorUtility.recalculatePageIndex(pagenatorRequestDto, productMstProductPurchaseTblCount);
 
-    List<ProductMstProductPurchaseTbl> productMstProductPurchaseTbl = productPurchaseService
-        .selectProductMstProductPurchaseTbl(searchEntity, pagenatorRequestDto.getPageSize(),
-            PagenatorUtility.calcOffset(pagenatorRequestDto.getPageSize(),
-                pagenatorRequestDto.getPageIndex()));
+    List<ProductMstProductPurchaseTbl> productMstProductPurchaseTbl =
+        productPurchaseService.selectProductMstProductPurchaseTbl(searchEntity,
+            pagenatorRequestDto.getPageSize(), PagenatorUtility
+                .calcOffset(pagenatorRequestDto.getPageSize(), pagenatorRequestDto.getPageIndex()));
 
     return createSearchResponseDto(productMstProductPurchaseTbl, pagenatorRequestDto,
         productMstProductPurchaseTblCount);
@@ -106,12 +102,12 @@ public class ProductPurchaseRestService extends BaseRestService {
 
     validateStockQuantity(productStockMst, productPurchaseRequestDto);
 
-    ProductPurchaseTbl productPurchaseTblEntity = createProductPurchaseTblEntiry(productMst,
-        productPurchaseRequestDto);
+    ProductPurchaseTbl productPurchaseTblEntity =
+        createProductPurchaseTblEntiry(productMst, productPurchaseRequestDto);
     productPurchaseService.insertPurchase(productPurchaseTblEntity);
 
-    ProductStockMst updProductStockMst = createProductStockMst(productStockMst,
-        productPurchaseRequestDto);
+    ProductStockMst updProductStockMst =
+        createProductStockMst(productStockMst, productPurchaseRequestDto);
     productStockService.updateStock(updProductStockMst);
 
     return getProductPurchaseByCode(productPurchaseRequestDto.getProductCode());
@@ -123,15 +119,15 @@ public class ProductPurchaseRestService extends BaseRestService {
   /**
    * Creates the search request entity.
    *
-   * @param productPurchaseHistoryRequestDto the product purchase history request
-   *                                         dto
+   * @param productPurchaseHistoryRequestDto the product purchase history request dto
    * @return the product mst product purchase tbl
    */
   // --------------------------------------------------------------------------------
   private ProductMstProductPurchaseTbl createSearchRequestEntity(
       ProductPurchaseHistoryRequestDto productPurchaseHistoryRequestDto) {
 
-    ProductMstProductPurchaseTbl searchProductMstProductPurchaseTbl = new ProductMstProductPurchaseTbl();
+    ProductMstProductPurchaseTbl searchProductMstProductPurchaseTbl =
+        new ProductMstProductPurchaseTbl();
     searchProductMstProductPurchaseTbl
         .setProductPurchaseName(productPurchaseHistoryRequestDto.getProductPurchaseName());
 
@@ -159,23 +155,25 @@ public class ProductPurchaseRestService extends BaseRestService {
    * Creates the search response dto.
    *
    * @param productMstProductPurchaseTbls the product mst product purchase tbls
-   * @param pagenatorRequestDto           the pagenator request dto
-   * @param productMstStockMstCount       the product mst stock mst count
+   * @param pagenatorRequestDto the pagenator request dto
+   * @param productMstStockMstCount the product mst stock mst count
    * @return the product purchase history search list response dto
    */
   private ProductPurchaseHistorySearchListResponseDto createSearchResponseDto(
       List<ProductMstProductPurchaseTbl> productMstProductPurchaseTbls,
       PagenatorRequestDto pagenatorRequestDto, Long productMstStockMstCount) {
 
-    ProductPurchaseHistorySearchListResponseDto productPurchaseHistorySearchListResponseDto = new ProductPurchaseHistorySearchListResponseDto();
+    ProductPurchaseHistorySearchListResponseDto productPurchaseHistorySearchListResponseDto =
+        new ProductPurchaseHistorySearchListResponseDto();
 
     productPurchaseHistorySearchListResponseDto.setPageIndex(pagenatorRequestDto.getPageIndex());
     productPurchaseHistorySearchListResponseDto.setResultsLength(productMstStockMstCount);
 
-    List<ProductPurchaseHistorySearchResponseDto> productPurchaseHistorySearchResponseDtos = productMstProductPurchaseTbls
-        .stream().map(p -> {
+    List<ProductPurchaseHistorySearchResponseDto> productPurchaseHistorySearchResponseDtos =
+        productMstProductPurchaseTbls.stream().map(p -> {
 
-          ProductPurchaseHistorySearchResponseDto productPurchaseHistorySearchResponseDto = new ProductPurchaseHistorySearchResponseDto();
+          ProductPurchaseHistorySearchResponseDto productPurchaseHistorySearchResponseDto =
+              new ProductPurchaseHistorySearchResponseDto();
           productPurchaseHistorySearchResponseDto.setNo(p.getRowNo());
           productPurchaseHistorySearchResponseDto.setProductName(p.getProductName());
           productPurchaseHistorySearchResponseDto.setProductCode(p.getProductCode());

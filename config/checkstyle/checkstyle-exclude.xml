@@ -4,4 +4,5 @@
     <suppress checks=".*" files="com[\\/]example[\\/]demo[\\/]entity[\\/]domain[\\/]"/>
     <suppress checks=".*" files="com[\\/]example[\\/]demo[\\/]repository[\\/]"/>
     <suppress checks=".*" files="generationConfig.xml"/>
+    <suppress checks="MemberName" files="SignInRequestDto.java"/>
 </suppressions>
