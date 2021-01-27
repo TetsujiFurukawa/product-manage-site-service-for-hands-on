@@ -16,36 +16,63 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ImageFileService {
 
-	private final ProductImageProperties productImageProperties;
+  private final ProductImageProperties productImageProperties;
 
-	public void write(String targetFileName, String base64string) throws IOException {
+  /**
+   * Write.
+   *
+   * @param targetFileName the target file name
+   * @param base64string the base 64 string
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public void write(String targetFileName, String base64string) throws IOException {
 
-		byte[] decodedBytes = Base64.getDecoder().decode(StringUtils.substringAfter(base64string, "64,"));
-		FileUtils.writeByteArrayToFile(new File(targetFileName), decodedBytes);
+    byte[] decodedBytes = Base64.getDecoder()
+        .decode(StringUtils.substringAfter(base64string, "64,"));
+    FileUtils.writeByteArrayToFile(new File(targetFileName), decodedBytes);
 
-	}
+  }
 
-	public String read(String sourceFileName) throws IOException {
+  /**
+   * Read.
+   *
+   * @param sourceFileName the source file name
+   * @return the string
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public String read(String sourceFileName) throws IOException {
 
-		byte[] fileContent = FileUtils.readFileToByteArray(new File(sourceFileName));
-		String encodedString = productImageProperties.getDataType() + Base64.getEncoder().encodeToString(fileContent);
+    byte[] fileContent = FileUtils.readFileToByteArray(new File(sourceFileName));
+    String encodedString = productImageProperties.getDataType()
+        + Base64.getEncoder().encodeToString(fileContent);
 
-		return new String(encodedString);
+    return new String(encodedString);
 
-	}
+  }
 
-	public void delete(String targetFileName) {
+  /**
+   * Delete.
+   *
+   * @param targetFileName the target file name
+   */
+  public void delete(String targetFileName) {
 
-		FileUtils.deleteQuietly(new File(targetFileName));
+    FileUtils.deleteQuietly(new File(targetFileName));
 
-	}
+  }
 
-	public boolean fileExist(String targetFileName) {
+  /**
+   * File exist.
+   *
+   * @param targetFileName the target file name
+   * @return true, if successful
+   */
+  public boolean fileExist(String targetFileName) {
 
-		File file = new File(targetFileName);
+    File file = new File(targetFileName);
 
-		return file.exists();
+    return file.exists();
 
-	}
+  }
 
 }

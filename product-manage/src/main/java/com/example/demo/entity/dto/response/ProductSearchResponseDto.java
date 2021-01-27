@@ -9,24 +9,24 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductSearchResponseDto {
 
-	private Long no;
+  private Long no;
 
-	private String productName;
+  private String productName;
 
-	private String productCode;
+  private String productCode;
 
-	private String productGenre;
+  private String productGenre;
 
-	private String productImageUrl;
+  private String productImageUrl;
 
-	private String productSizeStandard;
+  private String productSizeStandard;
 
-	private String productColor;
+  private String productColor;
 
-	private BigDecimal productUnitPrice;
+  private BigDecimal productUnitPrice;
 
-	private Integer productStockQuantity;
+  private Integer productStockQuantity;
 
-	private Boolean endOfSale;
+  private Boolean endOfSale;
 
 }

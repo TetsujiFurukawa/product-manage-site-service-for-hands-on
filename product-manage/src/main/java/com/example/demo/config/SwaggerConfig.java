@@ -2,6 +2,7 @@ package com.example.demo.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -17,34 +18,31 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableSwagger2
 public class SwaggerConfig {
 
-    @Bean
-    public Docket swaggerSpringMvcPlugin() {
-        return new Docket(DocumentationType.SWAGGER_2)
-                .useDefaultResponseMessages(false)
-                .select()
-                .apis(RequestHandlerSelectors.any())
-                .paths(PathSelectors.regex("/api.*"))
-                .build()
-                .apiInfo(apiInfo());
-    }
+  /**
+   * Swagger spring mvc plugin.
+   *
+   * @return the docket
+   */
+  @Bean
+  public Docket swaggerSpringMvcPlugin() {
+    return new Docket(DocumentationType.SWAGGER_2).useDefaultResponseMessages(false).select()
+        .apis(RequestHandlerSelectors.any()).paths(PathSelectors.regex("/api.*")).build()
+        .apiInfo(apiInfo());
+  }
 
-    private ApiInfo apiInfo() {
-        return new ApiInfoBuilder()
-                .title("Spring API")
-                .description("Description.")
-                .version("0.0.1")
-                .contact(new Contact("name", "URL", "email"))
-                .license("license")
-                .licenseUrl("license URL")
-                .termsOfServiceUrl("")
-                .build();
-    }
+  private ApiInfo apiInfo() {
+    return new ApiInfoBuilder().title("Spring API").description("Description.").version("0.0.1")
+        .contact(new Contact("name", "URL", "email")).license("license").licenseUrl("license URL")
+        .termsOfServiceUrl("").build();
+  }
 
-    @Bean
-    public UiConfiguration uiConfig() {
-        return UiConfigurationBuilder.builder()
-                .displayRequestDuration(true)
-                .validatorUrl("")
-                .build();
-    }
+  /**
+   * Ui config.
+   *
+   * @return the ui configuration
+   */
+  @Bean
+  public UiConfiguration uiConfig() {
+    return UiConfigurationBuilder.builder().displayRequestDuration(true).validatorUrl("").build();
+  }
 }

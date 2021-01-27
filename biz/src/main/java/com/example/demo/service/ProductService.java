@@ -21,90 +21,154 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductService {
 
-	private final ProductMstMapper productMstMapper;
-	private final ImageFileService imageFileService;
-	private final ProductImageProperties productImagesProperties;
+  private final ProductMstMapper productMstMapper;
+  private final ImageFileService imageFileService;
+  private final ProductImageProperties productImagesProperties;
 
-	public List<ProductMstStockMst> selectProductMstStockMst(ProductMst searchProductMst, Integer limit, Long offset) {
+  /**
+   * Select product mst stock mst.
+   *
+   * @param searchProductMst the search product mst
+   * @param limit the limit
+   * @param offset the offset
+   * @return the list
+   */
+  public List<ProductMstStockMst> selectProductMstStockMst(ProductMst searchProductMst,
+      Integer limit, Long offset) {
 
-		return productMstMapper.selectProductMstStockMst(searchProductMst, limit, offset);
+    return productMstMapper.selectProductMstStockMst(searchProductMst, limit, offset);
 
-	}
+  }
 
-	public Long countProductMstStockMst(ProductMst productMst) {
+  /**
+   * Count product mst stock mst.
+   *
+   * @param productMst the product mst
+   * @return the long
+   */
+  public Long countProductMstStockMst(ProductMst productMst) {
 
-		return productMstMapper.countProductMstStockMst(productMst);
+    return productMstMapper.countProductMstStockMst(productMst);
 
-	}
+  }
 
-	public List<ProductMst> getProductListByCode(String productCode) {
+  /**
+   * Gets the product list by code.
+   *
+   * @param productCode the product code
+   * @return the product list by code
+   */
+  public List<ProductMst> getProductListByCode(String productCode) {
 
-		ProductMstExample producMstExample = new ProductMstExample();
-		producMstExample.createCriteria().andProductCodeEqualTo(productCode);
+    ProductMstExample producMstExample = new ProductMstExample();
+    producMstExample.createCriteria().andProductCodeEqualTo(productCode);
 
-		return productMstMapper.selectByExample(producMstExample);
-	}
+    return productMstMapper.selectByExample(producMstExample);
+  }
 
-	public ProductMst insertProduct(ProductMst productMst) {
+  /**
+   * Insert product.
+   *
+   * @param productMst the product mst
+   * @return the product mst
+   */
+  public ProductMst insertProduct(ProductMst productMst) {
 
-		productMstMapper.insert(productMst);
-		return getProductListByCode(productMst.getProductCode()).get(0);
-	}
+    productMstMapper.insert(productMst);
+    return getProductListByCode(productMst.getProductCode()).get(0);
+  }
 
-	public ProductMst selectForUpdateProductMstByCode(ProductMst productMst) {
+  /**
+   * Select for update product mst by code.
+   *
+   * @param productMst the product mst
+   * @return the product mst
+   */
+  public ProductMst selectForUpdateProductMstByCode(ProductMst productMst) {
 
-		return productMstMapper.selectForUpdateProductMstByCode(productMst);
+    return productMstMapper.selectForUpdateProductMstByCode(productMst);
 
-	}
+  }
 
-	public ProductMst updateProduct(ProductMst productMst) {
+  /**
+   * Update product.
+   *
+   * @param productMst the product mst
+   * @return the product mst
+   */
+  public ProductMst updateProduct(ProductMst productMst) {
 
-		productMstMapper.updateByPrimaryKey(productMst);
-		return productMstMapper.selectByPrimaryKey(productMst.getProductSeq());
-	}
+    productMstMapper.updateByPrimaryKey(productMst);
+    return productMstMapper.selectByPrimaryKey(productMst.getProductSeq());
+  }
 
-	public void writeProductImage(String productCode, String base64string) throws IOException {
+  /**
+   * Write product image.
+   *
+   * @param productCode the product code
+   * @param base64string the base 64 string
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public void writeProductImage(String productCode, String base64string) throws IOException {
 
-		String filePath = getFilePath(productCode);
+    String filePath = getFilePath(productCode);
 
-		imageFileService.write(filePath, base64string);
-	}
+    imageFileService.write(filePath, base64string);
+  }
 
-	public String readProductImage(String productCode) throws IOException {
+  /**
+   * Read product image.
+   *
+   * @param productCode the product code
+   * @return the string
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  public String readProductImage(String productCode) throws IOException {
 
-		String filePath = getFilePath(productCode);
+    String filePath = getFilePath(productCode);
 
-		Path file = Paths.get(filePath);
-		if (!Files.exists(file)) {
-			return null;
-		}
+    Path file = Paths.get(filePath);
+    if (!Files.exists(file)) {
+      return null;
+    }
 
-		return imageFileService.read(filePath);
+    return imageFileService.read(filePath);
 
-	}
+  }
 
-	public void deleteProductImage(String productCode) {
+  /**
+   * Delete product image.
+   *
+   * @param productCode the product code
+   */
+  public void deleteProductImage(String productCode) {
 
-		String filePath = getFilePath(productCode);
+    String filePath = getFilePath(productCode);
 
-		imageFileService.delete(filePath);
+    imageFileService.delete(filePath);
 
-	}
+  }
 
-	public boolean productImageExist(String productCode) {
+  /**
+   * Product image exist.
+   *
+   * @param productCode the product code
+   * @return true, if successful
+   */
+  public boolean productImageExist(String productCode) {
 
-		String filePath = getFilePath(productCode);
+    String filePath = getFilePath(productCode);
 
-		return imageFileService.fileExist(filePath);
+    return imageFileService.fileExist(filePath);
 
-	}
+  }
 
-	private String getFilePath(String productCode) {
+  private String getFilePath(String productCode) {
 
-		Path path = Paths.get(productImagesProperties.getUploadDirectory() + productCode
-				+ productImagesProperties.getDefaultExtension());
+    Path path = Paths.get(productImagesProperties.getUploadDirectory() + productCode
+        + productImagesProperties.getDefaultExtension());
 
-		return path.toString();
-	}
+    return path.toString();
+  }
 
 }

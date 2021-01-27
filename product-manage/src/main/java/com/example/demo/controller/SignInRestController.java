@@ -13,12 +13,17 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("api")
 @RequiredArgsConstructor
 public class SignInRestController {
-	private final SignInRestService signInRestService;
+  private final SignInRestService signInRestService;
 
-	@PostMapping("/sign-in/v1")
-	public SignInResponseDto signInV1() {
+  /**
+   * Sign in V 1.
+   *
+   * @return the sign in response dto
+   */
+  @PostMapping("/sign-in/v1")
+  public SignInResponseDto signInV1() {
 
-		return signInRestService.signIn();
+    return signInRestService.signIn();
 
-	}
+  }
 }

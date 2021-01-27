@@ -18,50 +18,50 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductDto {
 
-	private Long productSeq;
+  private Long productSeq;
 
-	@NotNull
-	@NotBlank
-	@Size(max = 20)
-	@SingleByteAlphanumericValidator
-	private String productCode;
+  @NotNull
+  @NotBlank
+  @Size(max = 20)
+  @SingleByteAlphanumericValidator
+  private String productCode;
 
-	@NotNull
-	@NotBlank
-	@Size(max = 50)
-	private String productName;
+  @NotNull
+  @NotBlank
+  @Size(max = 50)
+  private String productName;
 
-	@NotNull
-	@NotBlank
-	@Size(max = 50)
-	private String productGenre;
+  @NotNull
+  @NotBlank
+  @Size(max = 50)
+  private String productGenre;
 
-	private String productImage;
+  private String productImage;
 
-	@NotNull
-	@NotBlank
-	@Size(max = 50)
-	private String productSizeStandard;
+  @NotNull
+  @NotBlank
+  @Size(max = 50)
+  private String productSizeStandard;
 
-	@Size(max = 20)
-	private String productColor;
+  @Size(max = 20)
+  private String productColor;
 
-	@NotNull
-	@Min(1)
-	@Max(99999999)
-	private BigDecimal productUnitPrice;
+  @NotNull
+  @Min(1)
+  @Max(99999999)
+  private BigDecimal productUnitPrice;
 
-	@NotNull
-	private Boolean endOfSale;
+  @NotNull
+  private Boolean endOfSale;
 
-	private ZonedDateTime endOfSaleDate;
+  private ZonedDateTime endOfSaleDate;
 
-	private ZonedDateTime enterDate;
+  private ZonedDateTime enterDate;
 
-	private String enterUser;
+  private String enterUser;
 
-	private ZonedDateTime updateDate;
+  private ZonedDateTime updateDate;
 
-	private String updateUser;
+  private String updateUser;
 
 }

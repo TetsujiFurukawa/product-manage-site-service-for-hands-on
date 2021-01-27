@@ -10,12 +10,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class PagenatorRequestDto {
 
-	@NotNull
-	@Min(1)
-	private Integer pageSize;
+  @NotNull
+  @Min(1)
+  private Integer pageSize;
 
-	@NotNull
-	@Min(1)
-	private Integer pageIndex;
+  @NotNull
+  @Min(1)
+  private Integer pageIndex;
 
 }

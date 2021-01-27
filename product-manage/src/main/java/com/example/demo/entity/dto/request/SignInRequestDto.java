@@ -10,12 +10,12 @@ import lombok.Data;
 @AllArgsConstructor
 public class SignInRequestDto {
 
-	@NotNull
-	@Size(max = 100)
-	private String Username;
+  @NotNull
+  @Size(max = 100)
+  private String Username;
 
-	@NotNull
-	@Size(max = 100)
-	private String Password;
+  @NotNull
+  @Size(max = 100)
+  private String Password;
 
 }

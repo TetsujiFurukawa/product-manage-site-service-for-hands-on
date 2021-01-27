@@ -17,67 +17,82 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AccountService {
 
-	private final SessionService sessionService;
+  private final SessionService sessionService;
 
-	private final MenuMstMapper menuMstMapper;
+  private final MenuMstMapper menuMstMapper;
 
-	private final PageRoleMstMapper pageRoleMstMapper;
+  private final PageRoleMstMapper pageRoleMstMapper;
 
-	public Long getUserSeq() {
-		return sessionService.getUserSeq();
-	}
+  public Long getUserSeq() {
+    return sessionService.getUserSeq();
+  }
 
-	public String getUserAccount() {
-		return sessionService.getUserAccount();
-	}
+  public String getUserAccount() {
+    return sessionService.getUserAccount();
+  }
 
-	public String getUserName() {
-		return sessionService.getUserName();
-	}
+  public String getUserName() {
+    return sessionService.getUserName();
+  }
 
-	public String getUserLocale() {
-		return sessionService.getUserLocale();
-	}
+  public String getUserLocale() {
+    return sessionService.getUserLocale();
+  }
 
-	public String getUserLangage() {
-		return sessionService.getUserLangage();
-	}
+  public String getUserLangage() {
+    return sessionService.getUserLangage();
+  }
 
-	public String getUserTimezone() {
-		return sessionService.getUserTimezone();
-	}
+  public String getUserTimezone() {
+    return sessionService.getUserTimezone();
+  }
 
-	public String getUserCurrency() {
-		return sessionService.getUserCurrency();
-	}
+  public String getUserCurrency() {
+    return sessionService.getUserCurrency();
+  }
 
-	public String getUserSubMenuRole() {
-		return sessionService.getUserSubMenuRole();
-	}
+  public String getUserSubMenuRole() {
+    return sessionService.getUserSubMenuRole();
+  }
 
-	public String toString() {
-		return "UserSeq:" + sessionService.getUserSeq()
-				+ ", UserSeq:" + sessionService.getUserAccount()
-				+ ", UserName:" + sessionService.getUserName()
-				+ ", UserLocale:" + sessionService.getUserLocale()
-				+ ", UserLanguage:" + sessionService.getUserLangage()
-				+ ", UserTimezone:" + sessionService.getUserTimezone()
-				+ ", UserCurrency:" + sessionService.getUserCurrency();
-	}
+  /**
+   * To string.
+   *
+   * @return the string
+   */
+  public String toString() {
+    return "UserSeq:" + sessionService.getUserSeq() + ", UserSeq:" + sessionService.getUserAccount()
+        + ", UserName:" + sessionService.getUserName() + ", UserLocale:"
+        + sessionService.getUserLocale() + ", UserLanguage:" + sessionService.getUserLangage()
+        + ", UserTimezone:" + sessionService.getUserTimezone() + ", UserCurrency:"
+        + sessionService.getUserCurrency();
+  }
 
-	public List<MenuSubMenuMst> getMenuList(String userSubMenuRole) {
+  /**
+   * Gets the menu list.
+   *
+   * @param userSubMenuRole the user sub menu role
+   * @return the menu list
+   */
+  public List<MenuSubMenuMst> getMenuList(String userSubMenuRole) {
 
-		return menuMstMapper.getMenuList(userSubMenuRole);
+    return menuMstMapper.getMenuList(userSubMenuRole);
 
-	}
+  }
 
-	public List<PageRoleMst> getAvailablePages(String userSubMenuRole) {
+  /**
+   * Gets the available pages.
+   *
+   * @param userSubMenuRole the user sub menu role
+   * @return the available pages
+   */
+  public List<PageRoleMst> getAvailablePages(String userSubMenuRole) {
 
-		PageRoleMstExample pageRoleMstExample = new PageRoleMstExample();
-		pageRoleMstExample.createCriteria().andPageRollEqualTo(userSubMenuRole);
+    PageRoleMstExample pageRoleMstExample = new PageRoleMstExample();
+    pageRoleMstExample.createCriteria().andPageRollEqualTo(userSubMenuRole);
 
-		return pageRoleMstMapper.selectByExample(pageRoleMstExample);
+    return pageRoleMstMapper.selectByExample(pageRoleMstExample);
 
-	}
+  }
 
 }

@@ -14,25 +14,46 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductPurchaseService {
 
-	private final ProductPurchaseTblMapper productPurchaseTblMapper;
+  private final ProductPurchaseTblMapper productPurchaseTblMapper;
 
-	public List<ProductMstProductPurchaseTbl> selectProductMstProductPurchaseTbl(
-			ProductMstProductPurchaseTbl productMstProductPurchaseTbl, Integer limit, Long offset) {
+  /**
+   * Select product mst product purchase tbl.
+   *
+   * @param productMstProductPurchaseTbl the product mst product purchase tbl
+   * @param limit the limit
+   * @param offset the offset
+   * @return the list
+   */
+  public List<ProductMstProductPurchaseTbl> selectProductMstProductPurchaseTbl(
+      ProductMstProductPurchaseTbl productMstProductPurchaseTbl, Integer limit, Long offset) {
 
-		return productPurchaseTblMapper.selectProductMstProductPurchaseTbl(productMstProductPurchaseTbl, limit, offset);
+    return productPurchaseTblMapper.selectProductMstProductPurchaseTbl(productMstProductPurchaseTbl,
+        limit, offset);
 
-	}
+  }
 
-	public Long countProductMstProductPurchaseTbl(ProductMstProductPurchaseTbl productMstProductPurchaseTbl) {
+  /**
+   * Count product mst product purchase tbl.
+   *
+   * @param productMstProductPurchaseTbl the product mst product purchase tbl
+   * @return the long
+   */
+  public Long countProductMstProductPurchaseTbl(
+      ProductMstProductPurchaseTbl productMstProductPurchaseTbl) {
 
-		return productPurchaseTblMapper.countProductMstProductPurchaseTbl(productMstProductPurchaseTbl);
+    return productPurchaseTblMapper.countProductMstProductPurchaseTbl(productMstProductPurchaseTbl);
 
-	}
+  }
 
-	public void insertPurchase(ProductPurchaseTbl productPurchaseTbl) {
+  /**
+   * Insert purchase.
+   *
+   * @param productPurchaseTbl the product purchase tbl
+   */
+  public void insertPurchase(ProductPurchaseTbl productPurchaseTbl) {
 
-		productPurchaseTblMapper.insert(productPurchaseTbl);
+    productPurchaseTblMapper.insert(productPurchaseTbl);
 
-	}
+  }
 
 }

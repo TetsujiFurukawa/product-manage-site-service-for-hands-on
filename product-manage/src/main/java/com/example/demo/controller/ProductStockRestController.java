@@ -22,21 +22,35 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductStockRestController {
 
-	private final ProductStockRestService productStockRestService;
+  private final ProductStockRestService productStockRestService;
 
-	@GetMapping("/product-stock/v1")
-	public ProductStockResponseDto getProductStockByCodeV1(@NotNull String productCode) throws IOException {
+  /**
+   * Gets the product stock by code V 1.
+   *
+   * @param productCode the product code
+   * @return the product stock by code V 1
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @GetMapping("/product-stock/v1")
+  public ProductStockResponseDto getProductStockByCodeV1(@NotNull String productCode)
+      throws IOException {
 
-		return productStockRestService.getProductStockByCode(productCode);
+    return productStockRestService.getProductStockByCode(productCode);
 
-	}
+  }
 
-	@PutMapping("/product-stock/v1")
-	public ProductStockResponseDto createProductStockV1(
-			@RequestBody @Validated ProductStockRequestDto productStockRequestDto)
-			throws IOException {
+  /**
+   * Creates the product stock V 1.
+   *
+   * @param productStockRequestDto the product stock request dto
+   * @return the product stock response dto
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @PutMapping("/product-stock/v1")
+  public ProductStockResponseDto createProductStockV1(
+      @RequestBody @Validated ProductStockRequestDto productStockRequestDto) throws IOException {
 
-		return productStockRestService.updateProductStock(productStockRequestDto);
+    return productStockRestService.updateProductStock(productStockRequestDto);
 
-	}
+  }
 }

@@ -14,27 +14,43 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class ProductStockService {
 
-	private final ProductStockMstMapper productStockMstMapper;
+  private final ProductStockMstMapper productStockMstMapper;
 
-	public void insertProductStock(ProductStockMst productStockMst) {
+  /**
+   * Insert product stock.
+   *
+   * @param productStockMst the product stock mst
+   */
+  public void insertProductStock(ProductStockMst productStockMst) {
 
-		productStockMstMapper.insert(productStockMst);
+    productStockMstMapper.insert(productStockMst);
 
-	}
+  }
 
-	public List<ProductStockMst> getProductStockMst(Long productSeq) {
+  /**
+   * Gets the product stock mst.
+   *
+   * @param productSeq the product seq
+   * @return the product stock mst
+   */
+  public List<ProductStockMst> getProductStockMst(Long productSeq) {
 
-		ProductStockMstExample productStockMstExample = new ProductStockMstExample();
-		productStockMstExample.createCriteria().andProductSeqEqualTo(productSeq);
+    ProductStockMstExample productStockMstExample = new ProductStockMstExample();
+    productStockMstExample.createCriteria().andProductSeqEqualTo(productSeq);
 
-		return productStockMstMapper.selectByExample(productStockMstExample);
+    return productStockMstMapper.selectByExample(productStockMstExample);
 
-	}
+  }
 
-	public void updateStock(ProductStockMst productStockMst) {
+  /**
+   * Update stock.
+   *
+   * @param productStockMst the product stock mst
+   */
+  public void updateStock(ProductStockMst productStockMst) {
 
-		productStockMstMapper.updateByPrimaryKeySelective(productStockMst);
+    productStockMstMapper.updateByPrimaryKeySelective(productStockMst);
 
-	}
+  }
 
 }

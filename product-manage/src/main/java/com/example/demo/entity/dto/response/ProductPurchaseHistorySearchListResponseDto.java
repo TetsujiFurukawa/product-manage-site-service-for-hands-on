@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductPurchaseHistorySearchListResponseDto {
 
-	private Integer pageIndex;
+  private Integer pageIndex;
 
-	private Long resultsLength;
+  private Long resultsLength;
 
-	private List<ProductPurchaseHistorySearchResponseDto> productPurchaseHistorySearchResponseDtos;
+  private List<ProductPurchaseHistorySearchResponseDto> productPurchaseHistorySearchResponseDtos;
 
 }

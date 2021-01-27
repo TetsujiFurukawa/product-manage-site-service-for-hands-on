@@ -13,19 +13,19 @@ import lombok.Data;
 @AllArgsConstructor
 public class ProductPurchaseHistoryRequestDto {
 
-	@Size(max = 50)
-	private String productPurchaseName;
+  @Size(max = 50)
+  private String productPurchaseName;
 
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-	private ZonedDateTime productPurchaseDateFrom;
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  private ZonedDateTime productPurchaseDateFrom;
 
-	@DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-	private ZonedDateTime productPurchaseDateTo;
+  @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
+  private ZonedDateTime productPurchaseDateTo;
 
-	@Size(max = 50)
-	private String productName;
+  @Size(max = 50)
+  private String productName;
 
-	@Size(max = 20)
-	private String productCode;
+  @Size(max = 20)
+  private String productCode;
 
 }

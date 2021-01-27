@@ -10,12 +10,12 @@ import lombok.Data;
 @ConfigurationProperties(prefix = "product.images")
 public class ProductImageProperties {
 
-	private String uploadDirectory;
+  private String uploadDirectory;
 
-	private String publicUrl;
+  private String publicUrl;
 
-	private String defaultExtension;
+  private String defaultExtension;
 
-	private String dataType;
+  private String dataType;
 
 }

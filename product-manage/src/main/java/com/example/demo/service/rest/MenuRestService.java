@@ -16,51 +16,62 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MenuRestService extends BaseRestService {
 
-	private final AccountService accountService;
+  private final AccountService accountService;
 
-	public List<MenuListResponseDto> getMenu() {
+  /**
+   * Gets the menu.
+   *
+   * @return the menu
+   */
+  public List<MenuListResponseDto> getMenu() {
 
-		// Gets user seq.
-		String userSubMenuRole = accountService.getUserSubMenuRole();
+    // Gets user seq.
+    String userSubMenuRole = accountService.getUserSubMenuRole();
 
-		// Gets user menu list.
-		List<MenuSubMenuMst> menuSubMenuMstList = accountService.getMenuList(userSubMenuRole);
+    // Gets user menu list.
+    List<MenuSubMenuMst> menuSubMenuMstList = accountService.getMenuList(userSubMenuRole);
 
-		// returns response.
-		return createResponseDto(menuSubMenuMstList);
+    // returns response.
+    return createResponseDto(menuSubMenuMstList);
 
-	}
+  }
 
-	private List<MenuListResponseDto> createResponseDto(List<MenuSubMenuMst> menuSubMenuMstList) {
-		List<MenuListResponseDto> menuListResponseDto = menuSubMenuMstList.stream().collect(
-				Collectors.groupingBy(MenuSubMenuMst::getMenuCode))
-				.entrySet().stream().map(menu -> createMenuListResponseDto(menu)).collect(Collectors.toList());
+  private List<MenuListResponseDto> createResponseDto(List<MenuSubMenuMst> menuSubMenuMstList) {
+    List<MenuListResponseDto> menuListResponseDto = menuSubMenuMstList.stream()
+        .collect(Collectors.groupingBy(MenuSubMenuMst::getMenuCode)).entrySet().stream()
+        .map(menu -> createMenuListResponseDto(menu)).collect(Collectors.toList());
 
-		return menuListResponseDto;
-	}
+    return menuListResponseDto;
+  }
 
-	private MenuListResponseDto createMenuListResponseDto(Entry<String, List<MenuSubMenuMst>> menu) {
+  private MenuListResponseDto createMenuListResponseDto(Entry<String, List<MenuSubMenuMst>> menu) {
 
-		List<String> subMenuCodeList = menu.getValue().stream().map(e -> e.getSubMenuCode())
-				.collect(Collectors.toList());
+    List<String> subMenuCodeList = menu.getValue().stream().map(e -> e.getSubMenuCode())
+        .collect(Collectors.toList());
 
-		MenuListResponseDto menuListResponseDto = new MenuListResponseDto(menu.getKey(), subMenuCodeList);
+    MenuListResponseDto menuListResponseDto = new MenuListResponseDto(menu.getKey(),
+        subMenuCodeList);
 
-		return menuListResponseDto;
+    return menuListResponseDto;
 
-	}
+  }
 
-	public List<String> getAvailablePages() {
+  /**
+   * Gets the available pages.
+   *
+   * @return the available pages
+   */
+  public List<String> getAvailablePages() {
 
-		// Gets user role.
-		String userSubMenuRole = accountService.getUserSubMenuRole();
+    // Gets user role.
+    String userSubMenuRole = accountService.getUserSubMenuRole();
 
-		// Gets available pages
-		List<String> availablePages = accountService.getAvailablePages(userSubMenuRole).stream().map(pageRoleMst -> pageRoleMst.getPageCode())
-				.collect(Collectors.toList());
+    // Gets available pages
+    List<String> availablePages = accountService.getAvailablePages(userSubMenuRole).stream()
+        .map(pageRoleMst -> pageRoleMst.getPageCode()).collect(Collectors.toList());
 
-		return availablePages;
+    return availablePages;
 
-	}
+  }
 
 }

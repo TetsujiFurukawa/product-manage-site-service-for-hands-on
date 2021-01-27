@@ -7,18 +7,18 @@ import lombok.Data;
 @AllArgsConstructor
 public class SignInResponseDto {
 
-	private String userAccount;
+  private String userAccount;
 
-	private String userName;
+  private String userName;
 
-	private String userLocale;
+  private String userLocale;
 
-	private String userLanguage;
+  private String userLanguage;
 
-	private String userTimezone;
+  private String userTimezone;
 
-	private String userTimezoneOffset;
+  private String userTimezoneOffset;
 
-	private String userCurrency;
+  private String userCurrency;
 
 }

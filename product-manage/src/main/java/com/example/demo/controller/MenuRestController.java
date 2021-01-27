@@ -16,20 +16,30 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class MenuRestController {
 
-	private final MenuRestService menuRestService;
+  private final MenuRestService menuRestService;
 
-	@GetMapping("/menu/v1")
-	public List<MenuListResponseDto> getMenuV1() {
+  /**
+   * Gets the menu V 1.
+   *
+   * @return the menu V 1
+   */
+  @GetMapping("/menu/v1")
+  public List<MenuListResponseDto> getMenuV1() {
 
-		return menuRestService.getMenu();
+    return menuRestService.getMenu();
 
-	}
+  }
 
-	@GetMapping("/available-pages/v1")
-	public List<String> availablePagesV1() {
+  /**
+   * Available pages V 1.
+   *
+   * @return the list
+   */
+  @GetMapping("/available-pages/v1")
+  public List<String> availablePagesV1() {
 
-		return menuRestService.getAvailablePages();
+    return menuRestService.getAvailablePages();
 
-	}
+  }
 
 }

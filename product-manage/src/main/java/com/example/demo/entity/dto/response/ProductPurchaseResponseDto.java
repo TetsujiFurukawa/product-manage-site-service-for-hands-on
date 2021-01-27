@@ -9,20 +9,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductPurchaseResponseDto {
 
-	private String productCode;
+  private String productCode;
 
-	private String productName;
+  private String productName;
 
-	private String productGenre;
+  private String productGenre;
 
-	private String productImage;
+  private String productImage;
 
-	private String productSizeStandard;
+  private String productSizeStandard;
 
-	private String productColor;
+  private String productColor;
 
-	private BigDecimal productPurchaseUnitPrice;
+  private BigDecimal productPurchaseUnitPrice;
 
-	private Integer productStockQuantity;
+  private Integer productStockQuantity;
 
 }

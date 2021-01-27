@@ -7,18 +7,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductStockResponseDto {
 
-	private String productCode;
+  private String productCode;
 
-	private String productName;
+  private String productName;
 
-	private String productGenre;
+  private String productGenre;
 
-	private String productImage;
+  private String productImage;
 
-	private String productSizeStandard;
+  private String productSizeStandard;
 
-	private String productColor;
+  private String productColor;
 
-	private Integer productStockQuantity;
+  private Integer productStockQuantity;
 
 }

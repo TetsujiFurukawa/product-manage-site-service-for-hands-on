@@ -9,8 +9,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class MenuListResponseDto {
 
-	private String menuCode;
+  private String menuCode;
 
-	private List<String> subMenuCodeList;
+  private List<String> subMenuCodeList;
 
 }

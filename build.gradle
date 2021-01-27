@@ -21,6 +21,7 @@ buildscript {
 subprojects {
     apply plugin: 'java'
     apply plugin: 'eclipse'
+    apply plugin: 'checkstyle'
 
     def defaultEncoding = 'UTF-8'
     tasks.withType(JavaCompile) {
@@ -46,9 +47,15 @@ subprojects {
         testImplementation "org.assertj:assertj-core:${assertJVersion}"
     }
 
+    checkstyle {
+        toolVersion = '8.35'
+        configFile = rootProject.file('config/checkstyle/checkstyle.xml')
+        ignoreFailures = true
+        checkstyleTest.enabled = false
+    }
 
-   sourceCompatibility = 1.8
-   targetCompatibility = 1.8
+   	sourceCompatibility = 1.8
+   	targetCompatibility = 1.8
 
 }
 project(':biz') {}

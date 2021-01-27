@@ -10,22 +10,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductPurchaseHistorySearchResponseDto {
 
-	private Long no;
+  private Long no;
 
-	private String productName;
+  private String productName;
 
-	private String productCode;
+  private String productCode;
 
-	private String productPurchaseName;;
+  private String productPurchaseName;
 
-	private String productImageUrl;
+  private String productImageUrl;
 
-	private ZonedDateTime productPurchaseDate;
+  private ZonedDateTime productPurchaseDate;
 
-	private BigDecimal productPurchaseUnitPrice;
+  private BigDecimal productPurchaseUnitPrice;
 
-	private Integer productPurchaseQuantity;
+  private Integer productPurchaseQuantity;
 
-	private Integer productPurchaseAmount;
+  private Integer productPurchaseAmount;
 
 }

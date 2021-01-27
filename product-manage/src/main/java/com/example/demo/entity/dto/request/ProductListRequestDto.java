@@ -10,16 +10,16 @@ import lombok.Data;
 @AllArgsConstructor
 public class ProductListRequestDto {
 
-	@Size(max = 50)
-	private String productName;
+  @Size(max = 50)
+  private String productName;
 
-	@Size(max = 20)
-	private String productCode;
+  @Size(max = 20)
+  private String productCode;
 
-	@Size(max = 50)
-	private String productGenre;
+  @Size(max = 50)
+  private String productGenre;
 
-	@NotNull
-	private Boolean endOfSale;
+  @NotNull
+  private Boolean endOfSale;
 
 }

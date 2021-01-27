@@ -12,14 +12,19 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class AuthenticationService {
 
-	public final UserMst getUserMst() {
+  /**
+   * Gets the user mst.
+   *
+   * @return the user mst
+   */
+  public final UserMst getUserMst() {
 
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		LoginUserDetails loginUserDetails = ((LoginUserDetails) principal);
+    LoginUserDetails loginUserDetails = ((LoginUserDetails) principal);
 
-		return loginUserDetails.getUserMst();
+    return loginUserDetails.getUserMst();
 
-	}
+  }
 
 }

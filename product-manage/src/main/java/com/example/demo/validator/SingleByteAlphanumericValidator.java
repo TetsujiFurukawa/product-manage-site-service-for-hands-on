@@ -1,7 +1,12 @@
 package com.example.demo.validator;
 
-import static java.lang.annotation.ElementType.*;
-import static java.lang.annotation.RetentionPolicy.*;
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.CONSTRUCTOR;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.METHOD;
+import static java.lang.annotation.ElementType.PARAMETER;
+import static java.lang.annotation.ElementType.TYPE_USE;
+import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
@@ -18,25 +23,25 @@ import javax.validation.constraints.Pattern;
 @Pattern(regexp = "^[0-9a-zA-Z]+$")
 public @interface SingleByteAlphanumericValidator {
 
-	/**
-	 * message
-	 *
-	 * @return error message
-	 */
-	String message() default "mismatch IP address pattern";
+  /**
+   * Message.
+   *
+   * @return the string
+   */
+  String message() default "mismatch IP address pattern";
 
-	/**
-	 * groups
-	 *
-	 * @return groups
-	 */
-	Class<?>[] groups() default {};
+  /**
+   * Groups.
+   *
+   * @return the class[]
+   */
+  Class<?>[] groups() default {};
 
-	/**
-	 * payload
-	 *
-	 * @return payload
-	 */
-	Class<? extends Payload>[] payload() default {};
+  /**
+   * Payload.
+   *
+   * @return the class<? extends payload>[]
+   */
+  Class<? extends Payload>[] payload() default {};
 
 }

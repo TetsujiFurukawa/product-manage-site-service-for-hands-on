@@ -8,8 +8,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @MapperScan(basePackages = "com.example.demo.repository")
 public class ProductManageSiteServiceForHandsOnApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(ProductManageSiteServiceForHandsOnApplication.class, args);
-	}
+  public static void main(String[] args) {
+    SpringApplication.run(ProductManageSiteServiceForHandsOnApplication.class, args);
+  }
 
 }

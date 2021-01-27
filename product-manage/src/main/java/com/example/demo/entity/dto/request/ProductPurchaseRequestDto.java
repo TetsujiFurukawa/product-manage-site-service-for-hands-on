@@ -15,25 +15,25 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductPurchaseRequestDto {
 
-	@NotNull
-	@NotBlank
-	@Size(max = 20)
-	@SingleByteAlphanumericValidator
-	private String productCode;
+  @NotNull
+  @NotBlank
+  @Size(max = 20)
+  @SingleByteAlphanumericValidator
+  private String productCode;
 
-	@NotNull
-	@NotBlank
-	@Size(max = 50)
-	private String productPurchaseName;
+  @NotNull
+  @NotBlank
+  @Size(max = 50)
+  private String productPurchaseName;
 
-	@NotNull
-	@Min(1)
-	@Max(999999999)
-	private Integer productStockQuantity;
+  @NotNull
+  @Min(1)
+  @Max(999999999)
+  private Integer productStockQuantity;
 
-	@NotNull
-	@Min(1)
-	@Max(999999999)
-	private Integer productPurchaseQuantity;
+  @NotNull
+  @Min(1)
+  @Max(999999999)
+  private Integer productPurchaseQuantity;
 
 }

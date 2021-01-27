@@ -25,42 +25,78 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("api")
 @RequiredArgsConstructor
 public class ProductRestController {
-	private final ProductRestService productRestService;
+  private final ProductRestService productRestService;
 
-	@GetMapping("/product-search/v1")
-	public ProductSearchListResponseDto searchProductListV1(@Validated ProductListRequestDto productListRequestDto,
-			PagenatorRequestDto pagenatorRequestDto) {
+  /**
+   * Search product list V 1.
+   *
+   * @param productListRequestDto the product list request dto
+   * @param pagenatorRequestDto the pagenator request dto
+   * @return the product search list response dto
+   */
+  @GetMapping("/product-search/v1")
+  public ProductSearchListResponseDto searchProductListV1(
+      @Validated ProductListRequestDto productListRequestDto,
+      PagenatorRequestDto pagenatorRequestDto) {
 
-		return productRestService.getProductList(productListRequestDto, pagenatorRequestDto);
+    return productRestService.getProductList(productListRequestDto, pagenatorRequestDto);
 
-	}
+  }
 
-	@GetMapping("/product/v1")
-	public ProductDto getProductByCodeV1(@NotNull String productCode) throws IOException {
+  /**
+   * Gets the product by code V 1.
+   *
+   * @param productCode the product code
+   * @return the product by code V 1
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @GetMapping("/product/v1")
+  public ProductDto getProductByCodeV1(@NotNull String productCode) throws IOException {
 
-		return productRestService.getProductByCode(productCode);
+    return productRestService.getProductByCode(productCode);
 
-	}
+  }
 
-	@PostMapping("/product/v1")
-	public ProductDto createProductV1(@RequestBody @Validated ProductDto productDto) throws IOException {
+  /**
+   * Creates the product V 1.
+   *
+   * @param productDto the product dto
+   * @return the product dto
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @PostMapping("/product/v1")
+  public ProductDto createProductV1(@RequestBody @Validated ProductDto productDto)
+      throws IOException {
 
-		return productRestService.insertProduct(productDto);
+    return productRestService.insertProduct(productDto);
 
-	}
+  }
 
-	@PutMapping("/product/v1")
-	public ProductDto updateProductV1(@RequestBody @Validated ProductDto productDto) throws IOException {
+  /**
+   * Update product V 1.
+   *
+   * @param productDto the product dto
+   * @return the product dto
+   * @throws IOException Signals that an I/O exception has occurred.
+   */
+  @PutMapping("/product/v1")
+  public ProductDto updateProductV1(@RequestBody @Validated ProductDto productDto)
+      throws IOException {
 
-		return productRestService.updateProduct(productDto);
+    return productRestService.updateProduct(productDto);
 
-	}
+  }
 
-	@GetMapping("/product-genre/v1")
-	public List<String> getProductGenreV1() {
+  /**
+   * Gets the product genre V 1.
+   *
+   * @return the product genre V 1
+   */
+  @GetMapping("/product-genre/v1")
+  public List<String> getProductGenreV1() {
 
-		return productRestService.getProductGenre();
+    return productRestService.getProductGenre();
 
-	}
+  }
 
 }
