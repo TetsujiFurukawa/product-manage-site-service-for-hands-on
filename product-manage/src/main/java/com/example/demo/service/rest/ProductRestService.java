@@ -7,10 +7,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
-
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
-
 import com.example.demo.constant.ProductGenre;
 import com.example.demo.entity.domain.ProductMst;
 import com.example.demo.entity.domain.ProductMstStockMst;
@@ -26,7 +24,6 @@ import com.example.demo.properties.ProductImageProperties;
 import com.example.demo.service.ProductService;
 import com.example.demo.service.ProductStockService;
 import com.example.demo.utility.PagenatorUtility;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -88,8 +85,8 @@ public class ProductRestService extends BaseRestService {
    */
   public ProductDto insertProduct(ProductDto productDto) throws IOException {
 
-    List<ProductMst> productMstList = productService
-        .getProductListByCode(productDto.getProductCode());
+    List<ProductMst> productMstList =
+        productService.getProductListByCode(productDto.getProductCode());
 
     if (productMstList.size() > 0) {
       throw new DuplicateKeyException("Duplicated key.");
@@ -172,7 +169,7 @@ public class ProductRestService extends BaseRestService {
     ProductMst productMst = new ProductMst();
     productMst.setProductCode(productDto.getProductCode());
 
-    return productMst = productService.selectForUpdateProductMstByCode(productMst);
+    return productService.selectForUpdateProductMstByCode(productMst);
 
   }
 
@@ -229,8 +226,8 @@ public class ProductRestService extends BaseRestService {
     productSearchListResponseDto.setPageIndex(pagenatorRequestDto.getPageIndex());
     productSearchListResponseDto.setResultsLength(productMstStockMstCount);
 
-    List<ProductSearchResponseDto> productSearchResponseDtos = productMstStockMst.stream()
-        .map(p -> {
+    List<ProductSearchResponseDto> productSearchResponseDtos =
+        productMstStockMst.stream().map(p -> {
 
           ProductSearchResponseDto productSearchResponseDto = new ProductSearchResponseDto();
           productSearchResponseDto.setNo(p.getRowNo());

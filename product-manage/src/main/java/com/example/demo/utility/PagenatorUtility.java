@@ -21,7 +21,7 @@ public class PagenatorUtility {
       return Long.valueOf(0);
     }
 
-    return Long.valueOf(pageSize * pageIndex);
+    return Long.valueOf(pageSize) * Long.valueOf(pageIndex);
 
   }
 

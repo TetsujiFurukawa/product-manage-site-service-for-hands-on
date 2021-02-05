@@ -1,10 +1,8 @@
 package com.example.demo.service.session;
 
 import org.springframework.stereotype.Service;
-
-import com.example.demo.entity.domain.UserMst;
+import com.example.demo.entity.UserMstEx;
 import com.example.demo.entity.session.SessionData;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -149,20 +147,21 @@ public class SessionService {
     sessionData.setUserSubMenuRole(userSubMenuRole);
   }
 
+
   /**
    * Sets the up session.
    *
-   * @param userMst the new up session
+   * @param userMstEx the new up session
    */
-  public void setupSession(UserMst userMst) {
+  public void setupSession(UserMstEx userMstEx) {
 
-    setUserSeq(userMst.getUserSeq());
-    setUserAccount(userMst.getUserAccount());
-    setUserName(userMst.getUserName());
-    setUserLocale(userMst.getUserLocale());
-    setUserTimezone(userMst.getUserTimezone());
-    setUserCurrency(userMst.getUserCurrency());
-    setUserSubMenuRole(userMst.getUserSubMenuRole());
+    setUserSeq(userMstEx.getUserSeq());
+    setUserAccount(userMstEx.getUserAccount());
+    setUserName(userMstEx.getUserName());
+    setUserLocale(userMstEx.getUserLocale());
+    setUserTimezone(userMstEx.getUserTimezone());
+    setUserCurrency(userMstEx.getUserCurrency());
+    setUserSubMenuRole(userMstEx.getUserSubMenuRole());
 
   }
 }

@@ -2,29 +2,55 @@ package com.example.demo.entity.security;
 
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
+import com.example.demo.entity.UserMstEx;
+import lombok.Getter;
+import lombok.Setter;
 
-import com.example.demo.entity.domain.UserMst;
-
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-
-@Data
-@EqualsAndHashCode(callSuper = false)
+@Getter
+@Setter
 public class LoginUserDetails extends User {
 
   private static final long serialVersionUID = 6528512253200044197L;
-  private final UserMst userMst;
+  private final UserMstEx userMstEx;
+
 
   /**
    * Instantiates a new login user details.
    *
-   * @param userMst the user mst
+   * @param userMstEx the user mst ex
    */
-  public LoginUserDetails(UserMst userMst) {
+  public LoginUserDetails(UserMstEx userMstEx) {
 
-    super(userMst.getUserAccount(), userMst.getUserEncodedPassword(),
+    super(userMstEx.getUserAccount(), userMstEx.getUserEncodedPassword(),
         AuthorityUtils.createAuthorityList("ROLE_USER"));
-    this.userMst = userMst;
+
+    this.userMstEx = userMstEx;
+
+  }
+
+  /**
+   * Equals.
+   *
+   * @param object the object
+   * @return true, if successful
+   */
+  @Override
+  public boolean equals(Object object) {
+
+    return super.equals(object);
+
+  }
+
+
+  /**
+   * Hash code.
+   *
+   * @return the int
+   */
+  @Override
+  public int hashCode() {
+
+    return super.hashCode();
 
   }
 

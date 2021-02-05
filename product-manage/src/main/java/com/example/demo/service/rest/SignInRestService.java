@@ -1,12 +1,10 @@
 package com.example.demo.service.rest;
 
 import org.springframework.stereotype.Service;
-
-import com.example.demo.entity.domain.UserMst;
+import com.example.demo.entity.UserMstEx;
 import com.example.demo.entity.dto.response.SignInResponseDto;
 import com.example.demo.service.security.AuthenticationService;
 import com.example.demo.service.session.SessionService;
-
 import lombok.RequiredArgsConstructor;
 
 @Service
@@ -24,23 +22,25 @@ public class SignInRestService extends BaseRestService {
   public SignInResponseDto signIn() {
 
     // Gets user mst data.
-    UserMst userMst = principalService.getUserMst();
+    UserMstEx userMstEx = principalService.getUserMstEx();
 
     // sets user mst data to session.
-    sessionService.setupSession(userMst);
+    sessionService.setupSession(userMstEx);
 
-    SignInResponseDto signInResponseDto = createresponseDto(userMst);
+    SignInResponseDto signInResponseDto = createresponseDto(userMstEx);
 
     return signInResponseDto;
 
   }
 
-  private SignInResponseDto createresponseDto(UserMst userMst) {
+  private SignInResponseDto createresponseDto(UserMstEx userMstEx) {
 
     // Returns user data.
-    SignInResponseDto signInResponceDto = new SignInResponseDto(userMst.getUserAccount(),
-        userMst.getUserName(), userMst.getUserLocale(), userMst.getUserLanguage(),
-        userMst.getUserTimezone(), userMst.getUserTimezoneOffset(), userMst.getUserCurrency());
+    SignInResponseDto signInResponceDto =
+        new SignInResponseDto(userMstEx.getUserAccount(), userMstEx.getUserName(),
+            userMstEx.getUserLocale(), userMstEx.getUserLanguage(), userMstEx.getUserTimezone(),
+            userMstEx.getUserTimezoneOffset(), userMstEx.getUserCurrency());
+
     return signInResponceDto;
 
   }
