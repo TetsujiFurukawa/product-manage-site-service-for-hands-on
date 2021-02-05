@@ -1,12 +1,12 @@
 buildscript {
     ext {
         lombokVersion = '1.18.10'
-        springbootVersion = '2.2.4.RELEASE'
-        springSessionCoreVersion = '2.2.1.RELEASE'
-        springDependencyManagementVersion = '1.0.9.RELEASE'
+        springbootVersion = '2.4.2'
+        springSessionCoreVersion = '2.4.2'
+        springDependencyManagementVersion = '1.0.10.RELEASE'
         flywayVersion = '6.2.1'
         h2Version = '1.4.200'
-        junitVersion = '5.6.0'
+        junitVersion = '5.7.1'
         mockitoVersion = '3.2.4'
         assertJVersion = '3.14.0'
         myBatisSpringBootStarter = '2.1.1'
