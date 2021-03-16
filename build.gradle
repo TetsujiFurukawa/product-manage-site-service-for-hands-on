@@ -1,21 +1,21 @@
 buildscript {
-    ext {
-        lombokVersion = '1.18.10'
-        springbootVersion = '2.4.2'
-        springSessionCoreVersion = '2.4.2'
-        springDependencyManagementVersion = '1.0.10.RELEASE'
-        flywayVersion = '6.2.1'
-        h2Version = '1.4.200'
-        junitVersion = '5.7.1'
-        mockitoVersion = '3.2.4'
-        assertJVersion = '3.14.0'
-        myBatisSpringBootStarter = '2.1.1'
-        jsr310Version = '2.10.2'
-        commonsIoVersion = '2.6'
-        commonsLang3Version = '3.9'
-        springfoxSwaggerVersion = '2.9.2'
-        sonarqubeVersion = '2.7'
-    }
+	ext {
+	    lombokVersion = '1.18.10'
+	    springbootVersion = '2.4.2'
+	    springSessionCoreVersion = '2.4.2'
+	    springDependencyManagementVersion = '1.0.10.RELEASE'
+	    flywayVersion = '6.2.1'
+	    h2Version = '1.4.200'
+	    junitVersion = '5.7.1'
+	    mockitoVersion = '3.2.4'
+	    assertJVersion = '3.14.0'
+	    myBatisSpringBootStarter = '2.1.1'
+	    jsr310Version = '2.10.2'
+	    commonsIoVersion = '2.6'
+	    commonsLang3Version = '3.9'
+	    springfoxSwaggerVersion = '2.9.2'
+	    sonarqubeVersion = '2.7'
+	}
 }
 
 plugins {
@@ -55,10 +55,8 @@ subprojects {
     }
 
     checkstyle {
-        toolVersion = '8.35'
-        configFile = rootProject.file('config/checkstyle/checkstyle.xml')
-        ignoreFailures = true
-        checkstyleTest.enabled = false
+        toolVersion = '8.41'
+        configFile = rootProject.file('config/checkstyle/google_checks.xml')
     }
 
 	spotbugs {

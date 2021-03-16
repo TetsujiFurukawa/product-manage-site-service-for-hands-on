@@ -28,7 +28,7 @@
     </module>
     <!-- https://checkstyle.org/config_filters.html#SuppressionFilter -->
     <module name="SuppressionFilter">
-        <property name="file" value="${config_loc}/checkstyle-exclude.xml"/>
+        <property name="file" value="${config_loc}/checkstyle_exclusions.xml"/>
         <property name="optional" value="true"/>
     </module>
 
