@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+    Used this style from Google Style Guides.
+    That can be found at https://github.com/google/styleguide
+-->
 <profiles version="13">
 <profile kind="CodeFormatterProfile" name="GoogleStyle" version="13">
 <setting id="org.eclipse.jdt.core.formatter.comment.insert_new_line_before_root_tags" value="insert"/>

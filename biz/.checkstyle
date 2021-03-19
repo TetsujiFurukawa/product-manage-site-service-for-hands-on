@@ -4,9 +4,4 @@
   <fileset name="すべて" enabled="true" check-config-name="google_checks" local="false">
     <file-match-pattern match-pattern="." include-pattern="true"/>
   </fileset>
-  <filter name="FilesFromPackage" enabled="true">
-    <filter-data value="src/main/java/com/example/demo/entity/domain"/>
-    <filter-data value="src/main/java/com/example/demo/repository"/>
-    <filter-data value="src/main/resources"/>
-  </filter>
 </fileset-config>
