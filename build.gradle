@@ -14,12 +14,13 @@ buildscript {
 	    commonsIoVersion = '2.6'
 	    commonsLang3Version = '3.9'
 	    springfoxSwaggerVersion = '2.9.2'
+	    spotbugsVersion = '4.7.1'
 	    sonarqubeVersion = '2.7'
 	}
 }
 
 plugins {
-    id 'com.github.spotbugs' version '4.6.0'
+    id "com.github.spotbugs" version "${spotbugsVersion}"
 }
 
 subprojects {
@@ -50,8 +51,6 @@ subprojects {
         testImplementation "org.mockito:mockito-core:${mockitoVersion}"
         testImplementation "org.mockito:mockito-junit-jupiter:${mockitoVersion}"
         testImplementation "org.assertj:assertj-core:${assertJVersion}"
-
-        spotbugs 'com.github.spotbugs:spotbugs:4.0.0'
     }
 
     checkstyle {
@@ -60,7 +59,15 @@ subprojects {
     }
 
 	spotbugs {
-	  toolVersion = '4.2.0'
+	    toolVersion = '4.2.0'
+        spotbugsMain {
+            reports {
+                html {
+                    enabled = true
+                    stylesheet = 'fancy-hist.xsl'
+                }
+            }
+        }
 	}
 
    	sourceCompatibility = 1.8
