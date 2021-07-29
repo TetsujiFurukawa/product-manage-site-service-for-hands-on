@@ -61,6 +61,7 @@ public class LoginUserDetailsService implements UserDetailsService {
     userMstEx.setUserTimezone(userMst.getUserTimezone());
     userMstEx.setUserTimezoneOffset(userMst.getUserTimezoneOffset());
     userMstEx.setUserCurrency(userMst.getUserCurrency());
+    userMstEx.setUserSubMenuRole(userMst.getUserSubMenuRole());
 
     return userMstEx;
 
