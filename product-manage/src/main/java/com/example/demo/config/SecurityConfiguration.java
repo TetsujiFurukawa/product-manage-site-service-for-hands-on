@@ -19,6 +19,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   private static final String API_SIGN_IN = "/api/sign-in/*";
 
   private static final String PRODUCT_IMAGES = "/product-images/*";
+  private static final String ASSETS_I18N = "/assets/i18n/*";
 
   private static final String[] AUTH_WHITELIST = {
       // Swagger ui
@@ -29,6 +30,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   public void configure(WebSecurity webSecurity) throws Exception {
 
     webSecurity.ignoring().antMatchers("/*", PRODUCT_IMAGES);
+    webSecurity.ignoring().antMatchers("/*", ASSETS_I18N);
 
   }
 
