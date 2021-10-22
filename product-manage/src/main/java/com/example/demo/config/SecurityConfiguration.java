@@ -29,7 +29,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Override
   public void configure(WebSecurity webSecurity) throws Exception {
 
-    webSecurity.ignoring().antMatchers("/*", PRODUCT_IMAGES);
     webSecurity.ignoring().antMatchers("/*", ASSETS_I18N);
 
   }
