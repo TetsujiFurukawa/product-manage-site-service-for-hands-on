@@ -1,7 +1,6 @@
 package com.example.demo.entity.domain;
 
 import java.math.BigDecimal;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,22 +8,22 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ProductMstStockMst {
 
-	private Long rowNo;
+  private Long rowNo;
 
-	private String productCode;
+  private String productCode;
 
-	private String productName;
+  private String productName;
 
-	private String productGenre;
+  private String productGenre;
 
-	private String productSizeStandard;
+  private String productSizeStandard;
 
-	private String productColor;
+  private String productColor;
 
-	private BigDecimal productUnitPrice;
+  private BigDecimal productUnitPrice;
 
-	private Boolean endOfSale;
+  private Boolean endOfSale;
 
-	private Integer productStockQuantity;
+  private Integer productStockQuantity;
 
 }

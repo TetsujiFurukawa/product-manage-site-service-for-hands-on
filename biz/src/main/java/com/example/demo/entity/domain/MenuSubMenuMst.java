@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MenuSubMenuMst {
 
-	private String menuCode;
+  private String menuCode;
 
-	private String subMenuCode;
+  private String subMenuCode;
 
 }
